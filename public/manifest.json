@@ -1,6 +1,6 @@
 {
-  "name": "hah",
-  "short_name": "hah",
+  "name": "payment-refactor-vue",
+  "short_name": "payment-refactor-vue",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

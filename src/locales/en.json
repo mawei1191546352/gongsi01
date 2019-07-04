@@ -1,0 +1,1061 @@
+{
+    "route":{
+        "home":"home",
+        "component":"component",
+        "permission":"permission",
+        "i18n":"i18n",
+        "drag":"drag",
+        "permission-instruction":"permission instruction",
+        "permission-page":"permission page"
+    },
+    "login":{
+        "title":"admin-vue"
+    },
+    "nav_bar":{
+        "0":"Fiat",
+        "1":"Payment order",
+        "2":"Balances",
+        "3":"My Account"
+    },
+    "top_nav":{
+        "hi":"hi",
+        "login":"Login",
+        "register":"Sign up",
+        "sign_out":"Sign out",
+        "message":"Message",
+        "view":"View all orders",
+        "in":"Buy",
+        "out":"Sell",
+        "info_one":"A new trade info from ",
+        "info_two":""
+    },
+    "legal_currency":{
+        "h3":"Royalbiz pays OTC to serve every detail",
+        "p":"Safe, convenient and simple over-the-counter trading platform",
+        "sele":{
+            "country":"Country",
+            "legal":"Legal currency",
+            "payment":"Payment method",
+            "cancle":"Cancel",
+            "search":"Search",
+            "all_coin":"All coin",
+            "all_cash":"All cash payment",
+            "all_gift":"All gift payment",
+            "cash_way":"Cash Card",
+            "gift_way":"Gift Card",
+            "bank":"Bank Account",
+            "alipay":"Alipay",
+            "wxpay":"Wechat"
+        },
+        "optionsFa":[
+            {
+                "id":"-1",
+                "coinName":"All coin"
+            }
+        ],
+        "optionsPayWay":[
+            {
+                "id":"0",
+                "countryName":"Cash Card"
+            },
+            {
+                "id":"1",
+                "countryName":"Gift card"
+            }
+        ],
+        "optionsPayWayCash":[
+            {
+                "id":"-1",
+                "countryName":"All cash payment"
+            },
+            {
+                "id":"0",
+                "countryName":"Bank Account"
+            },
+            {
+                "id":"1",
+                "countryName":"Alipay"
+            },
+            {
+                "id":"2",
+                "countryName":"Wechat"
+            }
+        ],
+        "optionsPayWayGift":[
+            {
+                "id":"-1",
+                "cardName":"All gift payment"
+            }
+        ]
+    },
+    "ad_top":{
+        "price":"Price",
+        "limit":"Limits",
+        "pay_way":"PaymentMethod",
+        "buy":"Buy",
+        "sell":"Sell",
+        "my_order":"MyOrders",
+        "my_ad":"My Ads",
+        "my_release":"Create Ad",
+        "youhave":"You have",
+        "order_no":"orders pending!"
+    },
+    "ad_table":{
+        "in":"Buy",
+        "out":"Sell",
+        "fresh":"AutoRefresh",
+        "table":{
+            "name":"Advertisers",
+            "limit":"Limits",
+            "pay_way":"PaymentMethod",
+            "price":"Price",
+            "discount":"1CNY Discount",
+            "operate":"Trade"
+        },
+        "row":{
+            "in":"Buy",
+            "out":"Sell"
+        }
+    },
+    "place_holder":{
+        "in":"Buy",
+        "out":"Sell",
+        "do_in":"BUY",
+        "do_out":"SELL",
+        "mark":"Remarks",
+        "limit":"Current limit",
+        "amount_in_placeholder":"Enter the buy amount",
+        "amount_out_placeholder":"Enter the sell amount",
+        "total_in_placeholder":"Enter the buy volume",
+        "total_out_placeholder":"Enter the sell volume",
+        "cash_pass":"Fund Password",
+        "pass_placeholder":"Please enter the fund password"
+    },
+    "sign_in":{
+        "h3": "Log in with Royalbiz account",
+        "email_phone_placeholder": "Please enter your email / phone",
+        "pass_placeholder": "Please enter your login password",
+        "rem_account": "Remember the account",
+        "for_pass": "Forgot Password",
+        "login_button": "Login",
+        "go_register": "Sign up",
+        "input_all" : "Please complete the information"
+    },
+    "sign_up": {
+        "h3": "Welcome to sign up",
+        "nav_email":"E-mail",
+        "nav_phone":"Phone",
+        "user_placeholder":"Please set the username,can't be changed after setting.",
+        "email_placeholder":"Please enter Email address",
+        "email_regular":"'The email format is incorrect.",
+        "phone_placeholder":"Please enter phone number",
+        "phone_regular":"The phone number format is incorrect.",
+        "test_code":"Please enter SMS verification code",
+        "test_wrong":"Verification code error",
+        "test_check":"输入有误",
+        "pass_placeholder":"Password",
+        "pass_t_placeholder":"Confirm Password",
+        "pass_regular":"Combinations of 6-16 letters and numbers",
+        "pass_check":"The two passwords are different. Please retry",
+        "get_code":"Click to send",
+        "accept":"Read and accept the",
+        "user_agreement":"User Agreement",
+        "legal_notice":"Legal Notices",
+        "privacy_policy":"Privacy Policy",
+        "register":"Sign up",
+        "go_login":"Login",
+        "invalid_username":"Invalid username",
+        "input_all" : "Please complete the information"
+    },
+    "forget_pass":{
+        "h3":"Change password",
+        "nav_email":"E-mail",
+        "nav_phone":"Phone",
+        "email":"Please enter Email",
+        "phone":"Please enter Phone",
+        "code":"Enter code",
+        "code_wrong":"Code is wrong",
+        "one_button":"Next",
+        "email_code":"Please enter E-mail verification code",
+        "phone_code":"Please enter Phone verification code",
+        "get_code":"Click to send",
+        "pass_new":"Please enter the new password",
+        "pass_new_t":"Please enter the new password again",
+        "go_login":"Return to login",
+        "register":"Sign up",
+        "info":"If you encounter any problems during the process of recovering your password, please call Royalbiz customer service, Monday to Friday, 9:00-18:00",
+        "phone_regular":"The phone number format is incorrect.",
+        "email_regular":"'The email format is incorrect.",
+        "submit":"Submit"
+    },
+    "legal_list":{
+        "nav_legal":"Fiat",
+        "nav_list":"My Orders",
+        "country":"Country",
+        "status":"Status",
+        "trade_type":"Trade Type",
+        "trade":"Trade",
+        "search":"Search",
+        "date":"Date",
+        "tradeCoinTypeArr":[
+            {
+                "id":"-1",
+                "countryName":"All",
+                "countryCode":"All"
+            }
+        ],
+        "tradeCoinTypeArrB":[
+            {
+                "id":"-1",
+                "coinName":"All"
+            }
+        ],
+        "isBuyArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            },
+            {
+                "value":"0",
+                "label":"Buy"
+            },
+            {
+                "value":"1",
+                "label":"Sell"
+            }
+        ],
+        "adStatusArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            },
+            {
+                "value":"0",
+                "label":"Unpaid"
+            },
+            {
+                "value":"1",
+                "label":"Paid"
+            },
+            {
+                "value":"2",
+                "label":"Complete"
+            },
+            {
+                "value":"3",
+                "label":"Cancelled"
+            }
+        ],
+        "coinTypeArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            }
+        ],
+        "search_placeholder":"Input No./Conterparty",
+        "order":"No.",
+        "total_price":"Total price",
+        "unit_price":"Unit price",
+        "time":"Time",
+        "conterparty":"Conterparty",
+        "control":"Control",
+        "to":"to",
+        "do_in":"BUY",
+        "do_out":"SELL",
+        "detail":"Detail",
+        "release":"Release",
+        "pay":"Pay",
+        "s_complete":"Complete",
+        "s_unpaid":"Unpaid",
+        "s_paid":"Paid",
+        "s_cancelled":"Cancelled",
+        "appealing":"Appealing",
+        "appealed":"Be appealed"
+    },
+    "legal_currency_order": {
+        "nav_list":"My Orders",
+        "nav_order_out":"Sell order",
+        "nav_order_in":"Buy order",
+        "remain_time":"Remaining time",
+        "order_num":"Order No.",
+        "need_paid":"Amount to be paid：",
+        "transaction_paid":"Transaction amount",
+        "need_amount":"Buy amount",
+        "transaction_amount":"Transaction vlume",
+        "fee":"Fee",
+        "price":"Price",
+        "need_time":"Creation time",
+        "transaction_time":"Order time",
+        "mark":"Note",
+        "pay_code":"Please note the payment code",
+        "out_pay_me":"Payment Method",
+        "in_pay_me":"Payment Method",
+        "in_user":"Buyer",
+        "out_user":"Seller",
+        "order_complete":"Transaction complete",
+
+        "mark_paid":"Payments Made",
+        "order_list":"Order List",
+        "appeal":"Appeal",
+        "appealing":"Appealing",
+        "be_appeal":"Be appealed",
+        "release":"Release ",
+        "order_cancle":"Cancle",
+        "order_cancled":"Cancled Orders",
+        "order_overtime_in":"The order has expired. Please buy in again",
+        "order_overtime_out":"The order has expired. Please sell in again",
+
+        "status_cancled":"Order cancled",
+        "status_closed":"Order closed",
+        "status_done":"Order complete",
+        "status_transfer_done":"Transaction complete",
+        "status_overtime":"Order overtime",
+
+        "have_in":"You have received",
+        "have_out":"You have sold",
+        "have_order_cancled":"Order cancelled",
+        "have_return":" has returned your account balance",
+        "over2h":"Over 2 hours without clicking on payment, the transaction failed",
+        "in":"Buyer",
+        "out":"Seller",
+        "qs_pay":"QR code",
+        "wx":"Wechat",
+        "ali":"Alipay",
+
+        "inline":"Online",
+        "unline":"Unline",
+        "phone_num":"Telephone number",
+        "phone_num_s":"Show the other party's phone number after 5 minutes",
+        "phone_num_s2":"Cancelled or completed orders will not be displayed.",
+        "appeal_time":"Appeal time",
+        "concat_you":"Our support team will be contacting you soon,Please make sure that your are contactable.",
+        "appeal_code":" The Appeal Code is ",
+        "you2seller":"You have appealed the seller's order ",
+        "you2buyer":"You have appealed the buyer's order ",
+        "seller2you":"The seller has appealed your order",
+        "buyer2you":"The buyer has appealed your order",
+
+        "remark_paid":"You have marked the order as 'Payment' status, please wait for the seller to confirm the receipt and release.",
+        "judge":"System's judgement on the appeal",
+        "judge_time":"Judging time",
+        "paid_start":"The buyer has confirmed the payment, please check your account. Please release within",
+        "paid_min":"minutes",
+        "paid_end":"after confirmation of receipt.",
+        "return_se":"return to seller",
+        "release_se":"released to buyer's account",
+
+
+        "faq":"FAQ",
+        "faq1":"Reminders for transfer",
+        "faq11":"To prevent your transfer from being intercepted and your bank card frozen, please don't fill in information such as BTC, USDT and Royalbiz as notes during transfer. In case of delays caused by this, the seller can reject the transaction",
+        "faq12":"Cancellation of more than three orders will prohibit one-day transactions ",
+        "faq13":"For unpaid orders, please do not click Payment, more than three times will prohibit one day trading",
+        "faq14":"Please note the payment code",
+        "faq15":"If your amount exceeds 50,000, after 17:00 or in holidays, your transfer probably will be delayed. Please divide you transfer into several transfers to avoid delays. In case of delay, the seller has the rights to reject the transaction",
+        "faq16":"Please ensure the payment account information is consistent with identity authentication information.",
+        "faq2":"When can I receive the assets?",
+        "faq21":"If you have paid the seller, please click on 'I've paid'. You will receive the digital assets after the seller confirms the payment.",
+        "faq3":"Is it safe to pay the seller?",
+        "faq31":"When you enter a trade, the seller's digital assets will be locked in the platform's wallet, so you don't have to worry about paying the seller. If the seller has not released the digital assets in 5 minutes after you paid, please click on 'Complaint' to get help from our customer service team.",
+
+        "item1_h":"Payments Made",
+        "item1_p1":"Please mark the payment after completion of payment.",
+        "item1_p2":"For unpaid orders, please do not click Payment.",
+        "item1_p3":"more than three times will prohibit one day trading",
+
+        "item2_h":"Cancle",
+        "item2_p1":"There will be no refund after canceling the order. If you have paid, please do not cancel the order.",
+        "item2_p2":"Trading will be suspended for the day, should there 3 cancelled transactions in a day.",
+
+        "item3_h":"Confirm release",
+        "item3_p1":"Please make sure that payment is received before release！",
+        "item3_p2":"Drawee",
+        "item3_p3":"Value",
+        "item3_p4":"Amount",
+
+        "item4_h":"Reasons for appeal",
+        "item4_p1":"username/userId/orderId/Payment reference number/Problem Description",
+
+        "ads_list":"AdsList"
+    },
+    "publish":{
+        "release":"Release Note",
+        "release1":"If you trade cryptocurrency frequently, you can post your own digital currency trading ad.",
+        "release2":"Posting a trade ad is free, but you need cryptocurrency amount corresponding to your trade ad. After you release your cryptocurrency trade ad, your ad will appear in the list of ads. ",
+        "release3":"After your trade completed, a handling fee will be collected.",
+        "fee":"Handling fee notice",
+        "fee_info":"OTC handling fee is collected at diffential price. Handling fee is based on cyrptocurrency trading amount. Below is the chart for handling fee.",
+        "tradeType":[
+            {
+                "value":"0",
+                "label":"Buy crypto"
+            },
+            {
+                "value":"1",
+                "label":"Sell crypto"
+            }
+        ],
+        "tradePayType":[
+            {
+               "value":"0",
+               "label":"Cash" 
+            },
+            {
+                "value":"1",
+                "label":"Gift Card"
+            }
+        ],
+        "pay_way":"Payment Method",
+        "pay_list":"Display payment method",
+        "max_pay":"(Maximum number is 3)",
+        "gift_list":"Gift card type",
+        "max_gift":"(Maximum number is 1)",
+        "balance":"Balance",
+        "transaction":"Transaction Type",
+        "cryptocurrency":"Cryptocurrency",
+        "sele_c":"Select country",
+        "currency":"Currency",
+        "fixed_price":"Set to fixed unit price",
+        "float_price":"Set to floating unit price",
+        "float_price2":"Real-time changes with market prices",
+        "profit":"Profit",
+        "market_price":"Market price",
+        "list_price":"listing price",
+        "amount_limit":"Trade amount limit",
+        "c_amount_limit":"Cumulative transaction limit",
+        "note":"Note",
+        "important":"Important Notes",
+        "im1":"Maximum number of orders being co-processed: 100 ",
+        "im2":"When trading at OTC market, please confirm money amount before release crypto currency. ",
+        "im3":"When trading at OTC market, please do not disclose any sensitive information related to your account security. ",
+        "im4":"To ensure users' transaction security, OTC platform has applied cyrpto currenty custody system. OTC market strictly forbidden 'off-platform' transactions. Violaters will bear the loss and account will be permanently frozen ",
+        "im5":"Do not attempt fraud, offenders' account will be frozen permanently.",
+        "unit_price":"Please enter unit-price",
+        "tishi":"Trade amount limit can't be lower than",
+        "tishi2":"Trade amount limit can't be",
+        "lower":"lower",
+        "higher":"higher",
+        "endsubmit":"RELEASE",
+        "range":"range",
+        "fee_rate":"fee rate",
+        "place_min_amount":"Enter the minimum amount of trading currency for a single sale",
+        "place_min_amount_trade":"Please input minimum trade amount for single transaction",
+        "place_min_crypto_amount":"Enter the minimum amount of digital currency for a single sale",
+        "place_min_crypto_amount_trade":"Please input minimum crypto trade amount for single transaction",
+        "place_max_amount":"Enter the maximum amount of trading currency for a single sale",
+        "place_max_amount_trade":"Please input maximum trade amount for single transaction",
+        "place_max_crypto_amount_trade":"Please input maximum crypto trade amount for single transaction",
+        "place_max_crypto_amount":"Please input maximum crypto trade amount for single transaction",
+        "place_end":"Please input cumulative transaction limit",
+        "text":"Please input notes here. Maximum 500 characters."
+    },
+    "ads":{
+        "nav_list":"Fiat",
+        "nav_one":"My Ads",
+        "country":"Country",
+        "status":"Status",
+        "trade_type":"Trade Type",
+        "trade":"Trade",
+        "search":"Search",
+        "date":"Date",
+        "pay_way":"Payment method",
+        "tradeCoinTypeArr":[
+            {
+                "id":"-1",
+                "countryName":"All",
+                "countryCode":"All"
+            }
+        ],
+        "tradeCoinTypeArrB":[
+            {
+                "id":"-1",
+                "coinName":"All"
+            }
+        ],
+        "isBuyArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            },
+            {
+                "value":"0",
+                "label":"Buy"
+            },
+            {
+                "value":"1",
+                "label":"Sell"
+            }
+        ],
+        "coinTypeArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            }
+        ],
+        "optionsPayWay":[
+            {
+                "id":"-1",
+                "countryName":"All"
+            },
+            {
+                "id": "0",
+                "countryName": "Cash"
+            },
+            {
+                "id": "1",
+                "countryName": "Gift card"
+            }
+        ],
+        "adStatusArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            },
+            {
+                "value":"1",
+                "label":"On"
+            },
+            {
+                "value":"2",
+                "label":"Off"
+            }
+        ],
+        "search_placeholder":"Input No./Conterparty",
+        "order":"No.",
+        "to":"to",
+
+        "ad_id":"No.",
+        "ad_type":"Trade Type",
+        "amount":"Amount",
+        "limit":"Limits",
+        "unit_price":"Unit Price",
+        "paym":"Payment Method",
+        "time":"Creation Time",
+        "control":"Control",
+        "in":"BUY",
+        "out":"SELL",
+
+        "put_on":"Put On",
+        "put_off":"Put Off",
+        "put_edit":"Edit",
+        "put_delete":"Delete",
+        "undo_put_off":"Undo Put Off",
+
+        "item1_h":"book off",
+        "item1_p1":"The Ad have orders in progress and cannot be removed from shelves.",
+        "item1_p2":"Are you sure to suspend the order and get off the shelf after the current order is completed?",
+        "item2_h":"put off the  advertisement",
+        "item2_p":"After the advertisement is off the shelf, it will stop receiving the order. Do you confirm that it is off the shelf?",
+        "item3_h":"cancel booking",
+        "item3_p":"You have book off the advertisement. Are you sure to cancel it？",
+        "item4_h":"delete the advertisement",
+        "item4_p":"Are you sure to delete the advertisement？"
+
+    },
+    "pay_order":{
+        "nav_complete":"Complete",
+        "nav_process":"Processing",
+        "nav_closed":"Cancelled",
+        "nav_unpay":"Processing",
+        "options":[
+            {
+                "value":"0",
+                "label":"Query by submission time"
+            },
+            {
+                "value":"1",
+                "label":"Query by completion time"
+            }
+        ],
+        "input_place1":"Please enter the order number / username / real name",
+        "input_place2":"Please enter the order number / merchant",
+        "export":"Export",
+        "coinTypeIdArr":[
+            {
+                "value":"-1",
+                "label":"All"
+            }
+        ],
+        "create_time":"Create Time",
+        "complete_time":"Complete Time",
+        "closed_time":"Close Time",
+        "remain_time":"Remaing Time",
+        "merchant_id":"Merchant Order No.",
+        "pay_id":"Pay Order No.",
+        "payer":"Conterparty",
+        "contact":"Contact",
+        "phone":"phone",
+        "email":"email",
+        "merchant":"Merchant",
+        "coin":"Coin",
+        "amount":"Amount",
+        "to_us":"Amount To USD",
+        "fee":"Fee",
+        "actual_amount":"Actual payment",
+        "control":"Control",
+        "pay":"Pay",
+        "view":"View"
+    },
+    "asset_manage":{
+        "title":"Estimated Value",
+        "nav_record":"Asset operation record",
+        "nav_address":"Coin withdraw address management",
+        "coin":"Coin",
+        "available":"Available",
+        "frozen":"Frozen",
+        "lump_sum":"lump sum",
+        "control":"Control",
+        "deposit":"Deposit",
+        "withdraw":"Withdraw",
+        "transfer":"Transfer",
+        "lian_name":"chain",
+        "deposit_address":"Deposit Address",
+        "view":"View",
+        "deposit_history":"Deposit History",
+        "deposit_status":"to track status",
+        "dh":"Tips",
+        "dp1_usdt":"lease don’t deposit any other digital assets except USDT to the above address.",
+        "dp2_usdt":"USDTdeposit only supports simple send, and deposits by other methods （send all）can't be credited temporarily. We apologize for the inconvenience.",
+        "dp3_usdt":"Depositing to the above address requires confirmations of the entire network. It will arrive after 1 confirmations, and it will be available to withdraw after 6 confirmations",
+        "dp4_usdt":"Minimum deposit amount: 0.001 USDT. Any deposits less than the minimum will not be credited or refunded",
+        "dp5_usdt":"Your deposit address won’t change frequently. Any changes, we will inform you by announcement or email. ",
+        "dp6_usdt":"Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked.",
+        "dp1_btc":"lease don’t deposit any other digital assets except BTC to the above address.",
+        "dp2_btc":"BTC deposit only supports simple send, and deposits by other methods （send all）can't be credited temporarily. We apologize for the inconvenience.",
+        "dp3_btc":"Depositing to the above address requires confirmations of the entire network. It will arrive after 1 confirmations, and it will be available to withdraw after 6 confirmations",
+        "dp4_btc":"Minimum deposit amount: 0.001 BTC. Any deposits less than the minimum will not be credited or refunded",
+        "dp5_btc":"Your deposit address won’t change frequently. Any changes, we will inform you by announcement or email. ",
+        "dp6_btc":"Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked.",
+
+        "withdraw_address":"Withdraw Address",
+        "withdraw_amount":"Amount",
+        "receive":"Receive Amount",
+        "withdraw_butt":"WITHDRAW",
+        "wp1_usdt":"Minimum withdrawal amount",
+        "wp2_usdt":"Maximum withdrawal amount",
+        "wp3_usdt1":"your withdrawal request will be manually reviewed if the withdrawal amount in excess of",
+        "wp3_usdt2":", Please wait for phone calls or emails from our staff. ",
+        "wp4_usdt":"To ensure the safety of your funds, your withdrawal request will be rejected if your security strategy or password is changed.",
+        "wp5_usdt":"Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked.",
+        "w_placeholder":"Please enter your withdraw address",
+
+
+        "username":"Username",
+        "account":"Login account",
+        "transfer_amount":"Transfer amount",
+        "cash_pass":"Fund Password",
+        "fee":"Fee",
+        "confirm":"Confirm",
+        "t_placeholder_username":"Please enter the recipient's account name",
+        "t_placeholder_account":"Enter the recipient's Email / Phone",
+        "t_placeholder_amount":"Please enter the amount to transfer",
+        "t_placeholder_pass":"Please enter the fund password",
+        "transfer_ok":"succeed",
+        "username_first":"Please enter the user name first!",
+
+        "input_cash_pass":"Enter the fund password"
+    },
+    "asset_record":{
+        "nav_asset":"Balances",
+        "nav_one":"Asset operation record",
+        "options":[
+            {
+                "value":"-1",
+                "label":"All"
+            }
+        ],
+        "operationTypes":[
+            {
+                "value":"0",
+                "label":"Deposit"
+            },
+            {
+                "value":"1",
+                "label":"Withdraw"
+            },
+            {
+                "value":"2",
+                "label":"Transfer in"
+            },
+            {
+                "value":"3",
+                "label":"Transfer out"
+            }
+        ],
+        "record":"Operation record",
+        "opreate_type":"Operation Type",
+        "reciprocal_account":"Reciprocal account",
+        "coin":"Coin",
+        "deposit":"Deposit",
+        "withdraw":"Withdraw",
+        "transfer_in":"Transfer in",
+        "transfer_out":"Transfer out",
+        "time":"Time",
+        "amount":"Amount",
+        "fee":"Fee",
+        "status":"Status",
+        "address":"Address",
+        "txid":"TXID"
+    },
+    "asset_address":{
+        "nav_asset":"Balances",
+        "nav_one":"Coin withdraw address management",
+        "coin":"Coin",
+        "withdraw_address":"Coin withdraw address",
+        "address_input":"Please enter the content",
+        "note":"Note",
+        "note_input":"Please enter the content",
+        "add":"Add to",
+        "control":"Control",
+        "biArray":[
+            {
+                "value":"-1",
+                "label":"All"
+            }
+        ],
+        "delete_address":"The deletion operation is irreversible. Are you sure to delete the address?",
+        "tip":"Tip"
+    },
+    "merchant":{
+        "merchant":"Merchant",
+        "times":"times",
+        "complete_rate":"d completion rate",
+        "trade":"Trade",
+        "min":"minute",
+        "trade_in":" in ",
+        "trade_day":"days",
+        "avg_release":"Avg Release",
+        "in":"Buy",
+        "in_u":"BUY",
+        "out":"Sell",
+        "out_u":"SELL",
+        "coin":"Coin",
+        "amount":"Amount",
+        "limit":"Limits",
+        "unit_price":"Unit Price",
+        "payment_method":"Payment method",
+        "control":"Control",
+        "buy":"Buy",
+        "sell":"Sell",
+        "empty":"Not yet released"
+    },
+    "chat":{
+        "trade":"Trades in 30 days",
+        "pic":"IMG",
+        "enter":"Enter",
+        "no_more":"There is no more news."
+    },
+    "my_account":{
+        "reset_pass":"Reset password",
+        "reset_fund_pass":"Reset fund password",
+        "set_fund_pass":"Set fund password",
+        "not_link":"Not linked",
+        "linked":"Linked",
+        "e_link":"Link",
+        "p_link":"Link",
+        "p_c_link":"Change",
+        "g_link":"Link",
+        "g_c_link":"Change",
+        "id_link":"Link",
+        "id_ver":"ID Verification",
+        "id_un_certify":"Not certified",
+        "tijiao_weishenhe":"under review",
+        "tijiao_shenhe_no":"Verify failed",
+        "tijiao_shenhe_ok":"Verified",
+        "geren":"Individual",
+        "jigou":"Corporate",
+        "certify":"Certification",
+        "payment":"Payment Method",
+        "payment_de":"For personal security reasons, please only use your own account.Enabled payment instructions will be showen to the buyer,3 at most",
+        "add_payment":"Add a new payment method",
+        "null_add_payment":"Add payment method",
+        "login_history":"Login History",
+        "time":"Time",
+        "type":"Type",
+        "ip":"IP",
+        "com_id":"Apply for Corporate Certification",
+        "one_id":"Individual ID  Verification",
+        "ali":"Alipay",
+        "wx":"Wechat",
+        "bank":"Bank",
+        "null_method":"No payment method has been added.",
+        "pay_methods":[
+            {
+                "value":"0",
+                "label":"Bank"
+            },
+            {
+                "value":"1",
+                "label":"Alipay"
+            },
+            {
+                "value":"2",
+                "label":"Wechat"
+            }
+        ],
+        "pay_methods_one":[
+            {
+                "value":"0",
+                "label":"Bank"
+            }
+        ],
+        "country":"Country",
+        "name":"Name",
+        "bank_name":"Bank  Name",
+        "branch_name":"Branch Info",
+        "bank_account":"Bank Account",
+        "optional":"Optional",
+        "fund_pass":"Fund pass",
+        "add_qrcode":"Add QR code",
+        "input_name":"Please type in your name",
+        "input_bank":"Please enter the bank of deposit",
+        "input_branch":"Please enter the account branch",
+        "input_account":"Please enter your bank card account number",
+        "input_fund_pass":"Please enter fund password",
+        "input_ali":"Please enter an Alipay account",
+        "input_wx":"Please enter a Wechat account",
+        "fund_pass_err":"Error of fund password",
+        "delete_pay":"The deletion operation is irreversible. Are you sure to delete the payment method?"
+    },
+    "logo":{
+        "title":"Buy BTC and USDT instantly",
+        "mult_way":"Multiple ways to pay",
+        "more_payment":"More payment methods",
+        "pay_h1":"Bank Transfers",
+        "pay_p1":"Instantly and price friendly",
+        "pay_h2":"Alipay",
+        "pay_p2":"Instantly and price friendly",
+        "pay_h3":"Amazon Gift Card",
+        "pay_p3":"Instantly and Private",
+        "pay_h4":"iTunes Gift Card",
+        "pay_p4":"Instantly and Private",
+        "pay_h5":"JD Gift Card",
+        "pay_p5":"Instantly and Private",
+        "pay_h6":"SINOPEC Gift Card",
+        "pay_p6":"Instantly and Private",
+        "want":"How much you want",
+        "get":"You will get in",
+        "button":"Login account, buy / sell",
+        "all_p":"Royalbiz is a Peer to Peer cryptocurrency marketplace connecting buyers with sellers. Simply select your preferred payment method and type in how many cryptocurrency you need.",
+        "item2_p1":"Royabiz supports a variety of payment methods, including Alipay, WeChat, Bank Transfers, PayPal, etc. ",
+        "item2_p2":"Royalbiz support multiple Gift Card payments, like Amazon Gift Card, JD Gift Card, SINOPEC Gift Card. Royalbiz support domestic and international banks. Securely and Conveniently.",
+        "arr":[
+            {
+                "id":"1",
+                "src":"require('../../assets/images/logopage/2019-5-9/gift_pay.png')",
+                "h3":"Gift Card",
+                "p":"Instantly  - ID verification needed"
+            },
+            {
+                "id":"2",
+                "src":"require('../../assets/images/logopage/2019-5-9/net_pay.png')",
+                 "h3":"Online Transfers",
+                "p":"Instantly  - May require authentication"
+            },
+            {
+                "id":"3",
+                "src":"require('../../assets/images/logopage/2019-5-9/bank_pay.png')",
+                 "h3":"Bank Transfers",
+                "p":"Instantly and private"
+            }
+        ],
+        "item3_title":"Service Contents",
+        "item3_it1_h":"Powerful vendor network",
+        "item3_it1_p":"Vendors are from cryptocurrency exchange marketplace worldwide. Having a powerful vendor network enables buyers and sellers trade cryptocurrency easily. ",
+        "item3_it2_h":"Instant Live Chat",
+        "item3_it2_p":"Royalbiz supports live chat to free your time, make you understand your seller. Once you start a trade an experienced seller will guide you through the process in a one on one live chat. Start by firing an offer you like!",
+        "item3_it3_h":"Exchange easily Instant payments",
+        "item3_it3_dd":"See details",
+        "item3_it3_de":"Details",
+        "item3_it3_p":"Manage institution client manage crypto currency large scale trade privately and audible. Royalbiz dedicated to link crypto currency and traditional currency.",
+        "item4_title":"Platform fund security",
+        "item4_it1_h":"Entrusted transaction",
+        "item4_it1_p":"Vouch during transaction.",
+        "item4_it2_h":"Compensation mechanism",
+        "item4_it2_p":"10-Time compensation in process of deposit if platform failure",
+        "item4_it3_h":"Private crypto wallet system",
+        "item4_it3_p":"Self build securely and private crypto wallet, protect fund security.",
+        "item4_it4_h":"2FA Authentication Architecture",
+        "item4_it4_p":"We protect all of our buyers and seller safety. Pay with confidence, 2-factor, escrow, highest level encryption and professionally audited security.",
+        "item4_it5_h":"Escrow trust hold",
+        "item4_it5_p":"Both buyers and sellers cryptocurrency are hold at Royalbiz escrow during transaction.",
+        "item5_title":"Technical",
+        "item5_it1":"API interface",
+        "item5_it2":"Platform performance auto-boost",
+        "item5_it3":"Auto declaration",
+        "item5_it4":"Cold, warm and hot crypto wallet  architecture",
+        "item5_it5":"Cold storage, SSL encryption and  multiple encryption algorithms"
+    },
+    "video":{
+        "title":"Exchange easily",
+        "all_p":"Royalbiz instant exchange helps institution client manage crypto currency large scale trade privately and audible. Royalbiz dedicated to link crypto currency and traditional currency.",
+        "cny":"CNY Deposits",
+        "usdt":"USDT Withdraw",
+        "merchant":"Verified merchant",
+        "m_p":"Manage fund deposit and withdraw on Royalbiz using ‘internal transfer’ tool.",
+        "go":"Access guide",
+        "item2_title":"Three-Layer protection",
+        "item2_it1_h":"10-Time compensation",
+        "item2_it1_p":"10-Time compensation in process of deposit if platform failure",
+        "item2_it2_h":"Private crypto wallet system",
+        "item2_it2_p":"Robust crypto currency mechanism for Royalbiz",
+        "item2_it3_h":"Escrow trust hold",
+        "item2_it3_p":"Buyers and sellers are both hold at Royalbiz escrow during transaction."
+    },
+    "id_auth":{
+        "nav_account":"My Account",
+        "nav_id_auth":"Identity certification",
+        "country":"Nationality",
+        "name":"Name",
+        "input_name":"Please enter your real name",
+        "id_type":"Identity document type",
+        "certificates":[
+            {
+                "value":"0",
+                "label":"ID card"
+            },
+            {
+                "value":"1",
+                "label":"Passport"
+            }
+        ],
+        "id_number":"Identity document number",
+        "input_num":"Please enter your Identity document number",
+        "id_photo":"Identity document photo",
+        "pt1":"Please upload a clear photo or scanned copy of the front side of your identity document. The jpg format is supported.(Photo size not exceed 1M)",
+        "pt2":"Please upload a clear photo or scanned copy of the back side of your identity document. The jpg format is supported.(Photo size not exceed 1M)",
+        "id_hand_photo":"Hand-held identity  document photo",
+        "eg":"Eg:",
+        "pt3":"Please upload your hand-held identity document (front) photo and your personally signature photo. The jpg and png formats are supported.(Photo size not exceed 1M) Your personal signature should contain “FinBloc” and current date. Please make sure that there are no obstructions on your face, and the contents of your identity document and your personal signature are clearly visible.",
+        "submit":"Submit",
+        "id_format":"The document format is incorrect, please re-enter",
+        "id_add_photo":" Please add a certificate image"
+    },
+    "agency_certify":{
+        "nav_account":"My Account",
+        "nav_com":""
+    },
+    "bind_phone":{
+        "nav_account":"My Account",
+        "forbide":"After changing linked phone you are not allowed to withdraw in the next 24 hours.",
+        "phone_num":"New phone number",
+        "link":"Link"
+        
+    },
+    "bind_email":{
+        "forbide":"E-mail can not be replaced after binding"
+    },
+    "bind_google":{
+        "title":"Google Authenticator generates dynamic passwords and it is similar to SMS dynamic verification. Google Authenticator generates a new code every 30 seconds after you bind it to apps. This verification code can be used for login, withdrawal, and changing security settings to achieve maximum security.",
+        "item1_h":"Download Google Authenticator app",
+        "item1_p1":"iOS users can log into App Store and search “Authenticator” to download.",
+        "item1_p2":"Android users can log into Google Play or search “Google Authenticator” in your mobile browser to download.",
+        "item2_h":"Add and back up key in your GA",
+        "item2_p1":"Open GA and scan the QR code below or enter the key to add a token.",
+        "item2_p2":"this key is used to retrieve your ga when you change or lose your phone. please save and back up the key before binding ga.",
+        "key":"Key",
+        "item3_h":"Please enter the email verification code and GA code",
+        "submit":"Submit"
+    },
+    "bind_item":{
+        "bind_email":"E-mail",
+        "bind_phone":"Phone",
+        "bind_google":"Google authenticator"
+    },
+    "pay_pass":{
+        "nav_account":"My Account",
+        "nav_pass":"Reset password",
+        "pass_info":"The withdrawal will be disabled for 24 hours once password is changed",
+        "old_pass":"Old password",
+        "input_old_p":"Please enter the old password",
+        "new_pass":"New password",
+        "input_new_p":"Please enter the new password",
+        "new_pass2":"Enter the new password again",
+        "input_new_p2":"Please enter the new password again"
+    },
+    "fund_pass":{
+        "nav_account":"My Account",
+        "nav_pass":"Set the fund password",
+        "re_fund_pass":"Reset the fund password",
+        "fund_pass":"Fund Password",
+        "fund_pass_n":"New Fund Password",
+        "input_fund_p":"Please enter the fund password",
+        "fund_pass2":"Enter the fund password again",
+        "input_fund_p2":"Please enter the fund password again"
+    },
+    "res_google":{
+        "nav_account":"My Account",
+        "item1_h":"Add and back up key in your GA",
+        "item1_p1":"Open GA and scan the QR code below or enter the key to add a token.",
+        "item1_p2":"this key is used to retrieve your ga when you change or lose your phone. please save and back up the key before binding ga.",
+        "item2_h":"Change Google authenticator",
+        "old_g_code":"Old GA code",
+        "input_o_g_code":"Please enter old GA code",
+        "new_g_code":"New GA code",
+        "input_n_g_code":"Please enter new GA code",
+        "link":"Link"
+    },
+    "info_item":{
+        "system_wrong":"System exception, please contact the administrator",
+        "input_all" : "Please complete the information",
+        "pass_regular":"Combinations of 6-16 letters and numbers",
+        "pass_check":"The two passwords are different. Please retry",
+        "start_time":"start date",
+        "end_time":"End date",
+        "to":"to",
+        "export":"Export",
+        "copy":"Copy",
+        "qrcode":"QR Code",
+        "un_available":"Available is not enough",
+        "format_error":" format error",
+        "copy_succeed":"Copy succeed",
+        "succeed":"succeed",
+        "error":"failed ",
+        "verification_code_error":"Verification code error",
+        "send_code_no":"Verification code failed to send",
+        "send_code_ok":"Verification code sent",
+        "get_code":"Click to send",
+        "fund_pass_null":"Fund password cannot be empty",
+        "fund_pass_error":"Fund password error",
+        "old_pass_error":"The original password is wrong",
+        "confirm":"Confirm",
+        "cancle":"Cancel",
+        "phone":"Phone",
+        "input_phone":"Please enter the phone number",
+        "input_code":"please enter verification code",
+        "phone_auth":"Phone authentication",
+        "phone_code":"SMS verification code",
+        "p_phone_code":"Please enter SMS verification code",
+        "phone_format":"please enter a valid phone number",
+        "email":"E-mail",
+        "input_email":"Please enter your email account",
+        "email_auth":"Email authentication",
+        "email_code":"E-mail verification code",
+        "p_email_code":"Please enter the email verification code",
+        "email_format":"Please enter the correct email account",
+        "google_code":"GA code",
+        "google_auth":"Google authenticator",
+        "p_google_code":"Please fill in Google verification code",
+        "shiming":"Verified",
+        "first_id_ver":"Please complete the ID Verification first",
+        "first_fund_pass":"Please set the fund password first",
+        "first_auth":"Please enable at least 2 authentication",
+        "first_pay":"Please enable at least one payment method of the current country ",
+        "verification":"Verification",
+        "set":"Set",
+        "bind":"Link",
+        "nav_phone":"Bind on Phone",
+        "nav_email":"Bind on E-mail",
+        "nav_google":"Bind on Google authenticator",
+        "pass_info":"Please enter a combination of 6-16 letters and numbers",
+        "pass_no_com":"Inconsistent input password twice",
+        "submit":"Submit",
+        "copyright":"Royalbiz.co Copyright",
+        "server_time":"Current server time",
+        "input_content":"Please input content",
+        "server_error":"Server Error",
+        "prompt":"Prompt",
+        "no_login":"Not logged in, please login first",
+        "login":"Login"
+    }
+}

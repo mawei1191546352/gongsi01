@@ -1,0 +1,19 @@
+.window {
+  &__messages {
+
+    &__container {
+      @include flex(column, flex-start);
+      flex-grow: 999;
+      overflow: auto;
+      padding: 3px 0;
+      border-left: 1px solid $alice-blue;
+      border-right: 1px solid $alice-blue;
+      border-bottom: 1px solid $alice-blue;
+      transition: all 0.5s;
+      overflow-y: auto;
+      overflow-x: hidden;
+      font-size: .85rem /* 17/20 */;
+      margin-top: 2.1rem;
+    }
+  }
+}
