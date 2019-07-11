@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-06-25 16:25:38
+ * @LastEditTime: 2019-07-11 16:53:12
  -->
 <template>
 <!-- 广告 -->
@@ -397,8 +397,16 @@ export default {
                 this.box_info_pop = !(this.user_info.identityAuthStatus=='2' && this.user_info.ifPayPassword =='1')
             }
             
-            if(!this.$store.state.ifPayPassword =='1') {
-                k+=1
+            // if(!this.$store.state.ifPayPassword =='1') {
+            //     k+=1
+            // }
+            // 替换上面那个
+            if(item.isBuy==0) {
+                if(!this.$store.state.ifPayPassword =='1') {
+                    k+=1
+                }
+            }else{
+                
             }
             if(k==1) {
             }else if(k ==2 ){

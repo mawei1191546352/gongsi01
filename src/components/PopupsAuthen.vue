@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-06-25 16:22:58
+ * @LastEditTime: 2019-07-11 16:31:28
  -->
 <template>
     <div class="pop-ups" v-show="box_info">
@@ -143,7 +143,9 @@ export default {
                 // }
             }else if( this.childProp == 'adtop'){
                 this.num = 1;
-                k=1
+                // k=1
+                console.log(k,'ooooooooooooo')
+                k = k+1
                 this.box_info = true;
                 
             }else if(this.childProp == 'huazhuan') {
