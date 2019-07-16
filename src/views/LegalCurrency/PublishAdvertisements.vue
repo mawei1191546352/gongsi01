@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-06-17 18:47:31
+ * @LastEditTime: 2019-07-15 12:08:38
  -->
 <template>
     <div class="publish-advertisements">
@@ -798,6 +798,9 @@ export default {
          */
         async initData(item){
             console.log('-======',item)
+            if(item.countryInfoId==''){
+                return false;
+            }
             if(this.payWayType==0) {
                 let key =await getPublishAdParam(this,item)
                 .then((res) => {

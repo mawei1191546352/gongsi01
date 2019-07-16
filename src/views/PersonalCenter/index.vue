@@ -4,7 +4,7 @@
  * @Github: 
  * @LastEditors: mawei
  * @Since: 2019-04-14 13:30:14
- * @LastEditTime: 2019-05-28 10:51:42
+ * @LastEditTime: 2019-07-15 11:35:33
  -->
 <template>
     <div class="personal">
@@ -1568,6 +1568,7 @@ export default {
             .center_file_looger{
                 box-sizing: border-box;
                 margin-top: 2.2rem /* 30/20 */;
+                margin-top: 4.2rem /* 30/20 */;
                 margin-bottom: 1rem /* 20/20 */;
                 background:rgba(254,254,254,1);
                 h3{
@@ -1631,6 +1632,7 @@ export default {
             width: 100%;
             height: 48rem /* 960/20 */;
             height: 56rem /* 960/20 */;
+            height: 69rem /* 960/20 */;
             background: #e6e6e6;;
         }
     }
@@ -1953,6 +1955,7 @@ export default {
 }
 .height_set_child5{
     height: 26rem!important;
+    height: 27rem!important;
 }
 .height_set6{
     height: 29rem!important;

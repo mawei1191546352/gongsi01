@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-15 15:50:51
+ -->
 <template>
     <div class="forget-pass">
         <top-nav></top-nav>
@@ -94,7 +102,7 @@ export default {
             pass_reg: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,// /(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^.{6,16}$/ 至少包含数字.字母.符号中的2种
             email_phone_info:'',
             email_phone_info_status:false,
-            one_two:false,
+            one_two:true,
             picLyanzhengma_status:false,
             picLyanzhengma_info:'',
             callBackCode:'',//发送验证码返回的

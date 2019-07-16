@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-06-17 17:39:34
+ * @LastEditTime: 2019-07-16 15:05:15
  -->
 <template>
     <div class="third">
@@ -110,13 +110,13 @@
                         <div class="text_info_te"
                             v-show="active==1"
                         >
-                            <p v-show="swA=='ch'">1、请保证<i >付款账户信息与填写的银行卡持有人姓名一致；</i></p>  
-                            <p v-show="swA=='ch'">2、请保证<i >实际转账金额与输入的金额一致</i></p>
-                            <p v-show="swA=='ch'">3、使用支付宝和微信转账，到账时间无法确定，<i >建议使用网银转账。</i></p>
+                            <p v-show="swA=='ch'">1、<i>请勿</i> 使用微信和支付宝进行转账，否则将<i >不会到账。</i></p>
+                            <p v-show="swA=='ch'">2、请保证<i >付款账户信息与填写的银行卡持有人姓名一致；</i></p>  
+                            <p v-show="swA=='ch'">3、请保证<i >实际转账金额与输入的金额一致</i></p>
                             <p v-show="swA=='ch'">银行工作时间为周一至周五9:00~17:00，非工作时间的大额转账可能<i >延迟到账</i>，节假日规则以各银行公告为准。</p>
+                            <p v-show="swA=='en'">{{center_language[swA].text_3}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].text_1}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].text_2}}</p>
-                            <p v-show="swA=='en'">{{center_language[swA].text_3}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].text_4}}</p>
                         </div>
                         
@@ -457,6 +457,7 @@ export default {
             nac:1,
             dialogVisible:false,
             loadS:false,
+            next1:true,
             center_language:{
                 ch:{
                     nav_1:"选择支付方式",
@@ -525,9 +526,9 @@ export default {
                     place_input:"Bank card owner's name",
                     placeholder:"please input reall name",
                     next:"Next",
-                    text_1:"1、Please make sure bank card owner’s name consistent with order account owner",
-                    text_2:"2、Please make sure bank transfer amount consistent with order amount",
-                    text_3:"3、Accounting time might not be real-time when using Alipay and Wechat Pay. It is strongly recommended to use bank transfer",
+                    text_1:"2、Please make sure bank card owner’s name consistent with order account owner",
+                    text_2:"3、Please make sure bank transfer amount consistent with order amount",
+                    text_3:"1、Do not use WeChat and Alipay to transfer accounts, otherwise they will not arrive ",
                     text_4:"Bank working hours start from Monday to Friday 9:00 AM to 5:00 PM. Non-working hours will have limitations on large scale transfer. Holiday working hours are based on bank notice",
                     item1_h:"10 times compensation",
                     item1_p:"10-Time compensation in process of deposit if platform failure",
@@ -861,12 +862,18 @@ export default {
             })
         },
         async createPay(){
+            if(!this.next1) {
+                return false;
+            }else{
+                this.next1= false;
+            }
             if(this.tName=='') return false;
             let key =await thirdGetInfo2(this,{
                 id:this.init_pay_file.id,
                 realName:this.tName
             }).then((res) => {
                 return res;
+                this.next1 = true;
             })
             if(key!=false) {
                 if (this.active++ > 2) this.active = 0;
