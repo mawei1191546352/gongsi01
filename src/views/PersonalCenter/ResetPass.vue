@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-16 16:08:02
+ -->
 <template>
     <div class="reset-pass">
         <top-nav></top-nav>
@@ -23,7 +31,7 @@
                     <div>
                         <el-input class="innner_left send_email" v-model="email_phone_code"  :placeholder="user_info.accountType=='0'? $t('info_item.p_phone_code'):$t('info_item.p_email_code')" ></el-input><span class="innner_left send_email_button" @click="send_email_fun">{{send}}</span>
                     </div>
-                    <el-input class="innner_left input_info" type="button" :value="$t('info_item.old_pass_error')" v-show="input_info"></el-input>
+                    <el-input class="innner_left input_info" type="button" :value="$t('info_item.old_pass_error')" v-show="input_info"></el-input><br>
                     <el-input class="innner_left input_button" :class="button_active" type="button" :value="$t('info_item.submit')" @click.native="submit_fun"></el-input>
                 </div>
             </div>

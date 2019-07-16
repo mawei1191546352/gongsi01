@@ -3,8 +3,8 @@
  * @Author: mawei
  * @Github: 
  * @Since: 2018-11-27 11:11:09
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2019-06-11 13:43:28
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-16 15:22:11
  -->
 <template>
     <div class="my-legal-order-list">
@@ -226,7 +226,7 @@ export default {
     data() {
         return {
             orderShow:false,
-            countNum:9,
+            countNum:0,
             workerRefresh:null,
             pShow:true,
             loading:true,

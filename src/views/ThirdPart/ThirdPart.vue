@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-16 15:05:15
+ * @LastEditTime: 2019-07-16 16:08:43
  -->
 <template>
     <div class="third">
@@ -110,7 +110,7 @@
                         <div class="text_info_te"
                             v-show="active==1"
                         >
-                            <p v-show="swA=='ch'">1、<i>请勿</i> 使用微信和支付宝进行转账，否则将<i >不会到账。</i></p>
+                            <p v-show="swA=='ch'">1、<i>请勿</i>使用微信和支付宝进行转账，否则将<i >不会到账。</i></p>
                             <p v-show="swA=='ch'">2、请保证<i >付款账户信息与填写的银行卡持有人姓名一致；</i></p>  
                             <p v-show="swA=='ch'">3、请保证<i >实际转账金额与输入的金额一致</i></p>
                             <p v-show="swA=='ch'">银行工作时间为周一至周五9:00~17:00，非工作时间的大额转账可能<i >延迟到账</i>，节假日规则以各银行公告为准。</p>
