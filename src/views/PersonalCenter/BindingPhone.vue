@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-16 16:20:56
+ -->
 <template>
     <div class="binding-phone">
         <top-nav></top-nav>
@@ -263,6 +271,7 @@ export default {
                 this.can_send = true;
             }
             if(this.can_send ) {
+                this.can_send = false;
             // 发送接口
                 this.axios.get('/getCode',{params:{
                     accountType:0,
@@ -306,6 +315,7 @@ export default {
             console.log(2)
             if(this.can_send_end ) {
                 console.log(21)
+                this.can_send_end =false;
             // 发送接口
                 this.axios.get('/getCode',{params:{
                     accountType:this.user_info.accountType,
