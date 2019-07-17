@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2018-11-27 11:11:09
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-16 15:22:11
+ * @LastEditTime: 2019-07-17 11:27:27
  -->
 <template>
     <div class="my-legal-order-list">
@@ -650,6 +650,7 @@ export default {
         async getUnread() {
             let k = await getUnReadOrder(this)
             .then((res) => {return res})
+            console.log(k)
             if(k!=false && k.count != 0) {
                 this.orderShow = true;
                 if(this.countNum == k.count) {

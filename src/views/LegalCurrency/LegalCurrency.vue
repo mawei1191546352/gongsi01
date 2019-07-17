@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-17 11:26:01
+ -->
 <template>
     <div class="legal-currency">
         <top-nav></top-nav>
@@ -49,7 +57,7 @@
                                 @blur="sele_box=false">
                                 <div class="sele-one">
                                     <span class="one-left">{{$t('legal_currency.sele.country')}}</span>
-                                    <el-select class="" @focus="sele_box=true" v-model="countryInfoId" placeholder="请选择国家">
+                                    <el-select class="box_event" @focus="sele_box=true" v-model="countryInfoId" placeholder="请选择国家">
                                         <el-option
                                         style=""
                                         v-for="item in options"
@@ -61,7 +69,7 @@
                                 </div>
                                 <div class="sele-one">
                                     <span class="one-left">{{$t('legal_currency.sele.legal')}}</span>
-                                    <el-select class="" @focus="sele_box=true" v-model="otcTradeCurrencyId" placeholder="请选择国家">
+                                    <el-select class="box_event" @focus="sele_box=true" v-model="otcTradeCurrencyId" placeholder="请选择国家">
                                         <el-option
                                         style=""
                                         v-for="item in optionsFa"
@@ -73,7 +81,7 @@
                                 </div>
                                 <div class="sele-one">
                                     <span class="one-left">{{$t('legal_currency.sele.payment')}}</span>
-                                    <el-select class="" @focus="sele_box=true" v-model="payWayType" placeholder="请选择国家">
+                                    <el-select class="box_event" @focus="sele_box=true" v-model="payWayType" placeholder="请选择国家">
                                         <el-option
                                         style=""
                                         v-for="item in optionsPayWay"
@@ -85,7 +93,7 @@
                                 </div>
                                 <div class="sele-one" v-show="payWayType==0">
                                     <span class="one-left"></span>
-                                    <el-select class="" @focus="sele_box=true" v-model="receiptWayTypes" placeholder="请选择现金支付方式">
+                                    <el-select class="box_event" @focus="sele_box=true" v-model="receiptWayTypes" placeholder="请选择现金支付方式">
                                         <el-option
                                         style=""
                                         v-for="item in optionsPayWayCash"
@@ -97,7 +105,7 @@
                                 </div>
                                 <div class="sele-one" v-show="payWayType==1">
                                     <span class="one-left"></span>
-                                    <el-select class="" @focus="sele_box=true" v-model="giftCardId" placeholder="请选择礼品卡支付方式">
+                                    <el-select class="box_event" @focus="sele_box=true" v-model="giftCardId" placeholder="请选择礼品卡支付方式">
                                         <el-option
                                         style=""
                                         v-for="item in optionsPayWayGift"
@@ -552,6 +560,9 @@ export default {
                             }
                             .el-select{
                                 width: 9rem /* 180/20 */;
+                                input{
+                                    pointer-events: none;
+                                }
                             }
                         }
                         .button-search{

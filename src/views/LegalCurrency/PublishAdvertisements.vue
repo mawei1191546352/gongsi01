@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-15 12:08:38
+ * @LastEditTime: 2019-07-17 11:56:38
  -->
 <template>
     <div class="publish-advertisements">
@@ -457,9 +457,11 @@ export default {
             this.minCurrency='';//最小出售
             this.price='';//单价
             if(n==0){
-                this.price2 = ((100-Number(n))/100* this.cuPrice).toFixed(3)
+                console.log("mairu")
+                this.price2 = ((100-Number(this.profitRate))/100* this.cuPrice).toFixed(3)
             }else{
-                this.price2 = ((100+Number(n))/100* this.cuPrice).toFixed(3)
+                console.log('maichu')
+                this.price2 = ((100+Number(this.profitRate))/100* this.cuPrice).toFixed(3)
             }
         },
         payWayType(n,o) {
