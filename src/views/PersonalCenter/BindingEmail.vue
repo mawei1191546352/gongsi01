@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-16 16:38:44
+ -->
 <template>
     <div class="binding-email">
         <top-nav></top-nav>
@@ -96,7 +104,7 @@ export default {
         older_way:{
             get:function (){
                 if(this.$store.getters.user_info.accountType=='0'){
-                    return this.$store.getters.user_info.phoneAreaCode+this.$store.getters.user_info.phone;
+                    return this.$store.getters.user_info.phoneAreaCode+','+this.$store.getters.user_info.phone;
                 }else{
                     return this.$store.getters.user_info.email;
                 }
@@ -232,6 +240,18 @@ export default {
                 this.can_send = true;
             }
             if(this.can_send ) {
+                // this.can_send = false
+                // let time = 60;
+                // let t = setInterval(()=>{
+                //     if(time == 0){
+                //     time = 60;
+                //     this.can_send = true;
+                //     this.send = this.$t('info_item.get_code')
+                //     clearInterval(t)
+                //     }else{
+                //     this.send = --time + 's'
+                //     }
+                // },1000)
             // 发送接口
                 this.axios.get('/getCode',{params:{
                     'accountType':'1',
