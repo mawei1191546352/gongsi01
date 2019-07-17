@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-17 11:56:38
+ * @LastEditTime: 2019-07-17 16:13:05
  -->
 <template>
     <div class="publish-advertisements">
@@ -958,7 +958,7 @@ export default {
          * 发布广告
          */
         async endSubmit(){
-            if(this.price =='' || this.minQty =='' || this.minCurrency=='' || this.limitQty =='' ||this.maxQty=='' || this.maxCurrency ==''){
+            if(this.minQty =='' || this.minCurrency=='' || this.limitQty =='' ||this.maxQty=='' || this.maxCurrency ==''){
                 this.$message({
                     type:'error',
                     message:this.$t('info_item.input_all'),
@@ -985,6 +985,14 @@ export default {
                 return false
             }
             if(this.pricingType==0 && this.price == '') {
+                this.$message({
+                    type:'error',
+                    // message:'请添加价格',
+                    message:this.$t('info_item.input_all'),
+                    duration:1300,
+                })
+                return false
+            }else if(this.pricingType!=0 && this.profitRate == ''){
                 this.$message({
                     type:'error',
                     // message:'请添加价格',
