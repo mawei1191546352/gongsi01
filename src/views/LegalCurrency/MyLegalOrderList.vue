@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2018-11-27 11:11:09
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-17 11:27:27
+ * @LastEditTime: 2019-07-18 15:51:33
  -->
 <template>
     <div class="my-legal-order-list">
@@ -217,6 +217,7 @@ QueryQtcTradeFunCountry,
 QueryQtcTradeFun,getUnReadOrder } from '../../assets/js/api.js'
 let Worker= require('../../assets/js/worker.js')
 import TopNav from '../../components/TopNav.vue'
+import $ from 'jquery'
 import NavBar from '../../components/NavBar.vue'
 export default {
     components:{
@@ -638,6 +639,13 @@ export default {
                 'close'
             )
         }
+    },
+    beforeRouteLeave (to, from, next) {
+        // 如果下一个页面不是详情页（C），则取消列表页（B）的缓存
+        if (to.name !== 'legalCurrencyOrder') {
+            this.$store.commit('noKeepAlive', from.name)
+        }
+        next()
     },
     updated(){
         // this.loading = false;

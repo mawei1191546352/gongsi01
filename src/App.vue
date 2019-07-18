@@ -1,8 +1,17 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:03:46
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-18 15:51:18
+ -->
 <template>
   <div id="app" class="">
     <div id="voice2" style="height:0px"></div>
-    <router-view/>
-      
+    <keep-alive :include="keepAliveComponents">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -17,6 +26,7 @@ import io from 'socket.io-client'
 import $ from 'jquery'
 import axios from 'axios'
 import qs from 'qs'
+import {mapState} from 'vuex'
 export default {
     data() {
         return {
@@ -43,6 +53,9 @@ export default {
       // this.$store.dispatch('_async_chatTui',[])
     },
     computed:{
+      ...mapState({
+      keepAliveComponents: state => state.keepAliveComponents
+    }),
       login(){
         return this.$store.getters.login
       },

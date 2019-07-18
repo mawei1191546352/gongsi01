@@ -4,10 +4,11 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-04 10:52:41
+ * @LastEditTime: 2019-07-18 15:36:18
  */
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store'
 // const LogoPage = () => import('./views/LogoPage/LogoPage.vue')
 import LogoPage from './views/LogoPage/LogoPage.vue'
 Vue.use(Router)
@@ -98,7 +99,11 @@ let router =  new Router({
     {
       path: '/my-legal-order-list',
       name: 'MyLegalOrderList',
-      component: () => import('./views/LegalCurrency/MyLegalOrderList.vue')
+      component: () => import('./views/LegalCurrency/MyLegalOrderList.vue'),
+      meta: {
+        title: 'B页面',
+        keepAlive: true // 这里指定B组件的缓存性
+      }
     },
     {
       path: '/publish-advertisements',
@@ -254,5 +259,15 @@ const whiteList = ['/sign-in', '/new_third' , '/register-user', '/forget-pass', 
   //   }
   // }
 // });
-
+router.beforeEach((to, from, next) => {
+  // 在路由全局钩子beforeEach中，根据keepAlive属性，统一设置页面的缓存性
+  // 作用是每次进入该组件，就将它缓存
+  if (to.meta.keepAlive) {
+    // console.log(to.name)
+    store.commit('keepAlive', to.name)
+    next()
+  }else{
+    next()
+  }
+})
 export default router;

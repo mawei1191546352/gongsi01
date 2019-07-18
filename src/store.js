@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:03:46
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-07-18 15:17:52
+ */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {legalOrderFindFunTui} from './assets/js/api.js'
@@ -6,6 +14,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    keepAliveComponents:[],//
     os_time:null,
     login:false,
     nav_item:'1',// 0 当前在个人信息  1 法币  2 资产 3 支付 4 logopage
@@ -104,6 +113,16 @@ export default new Vuex.Store({
     lang:'zh',
   },
   mutations: {
+    keepAlive (state, component) {
+      // 注：防止重复添加（当然也可以使用Set）
+      !state.keepAliveComponents.includes(component) && 
+        state.keepAliveComponents.push(component)
+    },
+    noKeepAlive (state, component) {
+      const index = state.keepAliveComponents.indexOf(component)
+      index !== -1 &&
+        state.keepAliveComponents.splice(index, 1)
+    },
     _set_lang(state, item) {
       state.lang = item;
     },
