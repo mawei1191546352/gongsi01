@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2018-11-27 11:11:09
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 15:51:33
+ * @LastEditTime: 2019-07-18 17:49:46
  -->
 <template>
     <div class="my-legal-order-list">
@@ -228,7 +228,7 @@ export default {
         return {
             orderShow:false,
             countNum:0,
-            workerRefresh:null,
+            workerRefresh2:null,
             pShow:true,
             loading:true,
             otcTradeCurrencyId:'-1',
@@ -609,43 +609,66 @@ export default {
             // this.tradeCoinTypeArr[0].countryName = this.$t('legal_list.tradeCoinTypeArr[0].countryName')
         }
     },
-    mounted(){
+    activated() {
+        console.warn('List', 'activated');
+        // let dom = document.getElementsByClassName('el-table__body-wrapper')[0]
+        // console.log(dom)
+        // console.log(dom.classList.add)
+        // dom.classList.remove('is-scrolling-none')
         initTableHeight()
-        if(this.workerRefresh == null) {
-            this.workerRefresh = new Worker()
-            this.workerRefresh.postMessage(
+    },
+    deactivated() {
+        console.warn('List', 'deactivated');
+        
+    },
+    mounted(){
+        console.warn('List', 'chuci');
+        // initTableHeight()
+        if(this.workerRefresh2 == null) {
+            this.workerRefresh2 = new Worker()
+            this.workerRefresh2.postMessage(
                 'infinite3'
             )
-            this.workerRefresh.addEventListener('message',(res)=>{
+            this.workerRefresh2.addEventListener('message',(res)=>{
                 this.getUnread()
             })
         }else{
-            this.workerRefresh.postMessage(
+            this.workerRefresh2.postMessage(
                 'close'
             )
-            this.workerRefresh = null;
-            this.workerRefresh = new Worker()
-            this.workerRefresh.postMessage(
+            this.workerRefresh2 = null;
+            this.workerRefresh2 = new Worker()
+            this.workerRefresh2.postMessage(
                 'infinite3'
             )
-            this.workerRefresh.addEventListener('message',(res)=>{
+            this.workerRefresh2.addEventListener('message',(res)=>{
                 this.getUnread()
             })
         }
     },
     beforeDestroy(){
-        if(this.workerRefresh!=null){
-            this.workerRefresh.postMessage(
+        if(this.workerRefresh2!=null){
+            this.workerRefresh2.postMessage(
                 'close'
             )
+        }else{
         }
     },
     beforeRouteLeave (to, from, next) {
         // 如果下一个页面不是详情页（C），则取消列表页（B）的缓存
         if (to.name !== 'legalCurrencyOrder') {
+            console.warn('离开:'+from.name)
             this.$store.commit('noKeepAlive', from.name)
+             if(this.workerRefresh2!=null){
+                this.workerRefresh2.postMessage(
+                    'close'
+                )
+            }else{
+            }
+            next()
+        }else{
+            next()
         }
-        next()
     },
     updated(){
         // this.loading = false;
@@ -658,7 +681,7 @@ export default {
         async getUnread() {
             let k = await getUnReadOrder(this)
             .then((res) => {return res})
-            console.log(k)
+            // console.log(k)
             if(k!=false && k.count != 0) {
                 this.orderShow = true;
                 if(this.countNum == k.count) {

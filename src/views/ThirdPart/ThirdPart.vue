@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-16 16:08:43
+ * @LastEditTime: 2019-07-30 18:18:15
  -->
 <template>
     <div class="third">
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="bot">
                                     <div class="but">
-                                        <button class="nor" @click="active=1">{{center_language[swA].pre}}</button>
+                                        <button class="nor" @click="active=1;next1=true;">{{center_language[swA].pre}}</button>
                                         <button @click="alreadyPay()" class="old_pay">{{center_language[swA].done}}</button>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                             v-show="active==2"
                         >
                             <p v-show="swA=='ch'">1、转账时 <i >请勿备注</i> “比特币”、“虚拟币”“USDT”等信息，否则交易可能被拒绝；</p>  
-                            <p v-show="swA=='ch'">2、付款时请 <i >备注付款号;</i></p>
+                            <p v-show="swA=='ch'">2、转账时除了<i >备注付款号</i>之外不要备注任何其它信息</p>
                             <p v-show="swA=='ch'">3、转账后请务 <i >必点击“已付款”；</i> </p>
                             <p v-show="swA=='en'">{{center_language[swA].rm4}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].rm5}}</p>

@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2018-11-23 10:19:28
  * @LastEditors: mawei
- * @LastEditTime: 2019-05-28 11:19:39
+ * @LastEditTime: 2019-07-18 18:00:04
  -->
 <template>
     <div class="legal-currency-order">
@@ -369,6 +369,71 @@ export default {
             return this.$i18n.locale
         }
     },
+    async activated (){
+        console.warn("详情")
+        /**
+         * 重新获取订单信息
+         */
+        let key = await legalOrderFindFun(this,{id:this.init_fabi_file.id})
+        .then((res) => {
+            return res;
+        })
+        if(key!=false) {
+            await this.$store.dispatch('_async_set_init_fabi_file',key)
+            if(this.init_fabi_file.payWayType==0){
+                await this.getPay()
+            }
+        }
+        // 开始订单倒计时
+        await this.autoTime(this.$store.getters.init_fabi_file.expiredTimestamp,'time')
+        // 判断是否开始投诉倒计时
+        if(this.init_fabi_file.status=='4' && this.init_fabi_file.isComplaint=='0'){
+            if(this.init_fabi_file.role=='0' && this.init_fabi_file.complaintET!='0'){
+                this.autoTime(this.$store.getters.init_fabi_file.complaintET,'complaint')
+            }
+        }
+        if(this.init_fabi_file.phoneTime!='0'){
+            this.autoTime(this.$store.getters.init_fabi_file.phoneTime,'phone')
+        }
+        
+        if(this.$route.params){
+            if(this.$route.params.isDetal=='true'){
+                this.detailShow = true
+            }else{
+                this.detailShow = false;
+            }
+        }
+
+        // 
+        document.addEventListener('click', (e) => {
+            let items = document.querySelectorAll('.pop')
+            let items2 = document.querySelectorAll('.do')
+            let arr = Array.from(items)
+            let arr2 = Array.from(items2)
+            let b = arr.find((value,index,ar) => {
+                return this.isParent(event.target, value)
+            })
+            let c = arr2.find((value,index,ar) => {
+                return e.target ==value
+            })
+            if(b==false || b== undefined){
+                if(c== undefined){
+                    this.marked_payment = false
+                    this.cancel_order = false
+                    this.legal_release = false
+                    this.shensu_submit = false
+                }
+            }
+        })
+        let k = setTimeout(()=> {
+            this.chat_ok_ban = true;
+            clearTimeout(k)
+        },100)
+        let t = setTimeout(()=> {
+            this.chat_ok = true;
+            clearTimeout(t)
+        },300)
+    },
     async created(){
         /**
          * 重新获取订单信息
@@ -395,7 +460,6 @@ export default {
             this.autoTime(this.$store.getters.init_fabi_file.phoneTime,'phone')
         }
         
-        // console.log(this.init_fabi_file)
         console.log(this.$route.params.isDetal =='true',this.init_fabi_file)
         if(this.$route.params){
             if(this.$route.params.isDetal=='true'){

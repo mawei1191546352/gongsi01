@@ -4,14 +4,15 @@
  * @Github: 
  * @Since: 2019-07-04 16:03:46
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 15:51:18
+ * @LastEditTime: 2019-07-18 18:03:22
  -->
 <template>
   <div id="app" class="">
     <div id="voice2" style="height:0px"></div>
-    <keep-alive :include="keepAliveComponents">
+    <!-- <keep-alive > -->
       <router-view></router-view>
-    </keep-alive>
+      <!-- <router-view :include="keepAliveComponents"></router-view> -->
+    <!-- </keep-alive> -->
   </div>
 </template>
 <script>
@@ -53,9 +54,10 @@ export default {
       // this.$store.dispatch('_async_chatTui',[])
     },
     computed:{
-      ...mapState({
-      keepAliveComponents: state => state.keepAliveComponents
-    }),
+      keepAliveComponents() {
+        console.log(this.$store.getters.keepAlive)
+        return this.$store.getters.keepAlive
+      },
       login(){
         return this.$store.getters.login
       },

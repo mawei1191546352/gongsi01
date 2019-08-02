@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-06-18 10:04:12
+ * @LastEditTime: 2019-07-18 17:45:15
  -->
 <template>
     <div class="my-advertisements">
@@ -733,6 +733,16 @@ export default {
     },
     mounted(){
         initTableHeight()
+    },
+    beforeRouteLeave (to, from, next) {
+        // 如果下一个页面不是详情页（C），则取消列表页（B）的缓存
+        if (to.name !== 'PublishAdvertisements') {
+            console.warn('离开:'+from.name)
+            this.$store.commit('noKeepAlive', from.name)
+            next()
+        }else{
+            next()
+        }
     },
     methods:{
         formatDate(date) {

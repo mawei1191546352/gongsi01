@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-07-04 16:03:46
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 15:17:52
+ * @LastEditTime: 2019-07-18 16:54:34
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -369,6 +369,9 @@ export default new Vuex.Store({
     }
   },
   getters:{
+    keepAlive: state => {
+      return state.keepAliveComponents;
+    },
     lang: state => {
       return state.lang;
     },
