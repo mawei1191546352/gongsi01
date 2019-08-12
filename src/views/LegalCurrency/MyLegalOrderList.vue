@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2018-11-27 11:11:09
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 17:49:46
+ * @LastEditTime: 2019-08-12 10:14:49
  -->
 <template>
     <div class="my-legal-order-list">
@@ -615,7 +615,7 @@ export default {
         // console.log(dom)
         // console.log(dom.classList.add)
         // dom.classList.remove('is-scrolling-none')
-        initTableHeight()
+        // initTableHeight()
     },
     deactivated() {
         console.warn('List', 'deactivated');
@@ -623,7 +623,7 @@ export default {
     },
     mounted(){
         console.warn('List', 'chuci');
-        // initTableHeight()
+        initTableHeight()
         if(this.workerRefresh2 == null) {
             this.workerRefresh2 = new Worker()
             this.workerRefresh2.postMessage(
