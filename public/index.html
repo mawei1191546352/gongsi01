@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-04 14:32:51
+ * @LastEditTime: 2019-08-12 16:46:41
  -->
 <!DOCTYPE html>
 <html>
@@ -47,6 +47,23 @@
     <noscript>
       <strong>We're sorry but payment-refactor-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <script>
+      (function(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+          // console.log(window.location)
+          
+        }
+        else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+          //window.location.href = ""; 
+          if(window.location.pathname.indexOf('/third/')>=0){
+            window.location.href = "http://m.zhima2-dev.com"+window.location.pathname;
+          }else{
+            window.location.href = "http://m.zhima2-dev.com"
+          }
+        } 
+    }());
+    </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <!-- <script src="https://unpkg.com/vue@2.5.17/dist/vue.runtime.min.js"></script>
