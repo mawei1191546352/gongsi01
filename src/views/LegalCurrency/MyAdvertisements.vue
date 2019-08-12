@@ -843,7 +843,7 @@ export default {
             }
         },
         /**
-         * 下架
+         * 预约下架
          */
         bookOff(row){
             this.book_save_row = row;
