@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-07-04 16:09:47
  * @LastEditors: mawei
- * @LastEditTime: 2019-08-12 09:45:48
+ * @LastEditTime: 2019-08-12 09:48:58
  -->
 <template>
     <div class="binding-email">
@@ -195,7 +195,6 @@ export default {
                     email:this.email,
                     emailCode:this.email_code
                 }
-                this.top_box = true;
                 let key = await bindingPhoneEmailGoogle(this,item)
                 .then((res) =>{
                     return res;
@@ -205,7 +204,7 @@ export default {
                     // 陈工
                     this.top_box = true;
                 }else{
-                    // this.top_box = false;
+                    this.top_box = false;
                     this.email_code = '';
                 }
             }
