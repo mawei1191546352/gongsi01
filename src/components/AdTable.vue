@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-11 16:53:27
+ * @LastEditTime: 2019-08-15 11:25:33
  -->
 <template>
     <div class="market-table">
@@ -347,6 +347,13 @@ export default {
                     io:type,
                     item:item
                 }
+                if(item.payWayType=='0') {
+                    if(this.user_info.identityAuthStatus!='2'){
+                        return false;
+                    }
+                }else{
+                    
+                }
                 this.$store.dispatch('_async_set_place_order',obj)
             }
            
@@ -381,6 +388,7 @@ export default {
             // if(!this.$store.state.ifPayPassword =='1') {
             //     k+=1
             // }
+            
             if(item.isBuy==0) {
                 if(!this.$store.state.ifPayPassword =='1') {
                     k+=1

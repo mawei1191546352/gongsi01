@@ -420,7 +420,7 @@
         "profit":"我想要赚取的利润",
         "market_price":"当前市场价",
         "list_price":"当前挂牌价",
-        "amount_limit":"交易限额",
+        "amount_limit":"单笔交易限额",
         "c_amount_limit":"交易限额",
         "note":"备注",
         "important":"注意事项",

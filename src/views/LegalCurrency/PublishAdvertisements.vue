@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-17 16:13:05
+ * @LastEditTime: 2019-08-15 10:57:44
  -->
 <template>
     <div class="publish-advertisements">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="one cny out">
                             <div>
-                                <span v-show="lang=='zh'">{{isBuy=='0'?'交易':'出售'}}限额</span><br>
+                                <span v-show="lang=='zh'">{{isBuy=='0'?'购买':'出售'}}数量</span><br>
                                 <span v-show="lang=='en'">{{$t('publish.c_amount_limit')}}</span><br>
                                 <p>
                                     <el-input v-model="limitQty" 

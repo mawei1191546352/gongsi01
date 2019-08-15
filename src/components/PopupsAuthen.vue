@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-11 16:31:28
+ * @LastEditTime: 2019-08-15 11:11:10
  -->
 <template>
     <div class="pop-ups" v-show="box_info">

@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-06-05 10:29:13
  * @LastEditors: mawei
- * @LastEditTime: 2019-07-11 16:53:12
+ * @LastEditTime: 2019-08-15 11:24:56
  -->
 <template>
 <!-- 广告 -->
@@ -273,6 +273,7 @@ export default {
                 // this.childP = 'adtable'
                 this.childP = item.payWayType==0 ?'adtable':'adtable_gift'
                 this.hackReset = true;
+                this.$refs.ni.box_info = true;
             }else{
                 this.payList = '';
                 // this.childP = 'adtop'
@@ -330,6 +331,14 @@ export default {
                     status:'1',
                     io:type,
                     item:item
+                }
+                
+                if(item.payWayType=='0') {
+                    if(this.user_info.identityAuthStatus!='2'){
+                        return false;
+                    }
+                }else{
+                    
                 }
                 this.$store.dispatch('_async_set_place_order',obj)
             }
