@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-08-16 18:17:52
+ -->
 <template>
     <div class="payment-system">
         <top-nav></top-nav>
@@ -7,13 +15,26 @@
             <div class="banxin">
                 <div class="asste-management-body">
                     <div class="asset-manage-nac outer">
-                        <div class="">
-                            <span class="span-i" v-show="user_info.role!='1'" @click="initPage('0','0')" :class="payment_nav.payment_item=='0'?'span-active':''">{{$t('pay_order.nav_unpay')}}
+                        <div class="flex-d">
+                            <div>
+                                <span class="span-i" v-show="user_info.role!='1'" @click="initPage('0','0')" :class="payment_nav.payment_item=='0'?'span-active':''">{{$t('pay_order.nav_unpay')}}
                                 <i v-show="num!='0'" style="color:white;">{{num}}</i></span>
-                            <span @click="initPage('1','1')" :class="payment_nav.payment_item=='1'?'span-active':''">{{$t('pay_order.nav_complete')}}</span>
-                            <!--  -->
-                            <span v-show="user_info.role=='1'" @click="initPage('2','0')" :class="payment_nav.payment_item=='2'?'span-active':''">{{$t('pay_order.nav_process')}}</span>
-                            <span @click="initPage('3','2')" :class="payment_nav.payment_item=='3'?'span-active':''">{{$t('pay_order.nav_closed')}}</span>
+                                <span @click="initPage('1','1')" :class="payment_nav.payment_item=='1'?'span-active':''">{{$t('pay_order.nav_complete')}}</span>
+                                <!--  -->
+                                <span v-show="user_info.role=='1'" @click="initPage('2','0')" :class="payment_nav.payment_item=='2'?'span-active':''">{{$t('pay_order.nav_process')}}</span>
+                                <span @click="initPage('3','2')" :class="payment_nav.payment_item=='3'?'span-active':''">{{$t('pay_order.nav_closed')}}</span>
+                            </div>
+                            <div class="merchant-list" >
+                                <p>商户</p>
+                                <el-select v-model="merchantId" placeholder="请选择">
+                                    <el-option
+                                    v-for="item in dataAgent"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </div>
                         </div>
                     </div>
                     <div class="payment-search">
@@ -67,7 +88,7 @@
                             <!-- {{ payment_nav.status=='0'? scope.row.startTime:(payment_nav.status=='1'?scope.row.endTime:scope.row.endTime) }} -->
                             <el-table-column
                             :label="payment_nav.status=='0'?$t('pay_order.remain_time'):(payment_nav.status=='1'?$t('pay_order.complete_time'):$t('pay_order.closed_time'))"
-                            v-if="user_info.role=='1'"
+                            v-if="user_info.role=='1' || user_info.role=='5'"
                             width="180"
                             >
                             <template slot-scope="scope">
@@ -75,16 +96,16 @@
                             </template>
                             </el-table-column>
                             <el-table-column
-                            :label="user_info.role=='1'?$t('pay_order.merchant_id'):$t('pay_order.pay_id')"
+                            :label="(user_info.role=='1' || user_info.role=='5')?$t('pay_order.merchant_id'):$t('pay_order.pay_id')"
                             width="180"
                             >
                             <template slot-scope="scope">
-                                <p>{{user_info.role=='1'?scope.row.merchantOrderSn: scope.row.id }}</p>
+                                <p>{{(user_info.role=='1' || user_info.role=='5')?scope.row.merchantOrderSn: scope.row.id }}</p>
                             </template>
                             </el-table-column>
                             <el-table-column
                             :label="$t('pay_order.payer')"
-                             v-if="user_info.role=='1'"
+                             v-if="(user_info.role=='1' || user_info.role=='5')"
                             >
                             <template slot-scope="scope">
                                 <p class="user">
@@ -111,7 +132,7 @@
                             </el-table-column>
                             <el-table-column
                             :label="$t('pay_order.merchant')"
-                             v-if="user_info.role!='1'"
+                             v-if="user_info.role!='1' && user_info.role!=5"
                             >
                             <template slot-scope="scope">
                                 <p>{{ scope.row.merchantName }}</p>
@@ -132,7 +153,7 @@
                             </template>
                             </el-table-column>
                             <el-table-column
-                            v-if="user_info.role!='1'"
+                            v-if="user_info.role!='1' && user_info.role!=5"
                             :label="$t('pay_order.to_us')"
                             >
                             <template slot-scope="scope">
@@ -140,7 +161,7 @@
                             </template>
                             </el-table-column>
                             <el-table-column
-                            v-if="user_info.role=='1'"
+                            v-if="user_info.role=='1' || user_info.role=='5'"
                             :label="$t('pay_order.fee')"
                             >
                             <template slot-scope="scope">
@@ -159,7 +180,7 @@
                             </template>
                             </el-table-column>
                             <el-table-column :label="$t('pay_order.control')" 
-                            v-if="user_info.role!='1'"
+                            v-if="user_info.role!='1' && user_info.role!=5"
                             >
                             <template slot-scope="scope" v-show="$store.getters.role!='1'">
                                 <el-button
@@ -206,8 +227,10 @@ paymentOrderList,
 initTableHeight,
 getExcelPay,
 PayInNumFun,
-PayCancelOrderFun} from '../../assets/js/api'
+PayCancelOrderFun,
+agentMerchantList} from '../../assets/js/api'
 import Worker from '../../assets/js/worker.js'
+import { setTimeout, clearTimeout } from 'timers';
 export default {
     components:{
         'top-nav': TopNav,
@@ -258,6 +281,13 @@ export default {
             workerPhoneSys:null,
             phoneTime:'',
             num:'0',
+            dataAgent:[
+                {
+                    id:-1,
+                    name:'全部'
+                }
+            ],
+            merchantId:-1,// 默认全部
         }
     },
     watch:{
@@ -285,6 +315,16 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             this.loading = true;
             this.getList(item)
         },
@@ -308,6 +348,16 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             this.loading = true;
             this.getList(item)
         },
@@ -331,10 +381,52 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             this.loading = true;
             this.getList(item)
         },
         timeTag(n,o){
+            let item ={};
+            if(this.coinTypeId!='-1'){
+                item['coinTypeId'] = this.coinTypeId
+            }
+            if(this.content!= '') {
+                item['content'] = this.content
+            }
+            if(this.time!= null) {
+                let start = this.formatDate(new Date(this.time[0]));
+                let end = this.formatDate(new Date(this.time[1]));
+                item['startTime'] = start;
+                item['endTime'] =end;
+            }
+            if(this.user_info.role!='1'){
+                item['timeTag'] = this.timeTag
+            }
+            item['status'] = this.status;
+            item['page'] = this.currentPage;
+            item['rows'] = this.pageSize;
+            if(n==-1) {
+                let na = [];
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = n
+            }
+            this.loading = true;
+            this.getList(item)
+        },
+        merchantId(n,o) {
             let item ={};
             if(this.coinTypeId!='-1'){
                 item['coinTypeId'] = this.coinTypeId
@@ -354,33 +446,47 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
+            if(n==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = n
+            }
             this.loading = true;
             this.getList(item)
         }
     },
     async created(){
-        this.options = this.$t('pay_order.options')
-        this.coinTypeIdArr[0]=this.$t('pay_order.coinTypeIdArr')[0]
-        if(this.user_info.role=='1'){
-            if(this.payment_nav.payment_item=='0'){// 如何用户是 商家且导航到 待支付 => 重置 已完成
-                 this.initPage('1','1')
+        this.getAgentList()
+        let ti = setTimeout(async()=>{
+            this.options = this.$t('pay_order.options')
+            this.coinTypeIdArr[0]=this.$t('pay_order.coinTypeIdArr')[0]
+            if(this.user_info.role=='1'){
+                if(this.payment_nav.payment_item=='0'){// 如何用户是 商家且导航到 待支付 => 重置 已完成
+                    this.initPage('1','1')
+                }else{
+                    this.initPage(this.payment_nav.payment_item,this.payment_nav.status)
+                }
             }else{
-                this.initPage(this.payment_nav.payment_item,this.payment_nav.status)
+                if(this.payment_nav.payment_item=='2'){//如何用户不是商家 且导航到 进行中 => 重置 已完成
+                    this.initPage('1','1')
+                }else{
+                    this.initPage(this.payment_nav.payment_item,this.payment_nav.status)
+                }
             }
-        }else{
-            if(this.payment_nav.payment_item=='2'){//如何用户不是商家 且导航到 进行中 => 重置 已完成
-                this.initPage('1','1')
-            }else{
-                this.initPage(this.payment_nav.payment_item,this.payment_nav.status)
+            let key =await getcoinTypeIdFun(this)
+            .then((res) => {
+                return res;
+            })
+            if(key!= false) {
+                this.coinTypeIdArr.push(...key);
             }
-        }
-        let key =await getcoinTypeIdFun(this)
-        .then((res) => {
-            return res;
-        })
-        if(key!= false) {
-            this.coinTypeIdArr.push(...key);
-        }
+            clearTimeout(ti)
+        },800)
         
     },
     mounted(){
@@ -395,6 +501,15 @@ export default {
         }
     },
     methods:{
+        async getAgentList(){
+            let k = await agentMerchantList(this)
+            .then((res) => {
+                return res;
+            })
+            if(k) {
+                this.dataAgent.push(...k)
+            }
+        },
         /**
          * 取消订单
          */
@@ -510,6 +625,17 @@ export default {
             if(this.user_info.role!='1'){
                 item['timeTag'] = this.timeTag
             }
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+                console.log(na)
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             item['status'] = status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -571,6 +697,16 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = val;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             this.loading = true;
             this.getList(item)
         },
@@ -595,6 +731,16 @@ export default {
             item['status'] = this.status;
             item['page'] = val;
             item['rows'] = this.pageSize;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             this.loading = true;
             this.getList(item)
         },
@@ -654,10 +800,14 @@ export default {
             background:rgba(255,255,255,1);
             .asset-manage-nac{
                 box-sizing: border-box;
-                padding: 0 .5rem;
+                padding: 0 1rem;
                 height: 2.5rem /* 50/20 */;
                 line-height: 2.5rem;
                 border-bottom:1px solid rgba(204,204,204,1);
+                .flex-d{
+                    display: flex;
+                    justify-content: space-between;
+                }
                 div{
                     height: 2.5rem /* 50/20 */;
                     line-height: 2.5rem;
@@ -696,6 +846,29 @@ export default {
                             color: white;
                             font-size: .4rem;
                         }
+                    }
+                }
+                .merchant-list{
+                    max-width: 280px;
+                    display: flex;
+                    justify-content: space-between;
+                    p{
+                        font-size: 16px;
+                        margin-right: 5px;
+                    }
+                    span{
+                        display: inline-block;
+                        width: 1rem;
+                        height: 2rem;
+                        line-height: 2.3rem;
+                        text-align: center;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        vertical-align: bottom;
+                        position: relative;
+                        color: #666666;
+                        position: absolute;
+                        padding-right: 13px;
                     }
                 }
             }

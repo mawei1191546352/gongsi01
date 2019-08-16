@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-07-04 16:13:47
  * @LastEditors: mawei
- * @LastEditTime: 2019-08-16 11:21:19
+ * @LastEditTime: 2019-08-16 17:24:06
  */
 module.exports = {
     parallel: false,

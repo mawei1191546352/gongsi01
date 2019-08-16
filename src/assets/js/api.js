@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-08-16 17:37:05
+ */
 import qs from 'qs'
 import axios from 'axios'
 import axios2 from 'axios'
@@ -1735,6 +1743,40 @@ async function transferFeeFun(vm,item){
     return key;
 }
 
+
+/**
+ * 查询用户代理商户列表
+ * @param {*} vm 
+ * @param {*} item 
+ */
+async function agentMerchantList(vm,item){
+    let key;
+    await vm.axios.get('/payOrder/queryAgentMerchantList')
+    .then((res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key =  data.data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key = false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false
+    })
+    return key;
+}
+
 /**
  * 内部划转
  * @param {*} vm 
@@ -2828,5 +2870,6 @@ export  {
     QueryLegalTradeFunIndex,
     priceCalcFunIndex,
     getLang,
-    getUnReadOrder
+    getUnReadOrder,
+    agentMerchantList
 }
