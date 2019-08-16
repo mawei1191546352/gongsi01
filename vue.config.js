@@ -4,7 +4,7 @@
  * @Github: 
  * @Since: 2019-07-04 16:13:47
  * @LastEditors: mawei
- * @LastEditTime: 2019-08-15 09:52:34
+ * @LastEditTime: 2019-08-16 11:21:19
  */
 module.exports = {
     parallel: false,
@@ -37,8 +37,8 @@ module.exports = {
     devServer: {
         proxy: {
             '/pay': {
-                // target: 'http://192.168.10.119:8080/pay/',
-                target: 'http://www.zhima2-dev.com/pay/',
+                target: 'http://192.168.10.119:8080/pay/',
+                // target: 'http://www.zhima2-dev.com/pay/',
                 // target: 'http://www.royalbiz.co/pay/',
                 // target: 'http://52.77.226.129:8080/pay/',
                 // target: 'http://192.168.10.12:8085/pay/',

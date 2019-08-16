@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: mawei
+ * @Github: 
+ * @Since: 2019-07-04 16:09:47
+ * @LastEditors: mawei
+ * @LastEditTime: 2019-08-16 11:24:44
+ -->
 <template>
     <div class="nav-bar" id="nav-bar" :class="navBack" v-show="login || $route.path=='/sign-in' ||$route.path=='/register-user' ||$route.path=='/forget-pass'">
         <div class="banxin" >
@@ -11,7 +19,7 @@
                         <!-- <span v-show="$store.getters.user_info.isMerchant=='0'" :class="nav_item=='1'?'nav-active ':''" @click="changeModel('1')">{{$t("nav_bar.0")}}</span> -->
                         <span  :class="nav_item=='1'?'nav-active ':''" @click="changeModel('1')">{{$t("nav_bar.0")}}</span>
                         <span 
-                            v-show="(user_info.isMerchant ==1 || user_info.role == '3')?true:false"
+                            v-show="(user_info.isMerchant ==1 || user_info.role == '3') || (user_info.role='5')?true:false"
                         :class="nav_item=='3'?'nav-active ':''" @click="changeModel('3')">{{$t("nav_bar.1")}}</span>
                         <span  :class="nav_item=='2'?'nav-active ':''" @click="changeModel('2')">{{$t("nav_bar.2")}}</span>
                         <span  :class="nav_item=='0'?'nav-active ':''" @click="changeModel('0')">{{$t("nav_bar.3")}}</span>
