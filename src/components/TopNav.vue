@@ -95,7 +95,6 @@ getLang} from '../assets/js/api.js'
 export default {
     data() {
         return {
-            username:this.$store.getters.username,
             options:[],
             value:'',
             mesList:false,
@@ -114,6 +113,9 @@ export default {
         }
     },
     computed:{
+        username(){
+            return this.$store.getters.username
+        },
         login(){
             return this.$store.getters.login
         },
