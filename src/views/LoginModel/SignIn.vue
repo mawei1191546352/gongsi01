@@ -202,9 +202,9 @@ export default {
                                 break
                             case '3':
                                 if(this.user_info.role=='5'){
-                                    this.$router.push('/personal')
-                                }else{
                                     this.$router.push('/payment-system')
+                                }else{
+                                    this.$router.push('/personal')
                                 }
                                 break
                             case '4':

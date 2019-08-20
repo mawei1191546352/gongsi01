@@ -509,9 +509,9 @@ export default {
             if(k) {
                 if(k.length==1) {
                     this.dataAgent=k
+                    this.merchantId = k[0].id;
                 }else{
                     this.dataAgent.push(...k)
-                    this.merchantId = k[0].id;
                 }
             }
         },
