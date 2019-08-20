@@ -507,7 +507,11 @@ export default {
                 return res;
             })
             if(k) {
-                this.dataAgent.push(...k)
+                if(k.length==1) {
+                    this.dataAgent=k
+                }else{
+                    this.dataAgent.push(...k)
+                }
             }
         },
         /**
@@ -608,6 +612,8 @@ export default {
          */
         initPage(payment_item,status) {
             this.status = status;
+            this.loading=true;
+            this.tableData=[];
             this.$store.dispatch('_async_set_payment_nav',{payment_item:payment_item,status:status})
             let item ={};
             if(this.coinTypeId!='-1'){
