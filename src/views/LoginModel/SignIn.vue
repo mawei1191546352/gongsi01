@@ -93,7 +93,10 @@ export default {
             }else{
                 return true
             }
-        }
+        },
+        user_info(){
+                return this.$store.getters.user_info;
+        },
     },
     watch: {
         lang:{
@@ -198,7 +201,11 @@ export default {
                                 this.$router.push('/asset-manage')
                                 break
                             case '3':
-                                this.$router.push('/payment-system')
+                                if(this.user_info.role=='5'){
+                                    this.$router.push('/personal')
+                                }else{
+                                    this.$router.push('/payment-system')
+                                }
                                 break
                             case '4':
                                 this.$router.push('/logo-page')

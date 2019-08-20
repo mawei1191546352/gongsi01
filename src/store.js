@@ -157,7 +157,7 @@ export default new Vuex.Store({
     },
     _set_chatArrIn( state, item ) {
       // state.chatArrIn = item
-      console.log('合并',item)
+      // console.log('合并',item)
       // state.chatArrIn.push(item[0])
       for(let i=0;i<item.length;i++){
         state.chatArrIn.push(item[i])
@@ -170,9 +170,8 @@ export default new Vuex.Store({
     },
     _set_chatArrIn_item( state, item ) {
       // state.chatArrIn = item
-      console.log('添加消息',item)
+      // console.log('添加消息',item)
       state.chatArrIn.push(item[0])
-
       state.chatArrIn= [... new Set(state.chatArrIn)]
       
     },
@@ -188,59 +187,12 @@ export default new Vuex.Store({
     _set_init_user_info(state, item) {
       state.init_user_info = item
       state.login = true;
-      // state.init_user_info.accountType = item.accountType;
-      // state.init_user_info.email = item.email;
-      // state.init_user_info.googleAuthTag = item.googleAuthTag;
-      // state.init_user_info.ifPayPassword = item.ifPayPassword;
-      // state.init_user_info.phone = item.phone;
-      // state.init_user_info.phoneAreaCode = item.phoneAreaCode;
-      // state.init_user_info.username = item.username;
-      // state.init_user_info.role = item.role;
-      // state.init_user_info.realName = item.realName;
-      // state.init_user_info.phoneAuthStatus = item.phoneAuthStatus;
-      // state.init_user_info.emailAuthStatus = item.emailAuthStatus;
-      // state.init_user_info.googleAuthStatus = item.googleAuthStatus;
-      // state.init_user_info.identityAuthStatus = item.identityAuthStatus;
     },
     _set_init_pay_file (state, item) {
       state.init_pay_file = item
-      // state.init_pay_file.amount = item.amount;
-      // state.init_pay_file.amountUsd = item.amountUsd;
-      // state.init_pay_file.amountActual = item.amountActual;
-      // state.init_pay_file.coinTypeId = item.coinTypeId;
-      // state.init_pay_file.expiredTimestamp = item.expiredTimestamp;
-      // state.init_pay_file.handingFee = item.handingFee;
-      // state.init_pay_file.id = item.id;
-      // state.init_pay_file.merchantId = item.merchantId;
-      // state.init_pay_file.merchantName = item.merchantName;
-      // state.init_pay_file.receiptAddress = item.receiptAddress;
-      // state.init_pay_file.remark = item.remark;
-      // state.init_pay_file.status = item.status;
-      // state.init_pay_file.time = item.time;
-      // state.init_pay_file.endTime = item.endTime;
-      
     },
     _set_init_fabi_file(state,item) {
       state.init_fabi_file =item;
-      // state.init_fabi_file.id= item.id;
-      // state.init_fabi_file.amount=item.amount;
-      // state.init_fabi_file.amountCny=item.amountCny;
-      // state.init_fabi_file.cnyUnitPrice=item.cnyUnitPrice;
-      // state.init_fabi_file.coinTypeId=item.coinTypeId;
-      // state.init_fabi_file.referenceCode=item.referenceCode;
-      // state.init_fabi_file.startTime=item.startTime;
-      // state.init_fabi_file.complaintET=item.complaintET;
-      // state.init_fabi_file.expiredTimestamp=item.expiredTimestamp;
-      // state.init_fabi_file.status=item.status;
-      // state.init_fabi_file.transactionType=item.transactionType;
-      // state.init_fabi_file.isComplaint=item.isComplaint;
-      // state.init_fabi_file.complaintStatus=item.complaintStatus;
-      // state.init_fabi_file.result=item.result;
-      // state.init_fabi_file.certificate=item.certificate;
-      // state.init_fabi_file.complaintTime=item.complaintTime;
-      // state.init_fabi_file.complaintDealTime=item.complaintDealTime;
-      // state.init_fabi_file.receiptWay=item.receiptWay;
-      // state.init_fabi_file.complaintRole = item.complaintRole;
     },
     _set_third_pay(state,item) {
       state.third.orderId = item.orderId;
