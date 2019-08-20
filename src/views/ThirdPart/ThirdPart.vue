@@ -206,8 +206,8 @@
                             v-show="active==2"
                         >
                             <p v-show="swA=='ch'">1、转账时 <i >请勿备注</i> “比特币”、“虚拟币”“USDT”等信息，否则交易可能被拒绝；</p>  
-                            <p v-show="swA=='ch'">2、转账时除了<i >备注付款号</i>之外不要备注任何其它信息</p>
-                            <p v-show="swA=='ch'">3、转账后请务 <i >必点击“已付款”；</i> </p>
+                            <p v-show="swA=='ch'">2、转账时除了备注付款号之外<i>不要备注任何其它信息</i>；</p>
+                            <p v-show="swA=='ch'">3、转账后请务 <i >必点击“已付款”</i>；</p>
                             <p v-show="swA=='en'">{{center_language[swA].rm4}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].rm5}}</p>
                             <p v-show="swA=='en'">{{center_language[swA].rm6}}</p>

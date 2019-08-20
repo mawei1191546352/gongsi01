@@ -678,6 +678,16 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
+            if(this.merchantId==-1) {
+                let na = [];
+                
+                if(this.dataAgent.length>1){
+                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                }
+                item['merchantId'] = na.join(',')
+            }else{
+                item['merchantId'] = this.merchantId
+            }
             let key = getExcelPay(this,item)
             .then((res) => {
                 return res;
