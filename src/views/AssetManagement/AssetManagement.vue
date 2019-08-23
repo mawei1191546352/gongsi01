@@ -413,6 +413,7 @@ export default {
             this.send_two=this.$t('info_item.get_code')
         },
         chain(o,n) {
+            this.tibiAddress='';
             let t = setTimeout(()=>{
                 this.handleEditCb(1,this.saveRow)
                 clearTimeout(t)
