@@ -170,7 +170,7 @@
                             </el-table-column>
                             <el-table-column
                             width="120"
-                            v-if="user_info.role=='1'"
+                            v-if="user_info.role=='1' || user_info.role=='5'"
                             :label="$t('pay_order.actual_amount')"
                             >
                             <template slot-scope="scope">
