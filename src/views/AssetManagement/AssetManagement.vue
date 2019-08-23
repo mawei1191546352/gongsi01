@@ -1081,14 +1081,16 @@ export default {
                         type: 'success'
                     });
                     this.chargeCoinStatus = false;
-                    this.close_box2()
-                    this.$router.push('/home/condition/recodeCt')
+                    // this.close_box2()
+                    // this.top_box2
+                    this.initAsset()
+                    this.$router.push('/asset-operation-record')
                 }else if (data.code ==201) {
                     this.$message({
                         message: data.message,
                         type: 'error'
                     });
-                    this.close_box2()
+                    // this.close_box2()
                 }
             }).catch((err) => {
                 console.log(err)
