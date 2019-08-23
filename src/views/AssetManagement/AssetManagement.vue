@@ -420,6 +420,7 @@ export default {
             },200)
         },
         chain2(o,n) {
+            this.address_widthdraw='';
             function isOne(el,index,arr) {
                 return el.type== (o=="OMNI"?0:1)
             }
