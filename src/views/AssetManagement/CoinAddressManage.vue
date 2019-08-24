@@ -82,7 +82,7 @@
                                 <template slot-scope="scope">
                                     <div class="add_div">
                                         <span style="margin-left: 0px">{{scope.row.address}}</span>
-                                    <span class="address_type">{{scope.row.type}}</span>
+                                        <span class="address_type" v-show="scope.row.coinTypeId!=1">{{scope.row.type}}</span>
                                     </div>
                                 </template>
                             </el-table-column>
