@@ -127,7 +127,7 @@
                                 :label="$t('asset_record.address')">
                                 <template slot-scope="scope">
                                     <span>{{operationOne=='0'||operationOne=='1' ?scope.row.address:scope.row.address}}</span>
-                                    <span class="address_type">{{scope.row.type}}</span>
+                                    <span class="address_type" v-show="scope.row.coinTypeId!=1">{{scope.row.type}}</span>
                                 </template>
                             </el-table-column>
                             <!-- v-if="=='0' || =='1'" -->
