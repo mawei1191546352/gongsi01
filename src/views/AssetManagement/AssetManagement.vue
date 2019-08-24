@@ -654,7 +654,7 @@ export default {
             this.childP = 'liangxiang';
             this.hackReset = true;
             let num=0;
-            // console.log('this.googleAccount:',this.googleAccount)
+            // console.log('this.google_code:',this.google_code)
             if(this.user_info.email!=null){
                 num++
             }
@@ -708,7 +708,7 @@ export default {
         },
         initBox(){
             this.num=0;
-            // console.log('this.googleAccount:',this.googleAccount)
+            // console.log('this.google_code:',this.google_code)
             if(this.user_info.email!=null){
                 this.num++
             }
@@ -1033,7 +1033,7 @@ export default {
                 }
             }
             if(this.user_info.googleAuthTag =='1') {
-                if(this.googleAccount && this.google_code == ''){
+                if(this.google_code== ''){
                     this.submit_info = true;
                     return false;
                 }
@@ -1061,7 +1061,7 @@ export default {
                 }
             }
             if(this.user_info.googleAuthTag =='1') {
-                if(this.googleAccount) {
+                if(this.google_code!='') {
                     item4 = {
                         'googleCode' : this.google_code
                     }
