@@ -6,6 +6,7 @@
  * @LastEditors: mawei
  * @LastEditTime: 2019-08-16 17:24:06
  */
+
 module.exports = {
     parallel: false,
     configureWebpack: {
@@ -32,14 +33,14 @@ module.exports = {
                     }
                 },
             ]
-        }
+        },
     },
     devServer: {
         proxy: {
             '/pay': {
                 // target: 'http://192.168.10.119:8080/pay/',
-                // target: 'http://172.16.15.176:8080/pay/',
-                target: 'http://18.140.5.142:8080/pay/',
+                target: 'http://172.16.15.176:8080/pay/',
+                // target: 'http://18.140.5.142:8080/pay/',
                 // target: 'http://www.zhima2-dev.com/pay/',
                 // target: 'http://www.royalbiz.co/pay/',
                 // target: 'http://52.77.226.129:8080/pay/',

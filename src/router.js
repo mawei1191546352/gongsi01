@@ -325,6 +325,15 @@ let router =  new Router({
         keepAlive: false // 这里指定B组件的缓存性
       }
     },
+    {
+      path: '/gateway',
+      name: 'GateWay',
+      component: () => import('./views/GateWay/index.vue'),
+      meta: {
+        title: '',
+        keepAlive: false // 这里指定B组件的缓存性
+      }
+    },
     /**
      * LoGo 模块
      */

@@ -438,6 +438,72 @@ async function getAdTopFun(vm,item) {
 }
 
 /**
+ * gateway法币获取详情
+ * @param {*} vm 
+ * @param {*} item 
+ */
+async function gateWayLegal(vm,item) {
+    let key;
+    await vm.axios.post('/api/getPayOrderInfo',qs.stringify(item))
+    .then((res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key = data.data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key= false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false
+    })
+    return key;
+}
+
+/**
+ * gateway法币创建订单
+ * @param {*} vm 
+ * @param {*} item 
+ */
+async function createGateLegalOrder(vm,item) {
+    let key;
+    await vm.axios.post('/api/create',qs.stringify(item))
+    .then((res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key = data.data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key= false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false
+    })
+    return key;
+}
+
+/**
  * 查询分页广告
  * @param {*} vm 
  * @param {*} item 
@@ -2871,5 +2937,7 @@ export  {
     priceCalcFunIndex,
     getLang,
     getUnReadOrder,
-    agentMerchantList
+    agentMerchantList,
+    gateWayLegal,
+    createGateLegalOrder,
 }
