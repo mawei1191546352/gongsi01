@@ -24,7 +24,7 @@
                                 <span v-show="user_info.role=='1'" @click="initPage('2','0')" :class="payment_nav.payment_item=='2'?'span-active':''">{{$t('pay_order.nav_process')}}</span>
                                 <span @click="initPage('3','2')" :class="payment_nav.payment_item=='3'?'span-active':''">{{$t('pay_order.nav_closed')}}</span>
                             </div>
-                            <div class="merchant-list" >
+                            <div class="merchant-list" v-show="user_info.role=='5'">
                                 <p>商户</p>
                                 <el-select v-model="merchantId" placeholder="请选择">
                                     <el-option
@@ -315,15 +315,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             this.loading = true;
             this.getList(item)
@@ -348,15 +350,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             this.loading = true;
             this.getList(item)
@@ -381,15 +385,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             this.loading = true;
             this.getList(item)
@@ -402,9 +408,9 @@ export default {
             if(this.content!= '') {
                 item['content'] = this.content
             }
-            if(this.time!= null) {
-                let start = this.formatDate(new Date(this.time[0]));
-                let end = this.formatDate(new Date(this.time[1]));
+            if(n!= null) {
+                let start = this.formatDate(new Date(n[0]));
+                let end = this.formatDate(new Date(n[1]));
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
@@ -414,14 +420,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(n==-1) {
-                let na = [];
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = n
             }
             this.loading = true;
             this.getList(item)
@@ -446,22 +455,26 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(n==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(n==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = n
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = n
             }
             this.loading = true;
             this.getList(item)
         }
     },
     async created(){
-        this.getAgentList()
+        if(this.user_info.role=='5') {
+            this.getAgentList()
+        }
         let ti = setTimeout(async()=>{
             this.options = this.$t('pay_order.options')
             this.coinTypeIdArr[0]=this.$t('pay_order.coinTypeIdArr')[0]
@@ -632,16 +645,17 @@ export default {
             if(this.user_info.role!='1'){
                 item['timeTag'] = this.timeTag
             }
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-                console.log(na)
-            }else{
-                item['merchantId'] = this.merchantId
             }
             item['status'] = status;
             item['page'] = this.currentPage;
@@ -678,15 +692,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             let key = getExcelPay(this,item)
             .then((res) => {
@@ -714,15 +730,17 @@ export default {
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = val;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             this.loading = true;
             this.getList(item)
@@ -748,15 +766,17 @@ export default {
             item['status'] = this.status;
             item['page'] = val;
             item['rows'] = this.pageSize;
-            if(this.merchantId==-1) {
-                let na = [];
-                
-                if(this.dataAgent.length>1){
-                   this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+            if(this.user_info.role=='5') {
+                if(this.merchantId==-1) {
+                    let na = [];
+                    
+                    if(this.dataAgent.length>1){
+                    this.dataAgent.map((te,ide)=>{if(ide>0){na.push(te.id)}})
+                    }
+                    item['merchantId'] = na.join(',')
+                }else{
+                    item['merchantId'] = this.merchantId
                 }
-                item['merchantId'] = na.join(',')
-            }else{
-                item['merchantId'] = this.merchantId
             }
             this.loading = true;
             this.getList(item)
