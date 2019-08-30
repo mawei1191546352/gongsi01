@@ -664,7 +664,7 @@ export default {
             if(this.user_info.googleAuthTag=='1'){
                 num++
             }
-            console.log(num,'num个数')
+            console.log(num,'num个数',this.saveRow)
             if(num<2){
                 return false
             }
@@ -850,7 +850,7 @@ export default {
             }
             this.axios.post('/assetsExtractOrder/getCalcHandingFee',qs.stringify({
                 amount:this.widthdraw_amount,
-                coinTypeId:row.coinTypeId,
+                coinTypeId:row.coinTypeId==2?this.chain2=='OMNI'?row.coinTypeId:3:row.coinTypeId,
             })).then((res) => {
                 let data = res.data;
                 if(data.code == 200 ) {
@@ -1044,6 +1044,15 @@ export default {
                 'amount':this.widthdraw_amount,
                 'coinTypeId':this.cType =='USDT' ? '0':(this.cType=='BTC'?'1':'2'),
             }
+            // if(this.saveRow.coinTypeId=='2'){//usdt
+            //     if(this.chain2=="OMNI"){
+            //         item1['coinTypeId']= this.saveRow.coinTypeId
+            //     }else{
+            //         item1['coinTypeId']= 3
+            //     }
+            // }else{
+            //     item1['coinTypeId']= this.saveRow.coinTypeId
+            // }
             //合并参数
             let item2,item3,item4;
             if(this.user_info.email != null){
