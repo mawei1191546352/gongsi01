@@ -165,6 +165,7 @@ export default {
             .then((res) => {
                 return res;
             })
+            // debugger
             if(key!=false) {
                 this.$store.dispatch('delteChatTui',k)
                 await this.$store.dispatch('_async_set_init_fabi_file',key)

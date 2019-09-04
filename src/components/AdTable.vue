@@ -275,6 +275,7 @@ export default {
             dom = document.getElementsByClassName('el-table__body-wrapper')[0]
             dom.style.height= '25rem';
             dom.style.overflowY= 'auto';
+            dom.classList.add('gundong')
         },
         /**
          * 买入卖出弹框数据
