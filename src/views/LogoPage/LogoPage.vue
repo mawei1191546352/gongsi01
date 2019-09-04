@@ -406,9 +406,9 @@ export default {
         setInterval(()=>{
             // console.log(new Date(this.$store.getters.os_time+1))
             if(this.lang=='en') {
-                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString()
+                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString().replace("GMT","UTC")+' +0'
             }else{
-                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString()+' 0'
+                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString().replace("GMT","UTC")+' +0'
             }
         },1000)
         await this.initQtc()
