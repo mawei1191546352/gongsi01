@@ -408,7 +408,7 @@ export default {
             if(this.lang=='en') {
                 this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString()
             }else{
-                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toString()
+                this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString()+' 0'
             }
         },1000)
         await this.initQtc()
