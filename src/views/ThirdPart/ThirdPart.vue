@@ -458,6 +458,7 @@ export default {
             dialogVisible:false,
             loadS:false,
             next1:true,
+            num_test:/^[0-9]+\.{0,1}[0-9]{0,2}$/,
             center_language:{
                 ch:{
                     nav_1:"选择支付方式",
@@ -862,6 +863,27 @@ export default {
             })
         },
         async createPay(){
+            if(this.num_test.test(this.tName)){
+                this.$message({
+                    message: '请填写真实姓名',
+                    type: 'error',
+                    center:true,
+                    duration:500,
+                });
+                return false
+            }else{
+                if(/\d+/.test(this.tName)){
+                    this.$message({
+                        message: '请填写真实姓名',
+                        type: 'error',
+                        center:true,
+                        duration:500,
+                    });
+                    return false
+                }else{
+
+                }
+            }
             if(!this.next1) {
                 return false;
             }else{

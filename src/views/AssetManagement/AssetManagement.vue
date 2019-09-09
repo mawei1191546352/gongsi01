@@ -1042,17 +1042,18 @@ export default {
             let item1 = {
                 'receiveAddress':this.address_widthdraw,
                 'amount':this.widthdraw_amount,
-                'coinTypeId':this.cType =='USDT' ? '0':(this.cType=='BTC'?'1':'2'),
+                // 'coinTypeId':this.cType =='USDT' ? '0':(this.cType=='BTC'?'1':'2'),
+                'coinTypeId':this.saveRow.coinTypeId,
             }
-            // if(this.saveRow.coinTypeId=='2'){//usdt
-            //     if(this.chain2=="OMNI"){
-            //         item1['coinTypeId']= this.saveRow.coinTypeId
-            //     }else{
-            //         item1['coinTypeId']= 3
-            //     }
-            // }else{
-            //     item1['coinTypeId']= this.saveRow.coinTypeId
-            // }
+            if(this.saveRow.coinTypeId=='2'){//usdt
+                if(this.chain2=="OMNI"){
+                    item1['type']= 0
+                }else{
+                    item1['type']= 1
+                }
+            }else{
+                // btc 没有连
+            }
             //合并参数
             let item2,item3,item4;
             if(this.user_info.email != null){
