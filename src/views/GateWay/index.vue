@@ -926,7 +926,7 @@ export default {
                     message: '请填写真实姓名',
                     type: 'error',
                     center:true,
-                    duration:500,
+                    duration:1200,
                 });
                 return false
             }else{
@@ -935,7 +935,7 @@ export default {
                         message: '请填写真实姓名',
                         type: 'error',
                         center:true,
-                        duration:500,
+                        duration:1200,
                     });
                     return false
                 }else{
