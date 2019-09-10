@@ -320,9 +320,9 @@
                             <div class="box_one">
                                 <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():''}}{{new_language[swA].new_box_right.addr}}</span>
                                 <div class="box_one_set">
-                                    <h3>{{init_pay_file.receiptAddress}}</h3>
+                                    <h3>{{chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress}}</h3>
                                     <div class="ri">
-                                        <span class="cp tag-read" :class="swA" :data-clipboard-text="init_pay_file.receiptAddress" 
+                                        <span class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress" 
                                         @click="copyAddressFun()"
                                         >{{new_language[swA].new_box_right.cp}}</span>
                                         <span class="qr" @mouseenter="getCode" @mouseleave="removeCode">{{new_language[swA].new_box_right.qr}}</span>
@@ -331,7 +331,12 @@
                                 </div>
                             </div>
                             <div class="box_te b">
-                                <span>{{new_language[swA].chain}}：</span> <img src="../../assets/images/third/omni.png" alt="">
+                                <span>{{new_language[swA].chain}}：</span> 
+                                <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
+                                <el-radio-group v-model="chain">
+                                    <el-radio-button v-model="chain" label="OMNI"></el-radio-button>
+                                    <el-radio-button v-model="chain" label="ERC20"></el-radio-button>
+                                </el-radio-group>
                             </div>
                             <div class="box_te end" :class="swA">
                                 {{new_language[swA].new_box_right.info}}
@@ -437,6 +442,7 @@ import QRCode from 'qrcodejs2'
 export default {
     data() {
         return {
+            chain:'OMNI',
             orderId:'',
             obj:{},
             time:'',
@@ -673,6 +679,11 @@ export default {
             new_return:null,
         }
     },
+    watch:{
+        chain(o,n){
+            console.log(o,n)
+        }
+    },
     computed:{
         user_info(){
             return this.$store.getters.user_info;
@@ -735,7 +746,7 @@ export default {
             this.qr_show=true;
             // new QRCode(document.getElementById('qrcode'), this.init_pay_file.receiptAddress)
             var qrcode = new QRCode('qrcode', {
-            text: this.init_pay_file.receiptAddress,
+            text: this.chain=='OMNI'?this.init_pay_file.receiptAddress:this.init_pay_file.ercAddress,
             width: 155,
             height: 150,
             colorDark : '#000000',
@@ -2511,8 +2522,13 @@ export default {
                                     font-size:1.3rem /* 26/20 */;
                                     font-size: 1rem;
                                     color:rgba(51,51,51,1);
-                                    display:flex;
+                                    // display:flex;
+                                    line-height: 1.5rem;
                                     align-items: center;
+                                    width: 77%;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
                                 }
                                 .ri{
                                     display: flex;
@@ -2572,7 +2588,11 @@ export default {
                         }
                         .box_te.b{
                             border-bottom:1px solid rgba(230,230,230,1);
-                            
+                            .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+                                background-color: rgba(51,120,97,1);
+                                border-color: rgba(51,120,97,1);
+                                color:white;
+                            }
                         }
                         .box_te.end{
                             background:rgba(243,73,73,0.1);
