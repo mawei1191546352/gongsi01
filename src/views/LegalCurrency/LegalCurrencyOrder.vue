@@ -122,7 +122,7 @@
                                     <li>
                                         <el-radio :label="item.id" v-for="(item,key) in pay_methods" :key="key"> 
                                             <img :src="item.type=='0'? bankImg:(item.type=='1'?zhiImg:weiImg)" alt=""> 
-                                            <span style="padding-left:.3rem;box-sizing:border-box;">{{item.type=='0'?item.name:(item.type=='1'?$t('legal_currency_order.ali'):$t('legal_currency_order.wx'))}}</span>
+                                            <span style="padding-left:.3rem;box-sizing:border-box;">{{item.type=='0'?item.name+' ':(item.type=='1'?item.name+' '+$t('legal_currency_order.ali'):item.name+' '+$t('legal_currency_order.wx'))}}</span>
                                             <span>{{item.type=='0'? item.bankCardNumber:(item.type=='1'?item.alipayAccount:item.wxAccount)}}</span>
                                              <span v-show="item.type =='0'"> {{item.bankAccount + " " + item.branchAccount}} </span> 
                                              <span v-show="item.type=='1'" class="saoma" :data-zhi="item.alipayQrCode" @mouseover="getPath(item.alipayQrCode)">
