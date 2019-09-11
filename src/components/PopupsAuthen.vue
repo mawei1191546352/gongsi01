@@ -10,10 +10,13 @@
     <div class="pop-ups" v-show="box_info">
         <div class="box_info_center box_info_open" ref="box_info" v-show="box_info" :class="box_info_height">
             <i class="el-icon-close close" @click="close_box_info" ></i>
-            <div class="outer" style="height:3rem;line-height:3rem;" v-show="user_info.identityAuthStatus!='2' && childProp!='pass' && childProp!='huazhuan' && childProp!='adtop' && childProp!='adtop_gift' && childProp!='adtable_gift'">
+            <div class="outer" style="height:3rem;line-height:3rem;" 
+            v-show="user_info.identityAuthStatus!='2' && childProp!='pass' && childProp!='huazhuan' && childProp!='adtop' && childProp!='adtop_gift' && childProp!='adtable_gift'">
                 <span > <i class="el-icon-warning"></i> {{$t('info_item.first_id_ver')}}</span> <span style="float:right;color:#5C9ACC;cursor: pointer;" @click="goAuthen">{{$t('info_item.verification')}}</span>
             </div>
-            <div class="outer" style="height:3rem;line-height:3rem;" v-show="childProp?(childProp=='liangxiang' && childProp!='adtop'?true:false):false">
+            <div class="outer" style="height:3rem;line-height:3rem;" 
+            v-show="childProp?(childProp=='liangxiang' && childProp!='adtop' && num<2?true:false):false">
+            <!-- v-show="childProp?(childProp=='liangxiang' && childProp!='adtop'?true:false):false"> -->
                 <span > <i class="el-icon-warning"></i> {{$t('info_item.first_auth')}}({{num}}/3)</span> <span style="float:right;color:#5C9ACC;cursor: pointer;" @click="goAuthen">{{$t('info_item.bind')}}</span>
             </div>
             <div class="outer" style="height:3rem;line-height:3rem;" v-show="
@@ -22,7 +25,8 @@
             ">
                 <span > <i class="el-icon-warning"></i> {{$t('info_item.first_fund_pass')}}</span> <span style="float:right;color:#5C9ACC;cursor: pointer;" @click="goSalary">{{$t('info_item.set')}}</span>
             </div>
-            <div class="outer" style="height:3rem;line-height:3rem;" v-show="(childProp=='adtop' || childProp=='adtop_gift') && childProp!='adtop_gift'">
+            <div class="outer" style="height:3rem;line-height:3rem;" 
+            v-show="(childProp=='adtop' || childProp=='adtop_gift') && childProp!='adtop_gift'">
                 <span > <i class="el-icon-warning"></i> {{$t('info_item.first_pay')}}</span> <span style="float:right;color:#5C9ACC;cursor: pointer;" @click="goPayway">{{$t('info_item.set')}}</span>
             </div>
         </div>

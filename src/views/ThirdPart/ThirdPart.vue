@@ -878,7 +878,7 @@ export default {
         async createPay(){
             if(this.num_test.test(this.tName)){
                 this.$message({
-                    message: '请填写真实姓名',
+                    message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
                     type: 'error',
                     center:true,
                     duration:1200,
@@ -887,7 +887,7 @@ export default {
             }else{
                 if(/\d+/.test(this.tName)){
                     this.$message({
-                        message: '请填写真实姓名',
+                        message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
                         type: 'error',
                         center:true,
                         duration:1200,

@@ -45,7 +45,7 @@
                             <input type="file" id="pic_two" @change="change_two" ref="pic_two">
                             <img width="100%" :src="dialogImageUrl" alt="">
                             <i class="el-icon-plus plus" @click="click_two" v-show="two_i_status"></i>
-                            <span>{{$t('id_auth.pt1')}}</span>
+                            <span>{{$t('id_auth.pt2')}}</span>
                         </div>
                     </div>
                     <p class="lable" style="margin-top:4rem;">{{$t('id_auth.id_hand_photo')}}</p>
@@ -576,7 +576,8 @@ export default {
                 }
                 i{
                     display: inline-block;
-                    color:rgba(240,91,95,1);
+                    // color:rgba(240,91,95,1);
+                    color: #ccc;
                 }
                 .input_button{
                     width: 15rem /* 300/20 */;
@@ -584,7 +585,8 @@ export default {
                     margin-bottom: 1.5rem!important /* 30/20 */;
                     height: 1.5rem!important /* 30/20 */;
                     .el-input__inner{
-                        background:rgba(101,169,224,1);
+                        // background:rgba(101,169,224,1);
+                        background: #4C6085;
                         color: white;
                         text-align: center;
                         cursor: pointer;
