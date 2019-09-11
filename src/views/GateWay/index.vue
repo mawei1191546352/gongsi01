@@ -313,7 +313,7 @@
                             <div class="box_one">
                                 <span>{{order2?order2.coinType.toUpperCase():''}}{{new_language[swA].new_box_right.addr}}</span>
                                 <div class="box_one_set">
-                                    <h3>{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</h3>
+                                    <h3 :class="chain">{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</h3>
                                     <div class="ri">
                                         <span class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')" 
                                         @click="copyAddressFun()"
@@ -327,8 +327,10 @@
                                 <span>{{new_language[swA].chain}}：</span>
                                  <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
                                 <el-radio-group v-model="chain">
-                                    <el-radio-button v-model="chain" label="OMNI"></el-radio-button>
-                                    <el-radio-button v-model="chain" label="ERC20"></el-radio-button>
+                                    <el-radio-button v-model="chain" label="OMNI">
+                                    </el-radio-button>
+                                    <el-radio-button v-model="chain" label="ERC20">
+                                    </el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div class="box_te end" :class="swA">
@@ -386,7 +388,7 @@
                      <div class="one_body2">
                          <span>{{new_language[swA].new_body2.addr}}：</span>
                          <div class="r">
-                             <span class="addr">{{order2?order2.receiptAddress:''}}</span>
+                             <span class="addr">{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</span>
                          </div>
                      </div>
                  </li>
@@ -2601,6 +2603,9 @@ export default {
                                     overflow: hidden;
                                     text-overflow: ellipsis;
                                     white-space: nowrap;
+                                    &.ERC20{
+                                        font-size: .9rem;
+                                    }
                                 }
                                 .ri{
                                     display: flex;
@@ -2661,9 +2666,28 @@ export default {
                         .box_te.b{
                             border-bottom:1px solid rgba(230,230,230,1);
                             .el-radio-button__orig-radio:checked+.el-radio-button__inner{
-                                background-color: rgba(51,120,97,1);
-                                border-color: rgba(51,120,97,1);
-                                color:white;
+                                background-color: white;
+                                // border-color: red!important;
+                                border:1px solid #50917C;
+                                color:#50917C ;
+                                position: relative;
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 0px;
+                                    right: 0px;
+                                    width: 15px;
+                                    height: 15px;
+                                    background-image: url('../../assets/images/third/check.png');
+                                    background-size: cover;
+                                }
+                            }
+                            .el-radio-button__orig-radio+.el-radio-button__inner{
+                                background-color:  #EDF8F4;
+                                // border-color: none;
+                                border: 0px;
+                                color:#90CFBB;
+                                border-right: 0px;
                             }
                         }
                         .box_te.end{

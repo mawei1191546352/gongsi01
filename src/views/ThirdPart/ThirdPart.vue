@@ -320,7 +320,7 @@
                             <div class="box_one">
                                 <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():''}}{{new_language[swA].new_box_right.addr}}</span>
                                 <div class="box_one_set">
-                                    <h3>{{chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress}}</h3>
+                                    <h3 :class="chain">{{chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress}}</h3>
                                     <div class="ri">
                                         <span class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress" 
                                         @click="copyAddressFun()"
@@ -393,7 +393,7 @@
                      <div class="one_body2">
                          <span>{{new_language[swA].new_body2.addr}}：</span>
                          <div class="r">
-                             <span class="addr">{{init_pay_file.receiptAddress}}</span>
+                             <span class="addr">{{chain=='OMNI'?(init_pay_file?init_pay_file.receiptAddress:''):(init_pay_file?init_pay_file.ercAddress:'')}}</span>
                          </div>
                      </div>
                  </li>
@@ -1201,7 +1201,7 @@ export default {
         //     border-bottom: 1px solid rgba(204,204,204,1);
         //     line-height: 3rem /* 50/20 */;
         }
-        p.border2{
+        p.binit_pay_file{
             padding-bottom: 0px!important;
             background:rgba(255,255,255,1);
             opacity:1;
@@ -2529,6 +2529,9 @@ export default {
                                     overflow: hidden;
                                     text-overflow: ellipsis;
                                     white-space: nowrap;
+                                    &.ERC20{
+                                        font-size: .9rem;
+                                    }
                                 }
                                 .ri{
                                     display: flex;
@@ -2589,9 +2592,28 @@ export default {
                         .box_te.b{
                             border-bottom:1px solid rgba(230,230,230,1);
                             .el-radio-button__orig-radio:checked+.el-radio-button__inner{
-                                background-color: rgba(51,120,97,1);
-                                border-color: rgba(51,120,97,1);
-                                color:white;
+                                background-color: white;
+                                // border-color: red!important;
+                                border:1px solid #50917C;
+                                color:#50917C ;
+                                position: relative;
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 0px;
+                                    right: 0px;
+                                    width: 15px;
+                                    height: 15px;
+                                    background-image: url('../../assets/images/third/check.png');
+                                    background-size: cover;
+                                }
+                            }
+                            .el-radio-button__orig-radio+.el-radio-button__inner{
+                                background-color:  #EDF8F4;
+                                // border-color: none;
+                                border: 0px;
+                                color:#90CFBB;
+                                border-right: 0px;
                             }
                         }
                         .box_te.end{
