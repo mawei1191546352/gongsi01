@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="last" 
                                     >
-                                        <span class="span_three identify_class" :class="user_info.identityAuthStatus=='0'?'duan'+lang:'chang'+lang" v-if="user_info.role=='1' ? false:true" @click="authentication_verification_fun" :data-real="user_info.identityAuthStatus=='0' ? $t('my_account.certify'):user_info.identityAuthStatus=='1'&& (user_info.role=='0' || user_info.role=='2') ?$t('my_account.com_id'):(user_info.identityAuthStatus=='3' ? $t('my_account.certify'):$t('my_account.com_id')) "></span>
+                                        <span class="span_three identify_class" :class="user_info.identityAuthStatus=='0'?'duan'+lang:'chang'+lang" v-if="user_info.role=='1' || user_info.identityAuthStatus=='1' ? false:true" @click="authentication_verification_fun" :data-real="user_info.identityAuthStatus=='0' ? $t('my_account.certify'):user_info.identityAuthStatus=='1'&& (user_info.role=='0' || user_info.role=='2') ?$t('my_account.com_id'):(user_info.identityAuthStatus=='3' ? $t('my_account.certify'):$t('my_account.com_id')) "></span>
                                     </div>
                                 </div>
                             </div>
