@@ -173,7 +173,7 @@
                                         </div>
                                     </div>
                                     <div class="one2" style="border:0px;">
-                                        <span>{{center_language[swA].remark}}：</span>
+                                        <span>{{center_language[swA].remark}}<i v-show="swA=='ch'" style="color:#E36A6A;font-size:14px;">{{center_language[swA].remark2}}</i></span>
                                         <div>
                                             <span style="color:#F34949;">{{order==null?"":order.referenceCode}}</span>
                                             <span class="cp tag-read"
@@ -502,7 +502,8 @@ export default {
                     shou_name:"收款姓名",
                     bank_info:"银行信息",
                     bank_num:"银行卡号",
-                    remark:"备注",
+                    remark:"付款备注",
+                    remark2:'（请勿备注除付款码外的其它信息）',
                     cp:"复制",
                     pre:"上一步",
                     done:"已付款",
@@ -554,6 +555,7 @@ export default {
                     bank_info:"Bank info",
                     bank_num:"Bank account number",
                     remark:"Transfer note",
+                    remark2:"",
                     cp:"Copy",
                     pre:"Previous",
                     done:"Done",

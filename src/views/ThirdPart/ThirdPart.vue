@@ -155,14 +155,14 @@
                             <div class="bb">
                                 <div class="to">
                                     <div class="one2">
-                                        <span>{{center_language[swA].shou_name}}：</span>
+                                        <span>{{center_language[swA].shou_name}}</span>
                                         <div>
                                             <span>{{step2File==null?"":step2File.adReceiptWay.name}}</span>
                                             <span class="cp tag-read" :data-clipboard-text="step2File==null?'':step2File.adReceiptWay.name" @click="copyAddressFun()">{{center_language[swA].cp}}</span>
                                         </div>
                                     </div>
                                     <div class="one2">
-                                        <span>{{center_language[swA].bank_info}}：</span>
+                                        <span>{{center_language[swA].bank_info}}</span>
                                         <div>
                                             <span>
                                                 {{step2File==null?"":step2File.adReceiptWay.bankAccount}} {{step2File==null?"":step2File.adReceiptWay.branchAccount}}
@@ -171,7 +171,7 @@
                                         </div>
                                     </div>
                                     <div class="one2">
-                                        <span>{{center_language[swA].bank_num}}：</span>
+                                        <span>{{center_language[swA].bank_num}}</span>
                                         <div>
                                             <span>{{step2File==null?"":step2File.adReceiptWay.bankCardNumber}}</span>
                                             <span class="cp tag-read" :data-clipboard-text="step2File==null?'':step2File.adReceiptWay.bankCardNumber"
@@ -180,7 +180,7 @@
                                         </div>
                                     </div>
                                     <div class="one2" style="border:0px;">
-                                        <span>{{center_language[swA].remark}}：</span>
+                                        <span>{{center_language[swA].remark}}<i v-show="swA=='ch'" style="color:#E36A6A;font-size:14px;">{{center_language[swA].remark2}}</i></span>
                                         <div>
                                             <span style="color:#F34949;">{{step2File==null?"":step2File.referenceCode}}</span>
                                             <span class="cp tag-read"
@@ -501,7 +501,8 @@ export default {
                     shou_name:"收款姓名",
                     bank_info:"银行信息",
                     bank_num:"银行卡号",
-                    remark:"备注",
+                    remark:"付款备注",
+                    remark2:'（请勿备注除付款码外的其它信息）',
                     cp:"复制",
                     pre:"上一步",
                     done:"已付款",
@@ -553,6 +554,7 @@ export default {
                     bank_info:"Bank info",
                     bank_num:"Bank account number",
                     remark:"Transfer note",
+                    remark2:'',
                     cp:"Copy",
                     pre:"Previous",
                     done:"Done",
@@ -905,8 +907,8 @@ export default {
                 id:this.init_pay_file.id,
                 realName:this.tName
             }).then((res) => {
-                return res;
                 this.next1 = true;
+                return res;
             })
             if(key!=false) {
                 if (this.active++ > 2) this.active = 0;
