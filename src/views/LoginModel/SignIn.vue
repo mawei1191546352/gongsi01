@@ -34,7 +34,7 @@
                             <div id="captcha"></div>
                             <div id="msg" :class="msgStatus"></div>
                         </div> -->
-                        <verify  @success="successFun($event)" @error="alert('error')" :imgUrl="imgUrl" :type="4" :imgName="imgArr"></verify>
+                        <verify :explain="this.$t('signin.test')" @success="successFun($event)" @error="alert('error')" :imgUrl="imgUrl" :type="4" :imgName="imgArr"></verify>
                     </div>
                 </div>
                 <p class="p_button" @click="triggerLogin" :class="button_active?'p_button_active':''">{{$t('sign_in.login_button')}}</p>

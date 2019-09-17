@@ -129,7 +129,7 @@
             <input v-show="(user_info.email==null?false:true)" @focus="submit_info = false" class="top_email_box_input _top_input_one" type="text" v-model="email_code_two"><input v-show="user_info.emailAuthStatus=='1'?false:(user_info.email==null?false:true)" @click="sendEmail_two" class="top_email_box_input _top_input_two" type="button" v-model="send_two">
             <!--  -->
             <span v-show="user_info.googleAuthTag =='0'?false:true">{{$t('info_item.google_code')}}</span><br>
-            <input v-show="user_info.googleAuthTag =='0'?false:true" @focus="submit_info = false" class="top_email_box_input _top_one" :placeholder="$t('asset_address.p_google_code')" type="text"  v-model="google_code">
+            <input v-show="user_info.googleAuthTag =='0'?false:true" @focus="submit_info = false" class="top_email_box_input _top_one" :placeholder="$t('info_item.p_google_code')" type="text"  v-model="google_code">
             <p v-show="submit_info" style="margin-top:0;color:red;">{{$t('info_item.input_all')}}</p>
             <p class="outer"><span @click="submit_end" class="submit_end left">{{$t('info_item.confirm')}}</span><span @click="verification=false" class="cancel_end right" >{{$t('info_item.cancle')}}</span></p>
         </div>
@@ -876,6 +876,7 @@ export default {
                 width:5.5rem /* 110/20 */;
                 height:2rem /* 40/20 */;
                 background:rgba(92,154,204,1);
+                background: #4c6085;
                 border-radius:.25rem /* 5/20 */;
                 text-align: center;
                 line-height: 2rem /* 40/20 */;

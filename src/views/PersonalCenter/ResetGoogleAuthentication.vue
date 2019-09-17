@@ -5,7 +5,7 @@
         <div class="reset-google-authentication-box">
             <div class="file_google_modify_box">
                 <div class="file_google_modify_nav">
-                    <span @click="go_file_center">{{$t('res_ggole.nav_account')}}</span><i class="el-icon-arrow-right"></i><span>{{this.type_binding=='email'? $t('info_item.nav_email'):(this.type_binding=='phone' ?$t('info_item.nav_phone'):$t('info_item.nav_google'))}}</span>
+                    <span @click="go_file_center">{{$t('res_google.nav_account')}}</span><i class="el-icon-arrow-right"></i><span>{{this.type_binding=='email'? $t('info_item.nav_email'):(this.type_binding=='phone' ?$t('info_item.nav_phone'):$t('info_item.nav_google'))}}</span>
                 </div>
                 <div class="phone_email_google_nav">
                     <div v-show="email==null?true:false" class="email_binding binding" :class="type_binding=='email' ? 'active_binding':''" @click="go_type(0)">{{$t('bind_item.bind_email')}}</div><div class="phone_binding binding" :class="type_binding=='phone' ? 'active_binding':''" @click="go_type(1)">{{$t('bind_item.bind_phone')}}</div><div class="google_binding binding" :class="type_binding=='google' ? 'active_binding':''" @click="go_type(2)">{{$t('bind_item.bind_google')}}</div>
@@ -15,7 +15,7 @@
                     <p>{{$t('res_google.item1_p1')}}</p>
                     <p style="color:red;" class="blink">{{$t('res_google.item1_p2')}}</p>
                     <!-- <span class="qrcode"><img :src="img_url" alt="" ref="img" @error="img_error"></span><span class="qrcode_text"><i class="qrcode_text_title">密钥</i><br><i class="qrcode_text_content">{{qrcode.toUpperCase()}}</i><i class="qrcode_text_do tag-read" :data-clipboard-text="qrcode.toUpperCase()" @click="copyAddressFun()">复制</i></span> -->
-                    <span class="qrcode"><img :src="img_url" alt="" ref="img" ></span><span class="qrcode_text"><i class="qrcode_text_title">{{$t('bind_google.key')}}</i><br><i class="qrcode_text_content">{{qrcode.toUpperCase()}}</i><i class="qrcode_text_do tag-read" :data-clipboard-text="qrcode.toUpperCase()" @click="copyAddressFun()">{{$t('info_iten.copy')}}</i></span>
+                    <span class="qrcode"><img :src="img_url" alt="" ref="img" ></span><span class="qrcode_text"><i class="qrcode_text_title">{{$t('bind_google.key')}}</i><br><i class="qrcode_text_content">{{qrcode.toUpperCase()}}</i><i class="qrcode_text_do tag-read" :data-clipboard-text="qrcode.toUpperCase()" @click="copyAddressFun()">{{$t('info_item.copy')}}</i></span>
                     <h3>2.{{$t('res_google.item2_h')}}</h3>
                     <el-input class=" send_email" v-model="email_code"  :placeholder="$t('info_item.p_email_code')  " ></el-input><span class=" send_email_button" @click="send_email_fun">{{send_two}}</span>
                     <el-input class="innner_left google_verification" type="text" v-model="google_verification"  :placeholder="$t('info_item.p_google_code')" ></el-input>
@@ -115,10 +115,12 @@ export default {
             // return '';
             return this.$store.getters.user_info.email;
         },
-        email_phone:{
-            get:function () {
-                return this.$store.state.register_type == 'email' ? this.$store.state.email :this.$store.state.phone;
-            }
+        email_phone(){
+            return this.$store.getters.user_info.accountType == '1' ? this.$store.getters.user_info.email :this.$store.getters.init_user_info.phone;
+            // get () {
+            //     console.log(this.$store.state.register_type,'hahahhah----------------')
+            //     return this.$store.state.register_type == 'email' ? this.$store.state.email :this.$store.state.phone;
+            // }
         },
     },
     methods:{
@@ -297,15 +299,15 @@ export default {
                 color:rgba(153,153,153,1);
                 margin-top: .5rem /* 10/20 */;
                 text-align: left;
-                .blink{
-                    color: #dd4814;
-                    animation: blink 1s linear infinite;  
-                    /* 其它浏览器兼容性前缀 */
-                    -webkit-animation: blink 1s linear infinite;
-                    -moz-animation: blink 1s linear infinite;
-                    -ms-animation: blink 1s linear infinite;
-                    -o-animation: blink 1s linear infinite;
-                }
+                // .blink{
+                //     color: #dd4814;
+                //     animation: blink 1s linear infinite;  
+                //     /* 其它浏览器兼容性前缀 */
+                //     -webkit-animation: blink 1s linear infinite;
+                //     -moz-animation: blink 1s linear infinite;
+                //     -ms-animation: blink 1s linear infinite;
+                //     -o-animation: blink 1s linear infinite;
+                // }
                 @keyframes blink{
                 0% { opacity: 1; }
                     50% { opacity: 1; }
@@ -354,6 +356,7 @@ export default {
                     height: 1.5rem!important /* 30/20 */;
                     .el-input__inner{
                         background:rgba(101,169,224,1);
+                        background: #4c6085;
                         color: white;
                         text-align: center;
                         cursor: pointer;
@@ -500,6 +503,7 @@ export default {
                 }
                 .binding.active_binding{
                     background: rgba(92,154,204,1);
+                    background: #4c6085;
                     color: white;
                 }
             }

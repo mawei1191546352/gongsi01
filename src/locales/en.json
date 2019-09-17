@@ -1057,5 +1057,8 @@
         "prompt":"Prompt",
         "no_login":"Not logged in, please login first",
         "login":"Login"
+    },
+    "signin":{
+        "test":"Swipe right to complete verification"
     }
 }

@@ -95,7 +95,7 @@
                 <div  class="lian" v-show="this.saveRow.coinTypeId=='2'">
                     <el-radio-group v-model="chain">
                         <el-radio-button label="OMNI"></el-radio-button>
-                        <el-radio-button label="ERC20"></el-radio-button>
+                        <!-- <el-radio-button label="ERC20"></el-radio-button> -->
                     </el-radio-group>
                 </div>
                 <span style="color:rgba(102, 102, 102, 1);font-size:.7rem;">{{$t('asset_manage.deposit_address')}}</span>
