@@ -165,9 +165,12 @@
                                 <span v-show="lang=='zh'">{{isBuy=='0'?'购买':'出售'}}数量</span><br>
                                 <span v-show="lang=='en'">{{$t('publish.c_amount_limit')}}</span><br>
                                 <p>
+                                    <!-- :disabled="edit_ad.id?(
+                                    edit_ad.adStatus=='1' && edit_ad.isAutoTaken == '1'  -->
+                                    <!-- 童伟让去掉 adStatus=='1' && edit_ad.isAutoTaken == '1' -->
                                     <el-input v-model="limitQty" 
                                     :disabled="edit_ad.id?(
-                                    edit_ad.adStatus=='1' && edit_ad.isAutoTaken == '1' 
+                                    false
                                 ):false" :placeholder="phall"></el-input><i>{{coinTypeName.toUpperCase()}}</i>
                                 </p>
                                 <i class="el-icon-warning" style="color:red;" v-show="limitQtyStatus">{{$t('publish.tishi2')}}
