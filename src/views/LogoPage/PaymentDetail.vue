@@ -122,11 +122,11 @@ export default {
     methods:{
         open(){
             if(this.lang=='en') {
-                // window.open('http://doc.royalbiz.co/docs/docs/docs-1-1')
-                window.open('http://doc.royalbiz.co/docs/docsdocs-1bglfibdopqha/docs-1-1')
+                window.open('http://doc.royalbiz.co/docs/docs/docs-1-1')
+                // window.open('http://doc.royalbiz.co/docs/docsdocs-1bglfibdopqha/docs-1-1')
             }else{
-                // window.open('http://doc.royalbiz.co/docs/a1/a1-1')
-                window.open('http://doc.royalbiz.co/docs/a1a1-1bfl89mvqg72h/a1-1')
+                window.open('http://doc.royalbiz.co/docs/a1/a1-1')
+                // window.open('http://doc.royalbiz.co/docs/a1a1-1bfl89mvqg72h/a1-1')
             }
         },
     }

@@ -239,7 +239,7 @@
                         <h3 class="h3_border" :class="swA">{{center_language[swA].ban_list}}</h3>
                         <p v-show="active==2" class="bank" style="box-sizing:border-box;">
                             <a href="https://ebsnew.boc.cn/boc15/login.html" target="_Blank"><img src="../../assets/images/bank/zgbank.png" alt=""></a>
-                            <a href="http://www.abchina.com/cn/wydl/grwydl/default.htm" target="_Blank"><img src="../../assets/images/bank/nybank.png" alt=""></a>
+                            <a href="https://perbank.abchina.com/EbankSite/startup.do?r=3B61B6CC10EB44EA" target="_Blank"><img src="../../assets/images/bank/nybank.png" alt=""></a>
                             <a href="https://mybank.icbc.com.cn/icbc/newperbank/perbank3/frame/frame_index.jsp" target="_Blank"><img src="../../assets/images/bank/gsbank.png" alt=""></a>
                             <a href="http://www.ccb.com/cn/ebank/wsyh_products_list.html" target="_Blank"><img src="../../assets/images/bank/jsbank.png" alt=""></a>
                             <a href="http://www.bankcomm.com/BankCommSite/default.shtml" target="_Blank"><img src="../../assets/images/bank/jtbank.png" alt=""></a>
@@ -256,7 +256,7 @@
                             <a href="https://nper.cmbc.com.cn/pweb/static/login.html" target="_Blank"><img src="../../assets/images/bank/msbank.png" alt=""></a>
                             <a href="https://personalbank.cib.com.cn/pers/main/login.do" target="_Blank"><img src="../../assets/images/bank/xybank.png" alt=""></a>
                             <a href="http://ebank.cebbank.com/" target="_Blank"><img src="../../assets/images/bank/gdbank.png" alt=""></a>
-                            <a href="http://www.hxb.com.cn/wlyx/wsgryx/index.shtml" target="_Blank"><img src="../../assets/images/bank/hxbank.png" alt=""></a>
+                            <a href="http://www.hxb.com.cn/wydl/index.shtml" target="_Blank"><img src="../../assets/images/bank/hxbank.png" alt=""></a>
                         </p>
                     </div>
                     <div class="baozhang"
