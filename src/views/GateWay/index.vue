@@ -60,7 +60,7 @@
                                     <div class="one_jin one_jin_h border">
                                         <span>{{center_language[swA].num_amount}}：</span>
                                         <div>
-                                            <span>{{gate?gate.amount:''}} </span> <span>{{init_pay_file.coinType.toUpperCase()}}</span>
+                                            <span>{{gate?gate.amount:''}} </span> <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():''}}</span>
                                         </div>
                                     </div>
                                     <p class="box2_p one_jin">
@@ -329,8 +329,8 @@
                                 <el-radio-group v-model="chain">
                                     <el-radio-button v-model="chain" label="OMNI">
                                     </el-radio-button>
-                                    <!-- <el-radio-button v-model="chain" label="ERC20">
-                                    </el-radio-button> -->
+                                    <el-radio-button v-model="chain" label="ERC20">
+                                    </el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div class="box_te end" :class="swA">

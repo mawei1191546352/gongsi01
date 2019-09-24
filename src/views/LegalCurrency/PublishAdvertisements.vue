@@ -35,7 +35,7 @@
                                 ):false" placeholder="请选择">
                                     <el-option
                                     v-for="item in tradePayType"
-                                    :key="item.value"
+                                    :key="item.value+'ni'"
                                     :label="item.label"
                                     :value="item.value">
                                     </el-option>
@@ -51,7 +51,7 @@
                                 ):false" placeholder="请选择">
                                     <el-option
                                     v-for="item in tradeType"
-                                    :key="item.value"
+                                    :key="item.value+'mei'"
                                     :label="item.label"
                                     :value="item.value">
                                     </el-option>
@@ -68,7 +68,7 @@
                                 ):false" placeholder="请选择">
                                     <el-option
                                     v-for="item in coinTypeIdArr"
-                                    :key="item.value"
+                                    :key="item.value+'haha'"
                                     :label="item.label ? item.label.toUpperCase():''"
                                     :value="item.value">
                                     </el-option>
@@ -85,7 +85,7 @@
                                 ):false" placeholder="请选择国家">
                                     <el-option
                                     v-for="item in tradeCoinTypeArr"
-                                    :key="item.id"
+                                    :key="item.id+'id'"
                                     :label="lang=='en'?item.countryCode:item.countryName"
                                     :value="item.id">
                                     </el-option>
@@ -101,7 +101,7 @@
                                 ):false" placeholder="请选择">
                                     <el-option
                                     v-for="item in tradeCoinTypeArrB"
-                                    :key="item.id"
+                                    :key="item.id+'id2'"
                                     :label="item.coinName"
                                     :value="item.id">
                                     </el-option>
@@ -527,6 +527,7 @@ export default {
                 coinTypeId:this.coinTypeId,
                 countryInfoId:n,
             }
+            // this.checkedCities1 = []
             await this.initData(item)
             let demo = await QueryQtcTradeFun(this,{countryInfoId:n})
             .then((res) => {
