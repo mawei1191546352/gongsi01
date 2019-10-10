@@ -811,27 +811,32 @@ export default {
         },
         getPath(key,base){
             console.log('获取',key,base)
-            this.axios.post('/file/getUrl',qs.stringify({key:key}))
-            .then((res) => {
-                let data = res.data;
-                if(data.code == 200){
-                   let url = data.data.url
-                   if(base=='pic_zhi'){
-                       this.zhiImgUrlReal = url
-                   }else{
-                       this.weiImgUrlReal = url
-                   }
-                    // console.log(base)
-                }else{
-                    this.$message({
-                        type:'error',
-                        message:data.message,
-                        duration:1200,
-                    })
-                }
-            }).catch((err)=>{
-                console.log(err)
-            })
+            // this.axios.post('/file/getUrl',qs.stringify({key:key}))
+            // .then((res) => {
+            //     let data = res.data;
+            //     if(data.code == 200){
+            //        let url = data.data.url
+            //        if(base=='pic_zhi'){
+            //            this.zhiImgUrlReal = url
+            //        }else{
+            //            this.weiImgUrlReal = url
+            //        }
+            //         // console.log(base)
+            //     }else{
+            //         this.$message({
+            //             type:'error',
+            //             message:data.message,
+            //             duration:1200,
+            //         })
+            //     }
+            // }).catch((err)=>{
+            //     console.log(err)
+            // })
+            if(base=='pic_zhi'){
+                this.zhiImgUrlReal = 'http://103.75.2.198:8080'+key;
+            }else{
+                this.weiImgUrlReal = 'http://103.75.2.198:8080'+key;
+            }
         },
         /**
          * 初始化个人信息

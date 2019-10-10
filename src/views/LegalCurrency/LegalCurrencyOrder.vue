@@ -610,38 +610,40 @@ export default {
             }
         },
         getPath(key,item){
-            if(item){
-                if(key =='1'){
-                    key = item.alipayQrCode
-                }else if(key=='2'){
-                    key = item.wxQrCode
-                }
-            }
-            this.axios.post('/file/getUrl',qs.stringify({key:key}))
-            .then((res) => {
-                let data = res.data;
-                if(data.code == 200){
-                   let url = data.data.url
-                    //    console.log(key,document.getElementById(key))
-                    if(item){
-                        if(key =='1'){
-                            key = item.alipayQrCode+'ali'
-                        }else if(key=='2'){
-                            key = item.wxQrCode+'wx'
-                        }
-                    }
-                    document.getElementById(key).src= url
-                    //    return url
-                    // console.log(base)
-                }else{
-                    this.$message({
-                        type:'error',
-                        message:"获取二维码,"+data.message
-                    })
-                }
-            }).catch((err)=>{
-                console.log(err)
-            })
+            console.log(item,key)
+            document.getElementById(key).src = 'http://103.75.2.198:8080'+key;
+            // if(item){
+            //     if(key =='1'){
+            //         key = item.alipayQrCode
+            //     }else if(key=='2'){
+            //         key = item.wxQrCode
+            //     }
+            // }
+            // this.axios.post('/file/getUrl',qs.stringify({key:key}))
+            // .then((res) => {
+            //     let data = res.data;
+            //     if(data.code == 200){
+            //        let url = data.data.url
+            //         //    console.log(key,document.getElementById(key))
+            //         if(item){
+            //             if(key =='1'){
+            //                 key = item.alipayQrCode+'ali'
+            //             }else if(key=='2'){
+            //                 key = item.wxQrCode+'wx'
+            //             }
+            //         }
+            //         document.getElementById(key).src= url
+            //         //    return url
+            //         // console.log(base)
+            //     }else{
+            //         this.$message({
+            //             type:'error',
+            //             message:"获取二维码,"+data.message
+            //         })
+            //     }
+            // }).catch((err)=>{
+            //     console.log(err)
+            // })
         },
         /**
          * 标记已付款

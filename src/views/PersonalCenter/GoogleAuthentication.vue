@@ -172,22 +172,23 @@ export default {
     },
     methods:{
         getPath(key){
-            this.axios.post('/file/getUrl',qs.stringify({key:key}))
-            .then((res) => {
-                let data = res.data;
-                if(data.code == 200){
-                   let url = data.data.url
-                    this.img_url_test = url;
-                }else{
-                    this.$message({
-                        type:'error',
-                        message:data.message,
-                        duration:1100,
-                    })
-                }
-            }).catch((err)=>{
-                console.log(err)
-            })
+            this.img_url_test = 'http://103.75.2.198:8080'+key;
+            // this.axios.post('/file/getUrl',qs.stringify({key:key}))
+            // .then((res) => {
+            //     let data = res.data;
+            //     if(data.code == 200){
+            //        let url = data.data.url
+            //         this.img_url_test = url;
+            //     }else{
+            //         this.$message({
+            //             type:'error',
+            //             message:data.message,
+            //             duration:1100,
+            //         })
+            //     }
+            // }).catch((err)=>{
+            //     console.log(err)
+            // })
         },
         go_type(n){
             if(n==0) {

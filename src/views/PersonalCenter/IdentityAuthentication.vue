@@ -165,32 +165,43 @@ export default {
             }
         },
         getPath(key,base){ // 还没有配置其他信息
-            this.axios.post('/file/getUrl',qs.stringify({key:key}))
-            .then((res) => {
-                let data = res.data;
-                if(data.code == 200){
-                   let url = data.data.url
-                   if(base=='one'){
-                       this.dialogImageUrlHead =data.data.url;
-                       this.dialogImageUrlHeadKey = key;
-                   }else if(base=='two'){
-                       this.dialogImageUrl =data.data.url;
-                       this.dialogImageUrlKey = key;
-                   }else if(base =='third'){
-                       this.dialogImageUrlMan =data.data.url;
-                       this.dialogImageUrlManKey = key;
-                   }
-                    this.img_url_test = url;
-                }else{
-                    this.$message({
-                        type:'error',
-                        message:data.message,
-                        duration:1100,
-                    })
-                }
-            }).catch((err)=>{
-                console.log(err)
-            })
+            // this.axios.post('/file/getUrl',qs.stringify({key:key}))
+            // .then((res) => {
+            //     let data = res.data;
+            //     if(data.code == 200){
+            //        let url = data.data.url
+            //        if(base=='one'){
+            //            this.dialogImageUrlHead =data.data.url;
+            //            this.dialogImageUrlHeadKey = key;
+            //        }else if(base=='two'){
+            //            this.dialogImageUrl =data.data.url;
+            //            this.dialogImageUrlKey = key;
+            //        }else if(base =='third'){
+            //            this.dialogImageUrlMan =data.data.url;
+            //            this.dialogImageUrlManKey = key;
+            //        }
+            //         this.img_url_test = url;
+            //     }else{
+            //         this.$message({
+            //             type:'error',
+            //             message:data.message,
+            //             duration:1100,
+            //         })
+            //     }
+            // }).catch((err)=>{
+            //     console.log(err)
+            // })
+            if(base=='one'){
+                this.dialogImageUrlHead = 'http://103.75.2.198:8080'+key;
+                this.dialogImageUrlHeadKey = key;
+            }else if(base=='two'){
+                this.dialogImageUrl = 'http://103.75.2.198:8080'+key;
+                this.dialogImageUrlKey = key;
+            }else if(base =='third'){
+                this.dialogImageUrlMan = 'http://103.75.2.198:8080'+key;
+                this.dialogImageUrlManKey = key;
+            }
+            this.img_url_test = 'http://103.75.2.198:8080'+key;
         },
         go_file_center() {
             this.$router.push('/personal')
