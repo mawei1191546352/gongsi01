@@ -38,7 +38,8 @@
                         </div>
                     </div>
                     <div class="payment-search">
-                        <el-select v-show="user_info.role!='1'" v-model="timeTag" placeholder="请选择">
+                        <!-- <el-select v-show="user_info.role!='1'" v-model="timeTag" placeholder="请选择"> -->
+                        <el-select v-model="timeTag" placeholder="请选择">
                             <el-option
                             v-for="item in options"
                             :key="item.value"
@@ -309,9 +310,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -344,9 +343,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -379,9 +376,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -408,15 +403,13 @@ export default {
             if(this.content!= '') {
                 item['content'] = this.content
             }
-            if(n!= null) {
-                let start = this.formatDate(new Date(n[0]));
-                let end = this.formatDate(new Date(n[1]));
+            if(this.time!= null) {
+                let start = this.formatDate(new Date(this.time[0]));
+                let end = this.formatDate(new Date(this.time[1]));
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = n
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -642,9 +635,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             if(this.user_info.role=='5') {
                 if(this.merchantId==-1) {
                     let na = [];
@@ -686,9 +677,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = this.pageSize;
@@ -724,9 +713,7 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = this.currentPage;
             item['rows'] = val;
@@ -760,9 +747,10 @@ export default {
                 item['startTime'] = start;
                 item['endTime'] =end;
             }
-            if(this.user_info.role!='1'){
-                item['timeTag'] = this.timeTag
-            }
+            // if(this.user_info.role!='1'){
+            //     item['timeTag'] = this.timeTag
+            // }
+            item['timeTag'] = this.timeTag
             item['status'] = this.status;
             item['page'] = val;
             item['rows'] = this.pageSize;

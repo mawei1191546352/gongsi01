@@ -56,15 +56,18 @@
         var ua = window.navigator.userAgent.toLowerCase();
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
           // console.log(window.location)
-          
         }
         else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
-          //window.location.href = ""; 
-          // if(window.location.pathname.indexOf('/third/')>=0){
-          //   window.location.href = "http://m.zhima2-dev.com"+window.location.pathname;
-          // }else{
-          //   window.location.href = "http://m.zhima2-dev.com"
-          // }
+          if(window.location.pathname.indexOf('/third/')>=0){
+            window.location.href = "http://m.royalbiz.co"+window.location.pathname;
+            // window.location.href = "http://103.75.2.200:81"+window.location.pathname;
+          }else if(window.location.pathname.indexOf('/gateway')>=0){
+            window.location.href = "http://m.royalbiz.co"+window.location.pathname;
+            // window.location.href = "http://103.75.2.200:81"+window.location.pathname;
+          } else {
+            window.location.href = "http://m.royalbiz.co"
+            // window.location.href = "http://103.75.2.200:81"
+          }
         } 
     }());
     </script>

@@ -759,7 +759,34 @@ export default {
             }
         },
         async createLegalorder(){
+            if(this.num_test.test(this.tName)){
+                this.$message({
+                    message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                    type: 'error',
+                    center:true,
+                    duration:1200,
+                });
+                return false
+            }else{
+                if(/\d+/.test(this.tName)){
+                    this.$message({
+                        message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                        type: 'error',
+                        center:true,
+                        duration:1200,
+                    });
+                    return false
+                }else{
+
+                }
+            }
             if(this.tName=='') {
+                 this.$message({
+                        message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                        type: 'error',
+                        center:true,
+                        duration:1200,
+                    });
                 return false
             }
             if(!this.next1) {

@@ -335,7 +335,7 @@
                                 <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
                                 <el-radio-group v-model="chain">
                                     <el-radio-button v-model="chain" label="OMNI"></el-radio-button>
-                                    <!-- <el-radio-button v-model="chain" label="ERC20"></el-radio-button> -->
+                                    <el-radio-button v-model="chain" label="ERC20"></el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div class="box_te end" :class="swA">
