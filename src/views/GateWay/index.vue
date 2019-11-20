@@ -327,9 +327,9 @@
                                 <span>{{new_language[swA].chain}}：</span>
                                  <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
                                 <el-radio-group v-model="chain">
-                                    <el-radio-button v-model="chain" label="OMNI">
-                                    </el-radio-button>
                                     <el-radio-button v-model="chain" label="ERC20">
+                                    </el-radio-button>
+                                    <el-radio-button v-model="chain" label="OMNI">
                                     </el-radio-button>
                                 </el-radio-group>
                             </div>
@@ -436,7 +436,7 @@ import QRCode from 'qrcodejs2'
 export default {
     data() {
         return {
-            chain:'OMNI',
+            chain:'ERC20',
             type:0,
             payVersion:2,
             gate:null,

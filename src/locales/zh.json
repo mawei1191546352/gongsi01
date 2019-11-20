@@ -147,7 +147,7 @@
         "nav_phone":"手机注册",
         "user_placeholder":"请设置用户名，设置后不可更改",
         "email_placeholder":"请输入邮箱地址",
-        "email_regular":"'邮箱地址格式错误",
+        "email_regular":"邮箱地址格式错误",
         "phone_placeholder":"请输入手机号码",
         "phone_regular":"手机号码格式错误",
         "test_code":"请输入验证码",
@@ -834,6 +834,9 @@
         "all_p":"Royalbiz 是连接买家与卖家的 P2P 数字货币场外交易市场。您可以选择您希望使用的支付方式进行数字货币购买&出售。",
         "item2_p1":"Royabiz支持多种付款方式，包含支付宝、微信、银行卡、PayPal等，包括各种礼品卡（例如亚马逊礼品卡）。",
         "item2_p2":"更可以快速筛选出支持各个国家银行卡的广告，快速交易，安全便捷。",
+        "message":"留言",
+        "message_me":"给我们留言",
+        "message_back":"请在此输入您的留言内容，我们的工作人员会尽快给您回复",
         "arr":[
             {
                 "id":"1",

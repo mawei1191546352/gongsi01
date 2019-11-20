@@ -94,8 +94,8 @@
                 <span v-show="this.saveRow.coinTypeId=='2'" style="color:rgba(102, 102, 102, 1);font-size:.7rem;">{{$t('asset_manage.lian_name')}}</span>
                 <div  class="lian" v-show="this.saveRow.coinTypeId=='2'">
                     <el-radio-group v-model="chain">
-                        <el-radio-button label="OMNI"></el-radio-button>
                         <el-radio-button label="ERC20"></el-radio-button>
+                        <el-radio-button label="OMNI"></el-radio-button>
                     </el-radio-group>
                 </div>
                 <span style="color:rgba(102, 102, 102, 1);font-size:.7rem;">{{$t('asset_manage.deposit_address')}}</span>
@@ -139,8 +139,8 @@
                <span v-show="this.saveRow.coinTypeId=='2'" style="color:rgba(102, 102, 102, 1);font-size:.7rem;">{{$t('asset_manage.lian_name')}}</span>
                 <div v-show="this.saveRow.coinTypeId=='2'" class="lian">
                     <el-radio-group v-model="chain2">
-                        <el-radio-button label="OMNI"></el-radio-button>
                         <el-radio-button label="ERC20"></el-radio-button>
+                        <el-radio-button label="OMNI"></el-radio-button>
                     </el-radio-group>
                 </div>
                <div class="outer">
@@ -343,8 +343,8 @@ export default {
     },
     data() {
         return {
-            chain:'OMNI',
-            chain2:"OMNI",
+            chain:'ERC20',
+            chain2:"ERC20",
             childP:'liangxiang',
             legalSet:'legal-currency',
             tableData:[],

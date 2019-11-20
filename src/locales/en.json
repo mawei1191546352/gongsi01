@@ -839,6 +839,9 @@
         "all_p":"Royalbiz is a Peer to Peer cryptocurrency marketplace connecting buyers with sellers. Simply select your preferred payment method and type in how many cryptocurrency you need.",
         "item2_p1":"Royabiz supports a variety of payment methods, including Alipay, WeChat, Bank Transfers, PayPal, etc. ",
         "item2_p2":"Royalbiz support multiple Gift Card payments, like Amazon Gift Card, JD Gift Card, SINOPEC Gift Card. Royalbiz support domestic and international banks. Securely and Conveniently.",
+        "message":"Message",
+        "message_me":"Leave us a <span>message</span>",
+        "message_back":"Please enter your message here and our staff will get back to you as soon as possible.",
         "arr":[
             {
                 "id":"1",

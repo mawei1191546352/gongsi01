@@ -178,6 +178,38 @@ async function getGiftCrad(vm) {
 }
 
 /**
+ * 客户留言
+ * @param {*} vm 
+ */
+async function clientLeaveMessage(vm,item) {
+    let key;
+    await vm.axios.post('/index/emailMessage',qs.stringify(item))
+    .then(async (res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key = data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key = false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false;
+    })
+    return key;
+}
+
+/**
  * 已入金支付状态查询
  * @param {*} vm 
  * @param {*} item 
@@ -2940,4 +2972,5 @@ export  {
     agentMerchantList,
     gateWayLegal,
     createGateLegalOrder,
+    clientLeaveMessage,
 }

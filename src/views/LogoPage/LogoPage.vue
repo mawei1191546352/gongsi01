@@ -118,6 +118,31 @@
                     </div>
                     <p class="fp">{{$t('logo.all_p')}}</p>
                 </div>
+                <!--  -->
+                <div class="doEmailCover" :class="em+''"></div>
+                <div class="doEmail " :class="em+''">
+                    <div class="close" @click="closeEm">
+                        <i class="el-icon-close"></i>
+                    </div>
+                    <h3>{{$t('logo.message')}}</h3>
+                    <p class="em">{{$t('forget_pass.nav_email')}}</p>
+                    <div class="input">
+                        <input type="text" :placeholder="$t('forget_pass.email')" @blur="checkEmail" v-model="email">
+                    </div>
+                    <p class="info">{{$t('logo.message')}}</p>
+                    <div class="text">
+                        <textarea :placeholder="$t('logo.message_back')" v-model="content"></textarea>
+                    </div>
+                    <div class="btn">
+                        <button class="cancle"  @click="closeEm">{{$t('info_item.cancle')}}</button>
+                        <button class="confirm" @click="sendMessage"><span v-show="can_email">{{$t('info_item.confirm')}}</span> <i v-show="!can_email" class="el-icon-loading"></i> </button>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="email" @click="emToggle" @mouseenter="()=>{$refs.refemail.src=src5}" @mouseleave="()=>{$refs.refemail.src=src4}">
+                    <img ref="refemail" :src="srcOk"  alt="">
+                    <span v-html="$t('logo.message_me')"></span>
+                </div>
             </div>
             <div class="logo-bottom-back"></div>
             <div class="pay-way-carousel">
@@ -277,6 +302,7 @@ import {
     QueryQtcTradeFunIndex,
     QueryLegalTradeFunIndex,
     priceCalcFunIndex,
+    clientLeaveMessage,
 } from '../../assets/js/api.js'
 import moment from 'moment'
 export default {
@@ -307,6 +333,14 @@ export default {
             src1:require('../../assets/images/logopage/2019-5-9/gift_pay.png'),
             src2:require('../../assets/images/logopage/2019-5-9/net_pay.png'),
             src3:require('../../assets/images/logopage/2019-5-9/bank_pay.png'),
+            src4:require('../../assets/images/logopage/email01.png'),
+            src5:require('../../assets/images/logopage/email02.png'),
+            srcOk:require('../../assets/images/logopage/email01.png'),
+            em:false,
+            email_reg : /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
+            email:'',
+            content:'',
+            can_email:true,
         }
     },
     computed:{
@@ -427,6 +461,57 @@ export default {
        
     },
     methods:{
+        async sendMessage(){
+            if(!this.can_email){
+                return false
+            }
+            if(this.mail=='' || this.content==''){
+                this.$message({
+                    type:'waring',
+                    message:this.$t('sign_in.input_all'),
+                    duration:1000,
+                })
+                return false
+            }
+            this.can_email = false
+            let item = {
+                content:this.content,
+                mail:this.email
+            }
+            let k = await clientLeaveMessage(this,item)
+            if(k){
+                this.can_email = true
+                this.em=false
+                this.email=''
+                this.content=''
+                this.$message({
+                    type:'success',
+                    message:'感谢您的留言！',
+                    duration:1000,
+                })
+            }else{
+                this.can_email = true
+                // this.em=false
+            }
+        },
+        checkEmail(e){
+            if(this.email_reg.test(e.target.value)){
+
+            }else{
+                this.$message({
+                    type:'waring',
+                    message:this.$t('sign_up.email_regular'),
+                    duration:1200,
+                })
+                this.email = ''
+            }
+        },
+        emToggle(){
+            this.em = !this.em
+        },
+        closeEm(){
+            this.em=false
+        },
         setItem(id) {
             console.log('iiii',id)
             this.legal= id
@@ -530,6 +615,161 @@ export default {
             position: relative;
             box-sizing:border-box;
             padding-top: 8rem;
+            .email{
+                position: fixed;
+                bottom: 9rem /* 50/20 */;
+                right: 10rem /* 200/20 */;
+                width:5rem /* 100/20 */;
+                height:5rem /* 100/20 */;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 10px rgba(27,56,109,0.5);
+                border-radius:.25rem /* 5/20 */;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all .4s ease-in-out;
+                z-index: 1100;
+                padding: 5px;
+                box-sizing: border-box;
+                img{
+                    width: 2.5rem /* 50/20 */;
+                    height: 2.25rem /* 45/20 */;
+                }
+                span{
+                    font-size:.7rem /* 14/20 */;
+                    font-weight:400;
+                    // line-height:24px;
+                    color:rgba(51,51,51,1);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                &:hover{
+                    background:rgba(104,165,255,1);
+                    box-shadow:0px 0px 10px rgba(27,56,109,0.5);
+                    cursor: pointer;
+                    span{
+                        color:rgba(255,255,255,1);
+                    }
+                }
+            }
+            .doEmailCover{
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background:rgba(0,0,0,0.1);
+                top: 0px;
+                left: 0px;
+                z-index: 1000;
+                &.false{
+                    display: none;
+                }
+            }
+            .doEmail{
+                position: fixed;
+                width:24rem /* 480/20 */;
+                height:30rem /* 600/20 */;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 10px rgba(27,56,109,0.5);
+                opacity:1;
+                border-radius:5px;
+                bottom: 8rem /* 30/20 */;
+                left: 50%;
+                z-index: 2000;
+                transform: translateX(-50%);
+                box-sizing: border-box;
+                padding: .75rem /* 15/20 */ 1.5rem /* 30/20 */ 0rem /* 0/20 */ 1.5rem /* 30/20 */;
+                &.false{
+                    display: none;
+                }
+                .close{
+                    width:.5rem /* 10/20 */;
+                    height:.5rem /* 10/20 */;
+                    position: absolute;
+                    top: 5px;
+                    right: 15px;
+                    &:hover{
+                        cursor: pointer;
+                        color: rgba(92,137,204,1);
+                    }
+                }
+                h3{
+                    height:2.1rem /* 42/20 */;
+                    font-size:1.5rem /* 30/20 */;
+                    font-weight:bold;
+                    line-height:1.5rem /* 30/20 */;
+                    color:rgba(51,51,51,1);
+                }
+                p.info,
+                p.em{
+                    font-size:.7rem /* 14/20 */;
+                    font-weight:400;
+                    line-height:1.5rem /* 30/20 */;
+                    color:rgba(102,102,102,1);
+                }
+                p.info{
+                    margin-top: 1rem;
+                }
+                div.input{
+                    width:21rem /* 420/20 */;
+                    height:2rem /* 40/20 */;
+                    background:rgba(255,255,255,1);
+                    
+                    input{
+                        font-size:.7rem /* 14/20 */;
+                        font-weight:400;
+                        line-height:1.5rem /* 30/20 */;
+                        color:#333;
+                        width: inherit;
+                        height: inherit;
+                        border:1px solid rgba(204,204,204,1);
+                        box-sizing: border-box;
+                        padding:0px 15px;
+                    }
+                }
+                div.text{
+                    textarea{
+                        resize:none;
+                        width:21rem /* 420/20 */;
+                        height:16rem /* 320/20 */;
+                        background:rgba(255,255,255,1);
+                        border:1px solid rgba(204,204,204,1);
+                        font-size:.7rem /* 14/20 */;
+                        font-weight:400;
+                        line-height:1.1rem /* 30/20 */;
+                        color:#333;
+                        padding: 3px 15px;
+                        box-sizing: border-box;
+                    }
+                }
+                div.btn{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 2rem /* 20/20 */;
+                    button{
+                        outline: none;
+                        border: none;
+                        font-size:.8rem /* 16/20 */;
+                        font-weight:400;
+                        line-height:1.5rem /* 30/20 */;
+                        border-radius:3px;
+                        width:5.5rem /* 110/20 */;
+                        height:2rem /* 40/20 */;
+                    }
+                    .cancle{
+                        background:rgba(230,230,230,1);
+                        color:rgba(51,51,51,1);
+                    }
+                    .confirm{
+                        background:rgba(92,137,204,1);
+                        color:rgba(255,255,255,1);
+                        &:hover{
+                            opacity: .9;
+                        }
+                    }
+                }
+            }
             h3.ff{
                 font-size:30px;
                 font-weight:800;

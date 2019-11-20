@@ -53,9 +53,10 @@ module.exports = {
             '/pay': {
                 // target: 'http://192.168.10.119:8080/pay/',
                 // target: 'http://172.16.15.176:8080/pay/',
-                target: 'http://18.140.5.142:8080/pay/',
+                // target: 'http://18.140.5.142:8080/pay/',
                 // target: 'http://103.75.2.200/pay/',
                 // target: 'http://192.168.10.54:8080/pay/',
+                target: 'http://103.75.2.199:8080/pay/',
                 // target: 'http://www.zhima2-dev.com/pay/',
                 // target: 'http://www.royalbiz.co/pay/',
                 // target: 'http://52.77.226.129:8080/pay/',

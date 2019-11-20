@@ -1032,10 +1032,27 @@ export default {
                     
                     item['receiptWayIds'] = this.checkedCities1.join(',')
                     item['receiptWayTypes'] = this.checkedCitiesTypes.join(',')
+                    if(item['receiptWayTypes']==''){
+                        this.$message({
+                            type:'error',
+                            message:'请选择收款方式',
+                            duration:1000,
+                        })
+                        return false
+                    }
                 }else{
                     item['payWayType'] = '1'
                     item['giftCardId'] = this.checkedCities1[0]
+                    if(item['giftCardId']==''){
+                        this.$message({
+                            type:'error',
+                            message:'请选择收款方式',
+                            duration:1000,
+                        })
+                        return false
+                    }
                 }
+                
                 let key =await editAdFun(this,item)
                 .then((res) => {
                     return res;
@@ -1068,10 +1085,26 @@ export default {
                     item['payWayType'] = '0'
                     item['receiptWayIds'] = this.checkedCities1.join(',')
                     item['receiptWayTypes'] = this.checkedCitiesTypes.join(',')
+                    if(item['receiptWayTypes']==''){
+                        this.$message({
+                            type:'error',
+                            message:'请选择收款方式',
+                            duration:1000,
+                        })
+                        return false
+                    }
                 }else{
                     item['payWayType'] = '1'
                     item['giftCardId'] = this.checkedCities1[0]
                     // item.price = this.price2
+                    if(item['giftCardId']==''){
+                        this.$message({
+                            type:'error',
+                            message:'请选择收款方式',
+                            duration:1000,
+                        })
+                        return false
+                    }
                 }
                 let key =await publishAdFun(this,item)
                 .then((res) => {

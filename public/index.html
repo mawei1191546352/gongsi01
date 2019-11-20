@@ -59,10 +59,12 @@
         }
         else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
           if(window.location.pathname.indexOf('/third/')>=0){
-            window.location.href = "http://m.royalbiz.co"+window.location.pathname;
+            window.location.href = "http://m.royalbiz.co"+window.location.pathname+window.location.search;
             // window.location.href = "http://103.75.2.200:81"+window.location.pathname;
           }else if(window.location.pathname.indexOf('/gateway')>=0){
-            window.location.href = "http://m.royalbiz.co"+window.location.pathname;
+            console.log(window.location)
+            // debugger
+            window.location.href = "http://m.royalbiz.co"+window.location.pathname+window.location.search;
             // window.location.href = "http://103.75.2.200:81"+window.location.pathname;
           } else {
             window.location.href = "http://m.royalbiz.co"
@@ -79,9 +81,7 @@
     <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.min.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script> -->
-
-  </body>
-  <script>
+    <script>
       var info = new Browser();
       if(info.browser=='IE' && Number(info.version)<=9){
           document.body.innerHTML='你使用的浏览器为 IE 且版本过低，建议使用 chrome 等高级浏览器或IE11';
@@ -91,4 +91,6 @@
         window.alert('你使用的浏览器为 IE'+info.version+' 版本过低，建议使用 chrome 等高级浏览器');
       }
     </script>
+  </body>
+  
 </html>
