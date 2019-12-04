@@ -836,6 +836,7 @@ export default {
          * 计算
          */
         getCoinInfo(row) {
+            // this.widthdraw_amount.toFixed(4)
             if(!this.reg.test(this.widthdraw_amount)) {
                 // this.amountUsd = '';
                 // this.handingFree = '';
@@ -847,6 +848,11 @@ export default {
                     duration:500,
                 })
                 return false;
+            }
+            if(row.coinTypeId==2) {
+                let d = this.widthdraw_amount.match(/^\d*(\.?\d{0,4})/g)[0]
+                // console.log(d)
+                this.widthdraw_amount = d
             }
             this.axios.post('/assetsExtractOrder/getCalcHandingFee',qs.stringify({
                 amount:this.widthdraw_amount,

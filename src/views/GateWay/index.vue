@@ -313,9 +313,21 @@
                             <div class="box_one">
                                 <span>{{order2?order2.coinType.toUpperCase():''}}{{new_language[swA].new_box_right.addr}}</span>
                                 <div class="box_one_set">
-                                    <h3 :class="chain">{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</h3>
+                                    <h3 :class="chain"
+                                    v-show="order2!=null && order2.coinType=='usdt'"
+                                    >{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</h3>
+                                    <h3 :class="chain"
+                                    v-show="order2!=null && order2.coinType!='usdt'"
+                                    >{{order2.receiptAddress}}</h3>
                                     <div class="ri">
-                                        <span class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')" 
+                                        <span 
+                                        v-show="order2!=null && order2.coinType=='usdt'"
+                                        class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')" 
+                                        @click="copyAddressFun()"
+                                        >{{new_language[swA].new_box_right.cp}}</span>
+                                        <span 
+                                        v-show="order2!=null && order2.coinType!='usdt'" 
+                                        class="cp tag-read" :class="swA" :data-clipboard-text="order2.receiptAddress" 
                                         @click="copyAddressFun()"
                                         >{{new_language[swA].new_box_right.cp}}</span>
                                         <span class="qr" @mouseenter="getCode" @mouseleave="removeCode">{{new_language[swA].new_box_right.qr}}</span>
@@ -323,7 +335,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="box_te b">
+                            <div class="box_te b" v-show="order2!=null && order2.coinType=='usdt'">
                                 <span>{{new_language[swA].chain}}：</span>
                                  <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
                                 <el-radio-group v-model="chain">
@@ -833,7 +845,9 @@ export default {
             this.qr_show=true;
             // new QRCode(document.getElementById('qrcode'), this.init_pay_file.receiptAddress)
             var qrcode = new QRCode('qrcode', {
-            text: this.chain=='OMNI'?(this.order2?this.order2.receiptAddress:''):(this.order2?this.order2.ercAddress:''),
+            text: this.order2.coinType=='usdt'?(
+                this.chain=='OMNI'?(this.order2?this.order2.receiptAddress:''):(this.order2?this.order2.ercAddress:'')
+            ):(this.order2.receiptAddress),
             width: 155,
             height: 150,
             colorDark : '#000000',

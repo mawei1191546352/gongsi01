@@ -85,7 +85,7 @@
                                 ):false" placeholder="请选择国家">
                                     <el-option
                                     v-for="item in tradeCoinTypeArr"
-                                    :key="item.id+'id'"
+                                    :key="item.id"
                                     :label="lang=='en'?item.countryCode:item.countryName"
                                     :value="item.id">
                                     </el-option>
@@ -101,7 +101,7 @@
                                 ):false" placeholder="请选择">
                                     <el-option
                                     v-for="item in tradeCoinTypeArrB"
-                                    :key="item.id+'id2'"
+                                    :key="item.id"
                                     :label="item.coinName"
                                     :value="item.id">
                                     </el-option>
@@ -445,6 +445,8 @@ export default {
             this.initData(item)
 
             let b = this.getName(this.otcTradeCurrencyId)
+            this.tradeCoinType = b;
+            console.log(this.tradeCoinType)
             if(b){
                 this.getPrice({
                     coinTypeId:n,
@@ -488,7 +490,15 @@ export default {
             this.minQty='';
             this.minCurrency='';//最小出售
             this.price='';//单价
+            // console.log(this.tradeCoinType)
         },
+        // otcTradeCurrencyId(n,o) {
+        //     console.log(n,'jajajaj')
+        //     let b = this.getName(n)
+        //     this.tradeCoinType = b;
+        //     console.log(this.tradeCoinType)
+
+        // },
         minQty(n,o){
             if(n<this.allData.minPublishQty){
                 this.minQtyStatus = true;
@@ -541,6 +551,7 @@ export default {
         },
         async otcTradeCurrencyId(n,o){
             let b = await this.getName(n)
+            this.tradeCoinType= b;
             if(b){
                 this.getPrice({
                     coinTypeId:this.coinTypeId,

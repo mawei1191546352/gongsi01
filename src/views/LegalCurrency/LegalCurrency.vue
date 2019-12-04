@@ -18,6 +18,25 @@
                 </div>
             </div>
             <div class="banxin">
+                <div class="ads-publick">
+                    <div class="left-icon">
+                        <img :src="audio_img" alt="">
+                        <span>公告</span>
+                    </div>
+                    <div class="right-content">
+                        <span>ROYALBIZ OTC 现已开通</span>
+                        <div class="border1">
+                            <span class="color">$</span>
+                            <span>美元</span>
+                        </div>
+                        <span>及</span>
+                        <div class="border2">
+                            <span class="color">HK$</span>
+                            <span>港币</span>
+                        </div>
+                        <span>的承兑业务，为您提供更全面的场外交易体验。</span>
+                    </div>
+                </div>
                 <div class="legal-currency-body">
                     <div class="nav-bi">
                         <div class="span-item">
@@ -179,6 +198,7 @@ export default {
             adSet:{},// 通知广告 币种类型
             item:null,
             sele_box:false,
+            audio_img: require('../../assets/images/legal-currency/audio.png')
         }
     },
     computed: {
@@ -444,10 +464,97 @@ export default {
             height: 0;
             
         }
+        .ads-publick {
+            position: absolute;
+            top: -6rem;
+            width: 100%;
+            height:2.5rem;
+            // background:rgba(249,189,85,0.2);
+            background: #FEF2DD;
+            border:2px solid rgba(249,189,85,1);
+            opacity:1;
+            border-radius:3px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            .left-icon {
+                width:100px;
+                height:2.5rem;
+                background:rgba(249,189,85,1);
+                border-radius:3px 0px 0px 3px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+                span {
+                    color: white;
+                    margin-left: 5px;
+                }
+            }
+            .right-content {
+                flex:1 ;
+                height: inherit;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
+                padding: 0px 1rem;
+                font-size: 16px;
+                .border1 {
+                    width:90px;
+                    height:30px;
+                    border:1px solid rgba(34,156,137,1);
+                    opacity:1;
+                    border-radius:3px;
+                    display: flex;
+                    align-items: center;
+                    margin: 0px 5px;
+                    span {
+                        height: inherit;
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: rgba(34,156,137,1);
+                        &.color {
+                            background:rgba(34,156,137,1);
+                            border-radius:2px 0px 0px 2px;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+                .border2 {
+                    width:90px;
+                    height:30px;
+                    border:1px solid rgba(92,137,204,1);
+                    opacity:1;
+                    border-radius:3px;
+                    display: flex;
+                    align-items: center;
+                    margin: 0px 5px;
+                    span {
+                        height: inherit;
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: rgba(92,137,204,1);
+                        &.color {
+                            background:rgba(92,137,204,1);
+                            border-radius:2px 0px 0px 2px;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+            }
+        }
         .legal-currency-body{
             position: absolute;
             width: 100%;
             top: -5rem;
+            top: -3rem;
             height: 48rem /* 960/20 */;
             background:rgba(255,255,255,1);
             // border: 1px solid black;

@@ -320,9 +320,14 @@
                             <div class="box_one">
                                 <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():''}}{{new_language[swA].new_box_right.addr}}</span>
                                 <div class="box_one_set">
-                                    <h3 :class="chain">{{chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress}}</h3>
-                                    <div class="ri">
-                                        <span class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress" 
+                                    <h3 v-show="init_pay_file.coinType=='usdt'" :class="chain">{{chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress}}</h3>
+                                    <h3 v-show="init_pay_file.coinType!='usdt'" :class="chain">{{init_pay_file.receiptAddress}}</h3>
+                                    <div class="ri"
+                                    >
+                                        <span v-show="init_pay_file.coinType=='usdt'" class="cp tag-read" :class="swA" :data-clipboard-text="chain=='OMNI'?init_pay_file.receiptAddress:init_pay_file.ercAddress" 
+                                        @click="copyAddressFun()"
+                                        >{{new_language[swA].new_box_right.cp}}</span>
+                                        <span v-show="init_pay_file.coinType!='usdt'" class="cp tag-read" :class="swA" :data-clipboard-text="init_pay_file.receiptAddress" 
                                         @click="copyAddressFun()"
                                         >{{new_language[swA].new_box_right.cp}}</span>
                                         <span class="qr" @mouseenter="getCode" @mouseleave="removeCode">{{new_language[swA].new_box_right.qr}}</span>
@@ -330,7 +335,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="box_te b">
+                            <div class="box_te b" v-show="init_pay_file.coinType=='usdt'">
                                 <span>{{new_language[swA].chain}}：</span> 
                                 <!-- <img src="../../assets/images/third/omni.png" alt=""> -->
                                 <el-radio-group v-model="chain">
@@ -745,10 +750,11 @@ export default {
             document.getElementById('qrcode').innerHTML=''
         },
         getCode(){
+            // alert(this.init_pay_file.coinType=='usdt'?(this.chain=='OMNI'?this.init_pay_file.receiptAddress:this.init_pay_file.ercAddress):this.init_pay_file.receiptAddress)
             this.qr_show=true;
             // new QRCode(document.getElementById('qrcode'), this.init_pay_file.receiptAddress)
             var qrcode = new QRCode('qrcode', {
-            text: this.chain=='OMNI'?this.init_pay_file.receiptAddress:this.init_pay_file.ercAddress,
+            text: this.init_pay_file.coinType=='usdt'?(this.chain=='OMNI'?this.init_pay_file.receiptAddress:this.init_pay_file.ercAddress):this.init_pay_file.receiptAddress,
             width: 155,
             height: 150,
             colorDark : '#000000',
