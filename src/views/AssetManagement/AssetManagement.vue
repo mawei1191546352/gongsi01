@@ -127,6 +127,18 @@
                         <li>· {{$t('asset_manage.dp4_btc')}}</li>
                         <li>· {{$t('asset_manage.dp5_btc')}}</li>
                     </ul>
+                    <ul v-show="saveRow.coinTypeId == '4'">
+                        <!-- <li>·请勿向上述地址充值任何非 {{saveRow.coinType}} 资产，否则资产将不可找回。</li>
+                        <li>·您充值上述地址后，需要整个网络节点的确认，6次网络确认后到账。</li>
+                        <li>·最小充值金额：{{depositMinLimit}} {{saveRow.coinType}}，小于最小金额的充值将不会上账且无法退回。</li>
+                        <li>·您的充值地址不会经常改变，可以重复充值；如有更改，我们会尽量通过网站公告或邮件通知您。</li>
+                        <li>·请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li> -->
+                        <li>· {{$t('asset_manage.dp1_eth')}}</li>
+                        <li>· {{$t('asset_manage.dp2_eth')}}</li>
+                        <li>· {{$t('asset_manage.dp3_eth')}}</li>
+                        <li>· {{$t('asset_manage.dp4_eth')}}</li>
+                        <li>· {{$t('asset_manage.dp5_eth')}}</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -691,6 +703,9 @@ export default {
                     item['coinTypeId']= 3
                 }
             }else{
+                if(row.coinTypeId=='4') {
+                    item['type'] = 1;
+                }
                 item['coinTypeId']= row.coinTypeId
             }
             let key =await getExtractAndDepositLimitFun(this,item)
