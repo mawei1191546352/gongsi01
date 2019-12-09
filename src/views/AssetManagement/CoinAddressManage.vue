@@ -583,6 +583,9 @@ export default {
             item['remark'] = this.notes;
             item['coinTypeId'] = this.coinTypeId;
             item['type'] = this.chain
+            if(this.coinTypeId==4) {
+                item['type'] = 1;
+            }
             this.axios.post('/assetsExtractAddress/add',qs.stringify(item))
             .then((res) => {
                 let data = res.data;

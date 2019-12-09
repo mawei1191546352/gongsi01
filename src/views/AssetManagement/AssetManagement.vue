@@ -111,8 +111,8 @@
                         <li>·请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li> -->
                         <li>· {{$t('asset_manage.dp1_usdt')}}</li>
                         <li>· {{$t('asset_manage.dp2_usdt')}}</li>
-                        <li>· {{$t('asset_manage.dp3_usdt')}}</li>
-                        <li>· {{$t('asset_manage.dp4_usdt')}}</li>
+                        <li>· {{$t('asset_manage.dp3_usdt',{depositMinLimit:this.depositMinLimit})}}</li>
+                        <li>· {{$t('asset_manage.dp4_usdt',{depositMinLimit:this.depositMinLimit})}}</li>
                         <li>· {{$t('asset_manage.dp5_usdt')}}</li>
                     </ul>
                     <ul v-show="saveRow.coinTypeId == '1'">
@@ -123,8 +123,8 @@
                         <li>·请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li> -->
                         <li>· {{$t('asset_manage.dp1_btc')}}</li>
                         <li>· {{$t('asset_manage.dp2_btc')}}</li>
-                        <li>· {{$t('asset_manage.dp3_btc')}}</li>
-                        <li>· {{$t('asset_manage.dp4_btc')}}</li>
+                        <li>· {{$t('asset_manage.dp3_btc',{depositMinLimit:this.depositMinLimit})}}</li>
+                        <li>· {{$t('asset_manage.dp4_btc',{depositMinLimit:this.depositMinLimit})}}</li>
                         <li>· {{$t('asset_manage.dp5_btc')}}</li>
                     </ul>
                     <ul v-show="saveRow.coinTypeId == '4'">
@@ -135,7 +135,7 @@
                         <li>·请务必确认电脑及浏览器安全，防止信息被篡改或泄露。</li> -->
                         <li>· {{$t('asset_manage.dp1_eth')}}</li>
                         <li>· {{$t('asset_manage.dp2_eth')}}</li>
-                        <li>· {{$t('asset_manage.dp3_eth')}}</li>
+                        <li>· {{$t('asset_manage.dp3_eth',{depositMinLimit:this.depositMinLimit})}}</li>
                         <li>· {{$t('asset_manage.dp4_eth')}}</li>
                         <li>· {{$t('asset_manage.dp5_eth')}}</li>
                     </ul>
@@ -703,9 +703,7 @@ export default {
                     item['coinTypeId']= 3
                 }
             }else{
-                if(row.coinTypeId=='4') {
-                    item['type'] = 1;
-                }
+                
                 item['coinTypeId']= row.coinTypeId
             }
             let key =await getExtractAndDepositLimitFun(this,item)
@@ -1074,6 +1072,9 @@ export default {
                 }
             }else{
                 // btc 没有连
+                if(this.saveRow.coinTypeId=='4') {
+                    item1['type'] = 1;
+                }
             }
             //合并参数
             let item2,item3,item4;
