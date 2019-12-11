@@ -398,7 +398,9 @@
                      <div class="one_body2">
                          <span>{{new_language[swA].new_body2.addr}}：</span>
                          <div class="r">
-                             <span class="addr">{{chain=='OMNI'?(init_pay_file?init_pay_file.receiptAddress:''):(init_pay_file?init_pay_file.ercAddress:'')}}</span>
+                             <span class="addr" v-show="init_pay_file.coinType=='usdt'">{{chain=='OMNI'?(init_pay_file?init_pay_file.receiptAddress:''):(init_pay_file?init_pay_file.ercAddress:'')}}</span>
+                             <span class="addr" v-show="init_pay_file.coinType=='eth'">{{(init_pay_file.receiptAddress)}}</span>
+                             <span class="addr" v-show="init_pay_file.coinType=='btc'">{{(init_pay_file.receiptAddress)}}</span>
                          </div>
                      </div>
                  </li>
@@ -709,6 +711,7 @@ export default {
         }).then((res) => {
             return res;
         })
+        console.log(key)
         if(key!=false) {
             this.obj = key;
             this.time = key.expiredTimestamp;

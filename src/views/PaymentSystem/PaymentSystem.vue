@@ -177,7 +177,9 @@
                             <template slot-scope="scope">
                                 <p v-show="scope.row.type==0"><span style="color:#229c89;">￥</span>{{ scope.row.amountCny }}</p>
                                 <!-- 后台说不变 -->
-                                <p v-show="scope.row.type==1"><span style="color:#229c89;">U </span>{{ scope.row.amountCny }}</p>
+                                <!-- <p v-show="scope.row.type==1"><span style="color:#229c89;">U </span>{{ scope.row.amountCny }}</p> -->
+                                <!-- 现在改成直接用cointype -->
+                                <p v-show="scope.row.type!=0"><span style="color:#229c89;">{{scope.row.coinType.slice(0,1).toUpperCase()}} </span>{{ scope.row.amountCny }}</p>
                             </template>
                             </el-table-column>
                             <el-table-column :label="$t('pay_order.control')" 

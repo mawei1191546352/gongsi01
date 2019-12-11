@@ -164,10 +164,12 @@ export default {
                     behaviorType:this.user_info.ifPayPassword == '1' ? '4':'3',
                     number:this.user_info.accountType == '0' ? this.user_info.phoneAreaCode+','+this.user_info.phone:this.user_info.email,
                 }
-            // 发送接口
-                this.axios.get('/getCode',{params:item}).then((res) => {
+            // 发送接口 qs.stringify(item)
+                this.axios.post('/getCode',qs.stringify(item)).then((res) => {
+                // this.axios.get('/getCode',{params:item}).then((res) => {
                     let data = res.data;
                     if(data.code == 200 ){
+                        console.log('请求验证码',data)
                         this.$message({
                             type: 'success',
                             message: data.message,
