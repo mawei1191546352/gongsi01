@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="body" v-show="payVersion==2 && type==0" :class="payVersion=='1'?'bd1':(active==1?'bd2_ac1':(active==2?'bd2_ac2':'bd2_ac3'))">
+        <div class="body" v-if="payVersion==2 && type==0" :class="payVersion=='1'?'bd1':(active==1?'bd2_ac1':(active==2?'bd2_ac2':'bd2_ac3'))">
             <div class="banxin">
                 <!-- <p class="border"
                     v-show="(init_pay_file.payVersion=='1' && active!=3) ? true :false"
@@ -42,9 +42,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="shangjia2"
-                    v-show="payVersion=='2'"
-                >
+                <div class="shangjia2"  v-show="payVersion=='2'" >
                     <div class="box2"
                         v-show="active==1"
                     >   
@@ -54,13 +52,13 @@
                                 <div class="lleft_left">
                                     <div class="jine border">
                                         <span>{{center_language[swA].num_cny}}：</span>
-                                        <span class="num">{{gate?gate.amountCny:''}} CNY</span>
+                                        <span class="num">{{gate!=null?gate.amountCny:''}} CNY</span>
                                     </div>
                                     
                                     <div class="one_jin one_jin_h border">
                                         <span>{{center_language[swA].num_amount}}：</span>
                                         <div>
-                                            <span>{{gate?gate.amount:''}} </span> <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():''}}</span>
+                                            <span>{{gate!=null?gate.amount:''}} </span> <span>{{init_pay_file.coinType?init_pay_file.coinType.toUpperCase():(gate.coin.toUpperCase())}}</span>
                                         </div>
                                     </div>
                                     <p class="box2_p one_jin">
@@ -284,7 +282,7 @@
             </div>
         </div>
         <!-- 4.22 新增版 -->
-        <div class="newAdd" v-show="payVersion==2 && type==1">
+        <div class="newAdd" v-if="payVersion==2 && type==1">
             <div class="new_nav c21" :class="nac==1?'nac1 ' + swA:'nac2 ' + swA">
                 <p class="c2one setColor" :class="swA"> <i class="num setColor">1</i> {{new_language[swA].new_nav_1}}</p>
                 <p class="c2one" :class="nac>=2?'setColor '+swA:swA"> <i class="num" :class="nac>=2?'setColor':''">2</i> {{new_language[swA].new_nav_2}}</p>
@@ -400,7 +398,9 @@
                      <div class="one_body2">
                          <span>{{new_language[swA].new_body2.addr}}：</span>
                          <div class="r">
+                             <!-- 问题点 -->
                              <span class="addr">{{chain=='OMNI'?(order2?order2.receiptAddress:''):(order2?order2.ercAddress:'')}}</span>
+                             <span v-show="order2.coinType!='usdt'" class="addr">{{order3!=null?order3.address:''}}</span>
                          </div>
                      </div>
                  </li>
@@ -625,7 +625,7 @@ export default {
                     },
                     new_bottom_3:{
                         h3:'托管锁定',
-                        p:'入金的 USDT 已托管锁定在Royalbiz平台'
+                        p:`入金的数字货币已托管锁定在Royalbiz平台`
                     },
                     new_body2:{
                         num:'付款数量',
@@ -677,7 +677,7 @@ export default {
                     },
                     new_bottom_3:{
                         h3:'Deposit Hold',
-                        p:'USDT will be hold at Royalbiz platform during deposit process'
+                        p:'Digital currency will be hold at Royalbiz platform during deposit process'
                     },
                     new_body2:{
                         num:'Deposit Amount',
@@ -714,8 +714,10 @@ export default {
         console.log(this.$route.query)
         let search = this.$route.query
         this.type= search.type;
+        console.log(search)
         if(search.type==0){
             // 法币的，需要先获取
+            this.gate = search;
             this.gateWayLegalInit(search)
         }else{
             // 以币如今
@@ -756,7 +758,10 @@ export default {
             let k = await gateWayLegal(this,item)
             // console.log(k)
             if(k){
-                this.gate = k;
+                // this.gate = k;
+                this.gate = {...this.gate,...k}
+                console.log(this.gate)
+
             }
         },
         async createCoinOrder(item) {

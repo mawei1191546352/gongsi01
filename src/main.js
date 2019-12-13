@@ -38,7 +38,7 @@ axios.defaults.withCredentials=true
 axios.defaults.timeout = 2500000;
 let allCookies = document.cookie;
 
-
+axios.defaults.headers.get ['Pragma'] ='no-cache';
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
     config.cookie = allCookies;
