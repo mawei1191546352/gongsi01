@@ -650,7 +650,7 @@ export default {
 
                     },
                     dia:{
-                        one:'Confirm purchase ',
+                        one:'Confirm ',
                         cancel:'Cancel',
                         confirm:'Confirm'
                     },
