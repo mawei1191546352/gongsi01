@@ -19,7 +19,7 @@ let router =  new Router({
   routes: [
     {
       path: '/',
-      name: 'LogoPage',
+      name: '',
       component: LogoPage,
       meta: {
         title: '',
@@ -300,12 +300,29 @@ let router =  new Router({
      */
     {
       path:'/third/:orderId/',//订单iD
-      name: 'ThirdPart',
+      // name: 'ThirdPart',
       component: () => import('./views/ThirdPart/ThirdPart.vue'),
+      children: [
+        {
+          path:"",
+          name: "ThirdOne",
+          component: () => import('./views/ThirdPart/ThirdOne.vue'),
+        },
+        {
+          path:"two",
+          name: "ThirdTwo",
+          component: () => import('./views/ThirdPart/ThirdTwo.vue'),
+        },
+        {
+          path:"three",
+          name: "ThirdThree",
+          component: () => import('./views/ThirdPart/ThirdThree.vue'),
+        },
+      ],
       meta: {
         title: '',
         keepAlive: false // 这里指定B组件的缓存性
-      }
+      },
     },
     {
       path:'/loadding',//订单iD
@@ -327,12 +344,24 @@ let router =  new Router({
     },
     {
       path: '/gateway',
-      name: 'GateWay',
+      // name: 'GateWay',
       component: () => import('./views/GateWay/index.vue'),
       meta: {
         title: '',
         keepAlive: false // 这里指定B组件的缓存性
-      }
+      },
+      children: [
+        {
+          path: '',
+          name: "GateWayOne",
+          component: () => import('./views/GateWay/GateWayOne.vue'),
+        },
+        {
+          path: 'two',
+          name: "GateWayTwo",
+          component: () => import('./views/GateWay/GateWayTwo.vue'),
+        }
+      ]
     },
     /**
      * LoGo 模块

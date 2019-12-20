@@ -124,6 +124,7 @@ html {
     -webkit-text-size-adjust: 100%; /* 2 */
     -ms-text-size-adjust: 100%; /* 2 */
     font-family:PingFang-SC-Regular PingFang-SC-Bold 'Microsoft YaHei';
+    font-display: swap;
 }
 
 /**

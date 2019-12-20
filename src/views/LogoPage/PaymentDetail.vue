@@ -138,7 +138,7 @@ export default {
     .payment-box{
         height:100vh;
         background:#4773A5;
-        background-image: url('../../assets/images/logopage/payment-detail/bg.jpg');
+        background-image: url('../../assets/images/logopage/payment-detail/bg.png');
         background-size: cover;
         .payment-de-top{
             width:60rem /* 1200/20 */;
@@ -148,11 +148,12 @@ export default {
             .payment-top-video{
                 width:60rem /* 1200/20 */;
                 height:29.5rem /* 590/20 */;
-                background:rgba(0,0,0,.6);
+                background:rgba(0,0,0,.2);
                 box-sizing: border-box;
                 padding: 2.35rem /* 47/20 */ 1.75rem /* 35/20 */ 2.4rem /* 48/20 */ 1.75rem /* 35/20 */;
                 display: flex;
                 justify-content: space-between;
+                border-radius: 5px;
                 .top-video-left{
                     width: 10.75rem /* 215/20 */;
                     .v-left-top{
@@ -194,6 +195,7 @@ export default {
                             transition: all .5s ease-in-out;
                             cursor: pointer;
                             position: relative;
+                            border-radius:5px;
                         }
                         p::after{
                             content: '';
@@ -248,6 +250,7 @@ export default {
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
+                    border-radius:3px 0px 0px 3px;
                     img{
                         width: 2.5rem /* 50/20 */;
                         height: 2.5rem /* 50/20 */;
@@ -260,6 +263,7 @@ export default {
                     }
                 }
                 .merchant-right{
+                    border-radius:0px 3px 3px 0px;
                     flex: 1;
                     background:rgba(0,0,0,.6);
                     box-sizing: border-box;
@@ -287,6 +291,7 @@ export default {
                         cursor: pointer;
                         transition: all .5s ease-in-out;
                         text-align: center;
+                        border-radius:3px;
                     }
                     span.en{
                         font-size: .8rem;
@@ -359,9 +364,10 @@ export default {
                 }
             }
             .bao-box-one:hover{
-                border:3px solid rgba(92,137,204,1);
+                border:3px solid #3787FE;
                 box-shadow:0px 0px 10px rgba(0,0,0,0.2);
                 margin-top: -.5rem;
+                border-radius:3px;
             }
         }
     }
