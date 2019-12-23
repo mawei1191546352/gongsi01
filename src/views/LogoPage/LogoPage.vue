@@ -7,15 +7,41 @@
                 <div class="box-one">
                     <label for="">你想要多少</label>
                     <div class="sel">
-                        <input type="text" placeholder="请输入您想要的购买的金额">
-                        <div class="select">CNY</div>
+                        <input type="text" placeholder="请输入您想要的购买的金额" 
+                        v-model="legal_num" 
+                        @focus="getInputFocus('legal')"
+                        >
+                        <div class="select">
+                            <span>{{legalArr.length>0 ? (legalArr.filter(item => item.id == legal))[0].coinName :''}}</span>
+                            <div class="icon" ref="icon1" @click="legal_show = !legal_show">
+                                <img :class="legal_show?'active':''" src="../../assets/images/logopage/2019-12-17/sele.png" alt="">
+                            </div>
+                            <div class="select-ul">
+                                <ul :class="legal_show?'gundong2 les':'gundong2'">
+                                    <li v-for="(item,key) in legalArr" :key="key" @click="legal= item.id" :class="item.id==legal?'active':''">{{item.coinName}}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box-one">
                     <label for="">您将获得多少数额虚拟货币</label>
                     <div class="sel">
-                        <input type="text" placeholder="请输入您想要获得多少数额虚拟货币">
-                        <div class="select">USDT</div>
+                        <input type="text" placeholder="请输入您想要获得多少数额虚拟货币"
+                        v-model="qtc_num" 
+                        @focus="getInputFocus('qtc')"
+                        >
+                        <div class="select">
+                            <span>{{qtcArr.length >0 ? (qtcArr.filter(item => item.id == qtc))[0].abbreviation.toUpperCase():''}}</span>
+                            <div class="icon" ref="icon2" @click="qtc_show= !qtc_show">
+                                <img :class="qtc_show?'active':''" src="../../assets/images/logopage/2019-12-17/sele.png" alt="">
+                            </div>
+                            <div class="select-ul">
+                                <ul :class="qtc_show?'gundong2 les':'gundong2'">
+                                    <li v-for="(item,key) in qtcArr" :key="key" @click="qtc=item.id" :class="item.id==qtc?'active':''">{{item.abbreviation.toUpperCase()}}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,51 +65,51 @@
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_ali" alt="">
-                    <h3>银行卡</h3>
+                    <h3>支付宝</h3>
                 </div>
                 <p>即时交易-价格最优</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_wechat" alt="">
-                    <h3>银行卡</h3>
+                    <h3>微信</h3>
                 </div>
                 <p>即时交易-价格最优</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_amazon" alt="">
-                    <h3>银行卡</h3>
+                    <h3>Amazon礼品卡</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>即时交易-私密转账</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_itunes" alt="">
-                    <h3>银行卡</h3>
+                    <h3>iTunes Gift Card</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>即时交易-私密转账</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_jd" alt="">
-                    <h3>银行卡</h3>
+                    <h3>京东礼品卡</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>即时交易-私密转账</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_sh" alt="">
-                    <h3>银行卡</h3>
+                    <h3>中石化油卡</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>即时交易-私密转账</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_all" alt="">
-                    <h3>银行卡</h3>
+                    <h3>全部付款方式</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <!-- <p>即时交易-价格最优</p> -->
             </div>
         </div>
         <div class="line-way">
@@ -205,6 +231,12 @@
 </template>
 <script>
 import moment from 'moment'
+import {
+    QueryQtcTradeFunIndex,
+    QueryLegalTradeFunIndex,
+    priceCalcFunIndex,
+    clientLeaveMessage,
+} from '../../assets/js/api.js'
 export default {
     data() {
         return {
@@ -239,6 +271,16 @@ export default {
             safe04: require('../../assets/images/logopage/2019-12-17/safe04.png'),
             safe05: require('../../assets/images/logopage/2019-12-17/safe05.png'),
             time: '',
+
+            legal_num:100,
+            qtc_num:null,
+            canPrice:null,
+            qtc:'',
+            legal:'',
+            qtcArr:[],
+            legalArr:[],
+            legal_show: false,
+            qtc_show: false,
         }
     },
     computed: {
@@ -249,7 +291,63 @@ export default {
             return this.$store.getters.login
         },
     },
-    created() {
+    watch:{
+        legal_num(n, o) {
+            if(this.canPrice!='legal') { return false }
+            if(this.legalArr.length>0) {
+                let name = (this.legalArr.filter(item => item.id == this.legal))[0].coinName
+                let name2 = (this.qtcArr.filter(item => item.id == this.qtc))[0].abbreviation
+                let item = {
+                    amount:n,//输入金额
+                    inputCoinType:0,//输入类型  0计算交易币种数量（填了左边），1计算法币金额（填了右边）
+                    legalTenderCoinName:name,//法币名称
+                    tradeCoinName:name2,//交易币种
+                }
+                this.initPrice(item)
+            }
+        },
+        qtc_num(n, o) {
+                if(this.canPrice!='qtc') { return false }
+                if(this.legalArr.length>0) {
+                    let name = (this.legalArr.filter(item => item.id == this.legal))[0].coinName
+                    let name2 = (this.qtcArr.filter(item => item.id == this.qtc))[0].abbreviation
+                    let item = {
+                        amount:n,//输入金额
+                        inputCoinType:1,//输入类型  0计算交易币种数量（填了左边），1计算法币金额（填了右边）
+                        legalTenderCoinName:name,//法币名称
+                        tradeCoinName:name2,//交易币种
+                    }
+                    this.initPrice(item)
+                }
+        },
+        legal(n ,o) {
+            if(this.legalArr.length>0) {
+                let name = (this.legalArr.filter(item => item.id == n))[0].coinName
+                let name2 = (this.qtcArr.filter(item => item.id == this.qtc))[0].abbreviation
+                let item = {
+                    amount:this.legal_num,//输入金额
+                    inputCoinType:0,//输入类型  0计算交易币种数量（填了左边），1计算法币金额（填了右边）
+                    legalTenderCoinName:name,//法币名称
+                    tradeCoinName:name2,//交易币种
+                }
+                this.initPrice(item)
+            }
+        },
+        qtc(n, o) {
+            if(this.legalArr.length>0) {
+                let name = (this.legalArr.filter(item => item.id == this.legal))[0].coinName
+                let name2 = (this.qtcArr.filter(item => item.id == n))[0].abbreviation
+                let item = {
+                    amount:this.qtc_num,//输入金额
+                    inputCoinType:1,//输入类型  0计算交易币种数量（填了左边），1计算法币金额（填了右边）
+                    legalTenderCoinName:name,//法币名称
+                    tradeCoinName:name2,//交易币种
+                }
+                this.initPrice(item)
+            }
+        },
+    },
+    async created() {
         setInterval(()=>{
             // console.log(new Date(this.$store.getters.os_time+1))
             if(this.lang=='en') {
@@ -258,8 +356,72 @@ export default {
                 this.time = new Date(new Date(moment().millisecond(this.$store.getters.os_time)+1)).toUTCString().replace("GMT","UTC")+' +0'
             }
         },1000)
+        await this.initQtc()
+        await this.initLegal()
+        if(this.legalArr.length>0) {
+            let name = (this.legalArr.filter(item => item.id == this.legal))[0].coinName
+            let name2 = (this.qtcArr.filter(item => item.id == this.qtc))[0].abbreviation
+            let item = {
+                amount:this.legal_num,//输入金额
+                inputCoinType:0,//输入类型  0计算交易币种数量（填了左边），1计算法币金额（填了右边）
+                legalTenderCoinName:name,//法币名称
+                tradeCoinName:name2,//交易币种
+            }
+            this.initPrice(item)
+        }
+    },
+    mounted(){
+        window.addEventListener('click',this.hide, false)
     },
     methods: {
+        async initPrice(item) {
+            let tem = item;
+            let key = await priceCalcFunIndex(this,item)
+            .then((res) => {return res})
+            if(key != false) {
+                // console.log(key)
+                
+                if(tem.inputCoinType==1) {
+                    this.legal_num = key.legalTenderCoinAmount
+                } else {
+                    this.qtc_num = key.tradeCoinAmount
+                }
+                
+            }
+        },
+        catIn(target, parent) {
+            let path = []
+            let parentNode = target
+            while (parentNode && parentNode !== document.body) {
+                path.push(parentNode)
+                parentNode = parentNode.parentNode
+            }
+            return path.indexOf(parent) !== -1
+        },
+        hide (e) {
+            var that = this;
+            // console.log(e.target,this.$el)
+            // if(e.target != this.$refs.icon1) {
+            //     this.legal_show = false
+            // }
+            // console.log(that.catIn(e.target, that.$refs.icon1))
+            if(!that.catIn(e.target, that.$refs.icon1)) {
+                this.legal_show = false;
+            }
+            if(!that.catIn(e.target, that.$refs.icon2)) {
+                this.qtc_show = false;
+            }
+            // if (!that.catIn(e.target, that.$el)) {
+            //     // this.aricon = false
+            //     console.log('hha')
+            //     // that.legal_show = false;
+            //     // that.qtc_show = false;
+            // }
+        },
+        getInputFocus(str) {
+            console.log(str)
+            this.canPrice = str;
+        },
         goMarket() {
             if(this.login) {
                 this.$store.dispatch('async__set_custome',true)
@@ -267,6 +429,23 @@ export default {
                 this.$store.dispatch('async__set_custome',false)
             }
             this.$router.push({name:'legalCurrency',params:{custome:false}})
+        },
+        async initQtc() {
+            let key = await QueryQtcTradeFunIndex(this)
+            .then((res) => {return res})
+            if(key != false) {
+                // console.log(key)
+                this.qtcArr = key
+                this.qtc = key[0].id
+            }
+        },
+        async initLegal() {
+            let key = await QueryLegalTradeFunIndex(this)
+            .then((res) => {return res})
+            if(key != false) {
+                this.legalArr = key
+                this.legal = key[0].id
+            }
         },
     }
 }
@@ -336,10 +515,79 @@ export default {
                         height: inherit;
                         background: none;
                         color: #E6E6E6;
-                        width: calc( 100% - 100px);
+                        // width: calc( 100% - 130px);
+                        flex: 1;
+                        margin-right: 5px;
                     }
                     .select {
-                        width: 100px;
+                        // width: 130px;
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        .icon {
+                            margin-left: 5px;
+                            width:30px;
+                            height:30px;
+                            background:rgba(255,255,255,1);
+                            opacity:1;
+                            border-radius:3px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            img {
+                                transition: all .3s ease-in-out;
+                                &.active {
+                                    transform: rotateZ(-180deg);
+                                }
+                            }
+                        }
+                        .select-ul {
+                            position: absolute;
+                            right: 0px;
+                            top: 38px;
+                            
+                            ul {
+                                width:130px;
+                                max-height:0px;
+                                background:rgba(255,255,255,1);
+                                box-shadow:0px 0px 10px rgba(34,45,112,0.5);
+                                opacity:1;
+                                border-radius:3px;
+                                overflow-y: auto;
+                                font-size:20px;
+                                font-weight:400;
+                                line-height:28px;
+                                color:rgba(102,102,102,1);
+                                visibility: hidden;
+                                transition: all .3s ease-in-out;
+                                li {
+                                    height: 40px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    cursor: pointer;
+                                    &.active {
+                                        color: #3787FE;
+                                    }
+                                }
+                                &.les {
+                                    width:130px;
+                                    max-height:170px;
+                                    background:rgba(255,255,255,1);
+                                    box-shadow:0px 0px 10px rgba(34,45,112,0.5);
+                                    opacity:1;
+                                    border-radius:3px;
+                                    overflow-y: auto;
+                                    font-size:20px;
+                                    font-weight:400;
+                                    line-height:28px;
+                                    color:rgba(102,102,102,1);
+                                    visibility: visible;
+                                }
+                            }
+
+                        }
                     }
                 }
                 &:nth-child(1) {
@@ -386,7 +634,7 @@ export default {
                 align-items: center;
                 h3 {
                     font-size:18px;
-                    font-weight:bold;
+                    font-weight:400;
                     line-height:25px;
                     color:rgba(34,34,34,1);
                     margin-left: 10px;

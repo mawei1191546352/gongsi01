@@ -6,7 +6,7 @@
                     <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
                     <p>订单剩余支付时间</p>
                 </div>
-                <h3>1小时58分58秒</h3>
+                <h3>{{(time)}}</h3>
             </div>
             <div class="right-tip">
                 <div class="tip-top">
@@ -56,15 +56,23 @@
 </template>
 <script>
 export default {
+    props:{
+        data: Object,
+    },
     data() {
         return {
             obj: {
                 name:"nha"
-            }
+            },
+            swA:'zh',
+            time: 0,
         }
     },
     mounted() {
         this.$parent.nav = 0;
+        if(this.data!= null) {
+            this.timeFun(this.data)
+        }
     },
     methods: {
         nextFun() {
@@ -77,7 +85,45 @@ export default {
                     key: this.obj
                 }
             })
-        }
+        },
+        timeFun( key) {
+            if(key.expiredTimestamp==0) {
+                console.log('jj')
+                this.time = 0;
+                return false
+            }else {
+                let k = key.expiredTimestamp;
+                let t  = setInterval(()=>{
+                    if(k ==0) {
+                        this.time = 0
+                        return false
+                    }
+                    this.time = --k
+                },1000)
+            }
+        },
+        fortmatTime(leftTime){
+            let d = parseInt(leftTime/(24*60*60))
+            let h = this.formate(parseInt(leftTime/(60*60)%24))
+            let m = this.formate(parseInt(leftTime/60%60))
+            let s = this.formate(parseInt(leftTime%60))
+            if(leftTime <= 0){
+                // vm.$emit('time-end')
+                return '0'
+            }
+            if(this.swA=='en') {
+                return  `${h} h ${m} min ${s} second`
+            }else{
+                return  `${h}小时${m}分${s}秒`
+            }
+        },
+        formate (time) {
+            if(time>=10){
+                return time
+            }else{
+                return `0${time}`
+            }
+        },
     }
 }
 </script>
