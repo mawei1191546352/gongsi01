@@ -4,14 +4,32 @@
             <div class="third-box">
                 <img src="../../assets/images/nav-bar/2nav-logo@2x.png" alt="">
                 <!-- 只有 以币入金才有中英文 -->
-                <!-- <div class="sw" v-show="init_pay_file.payVersion==2 "> -->
                 <div class="sw">
                     <span :class="swA=='ch'?'ac':'no'" @click="swA='ch'">中文</span>
                     <span :class="swA=='en'?'ac':'no'" @click="swA='en'">English</span>
                 </div>
             </div>
         </div>
-        <div class="third-nav">
+        <div class="third-nav" v-if="data!=null?data.type==0?true:false:false">
+            <div class="third-box">
+                <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
+                    <p>01</p>
+                    <p>选择付款方式</p>
+                    <div class="border"></div>
+                </div>
+                <div :class="nav==1 || nav==2?(nav==1?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
+                    <p>02</p>
+                    <p>付款转账</p>
+                    <div class="border"></div>
+                </div>
+                <div :class="nav==2?'third-nav-item active':'third-nav-item'">
+                    <p>03</p>
+                    <p>确认付款信息</p>
+                    <div class="border"></div>
+                </div>
+            </div>
+        </div>
+        <div class="third-nav" v-if="data!=null?data.type==1?true:false:false">
             <div class="third-box">
                 <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
                     <p>01</p>
@@ -26,9 +44,13 @@
             </div>
         </div>
         <div class="third-content">
-            <router-view></router-view>
+            <router-view :data="data"></router-view>
         </div>
-        <div class="third-bottom" v-show="nav!=1">
+        <div class="third-bottom" v-show="data!=null?(
+            data.type==0?(
+                nav!=2?true:false
+            ):(nav!=1?true:false)
+        ):false">
             <div class="third-bottom-box">
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/pei.png" alt="">
@@ -50,22 +72,68 @@
     </div>
 </template>
 <script>
+import {bindOrderFun,thirdGetInfo,
+thirdGetInfo2,alreadyPayConfirm,
+updateTransferStatus,updateSearchFun, gateWayLegal, createGateLegalOrder} from '../../assets/js/api'
+
 export default {
     data() {
         return {
             swA: 'ch',
             nav: 0,
+            type: null,
+            data: null,
+            time: 0,
         }
     },
     computed: {
-        init_pay_file(){
-            return this.$store.getters.init_pay_file;
-        },
         login(){
             return this.$store.getters.login
         },
     },
+    created() {
+        let obj = {...this.$route.query}
+        if(obj.key) {
+            delete obj.key
+        }
+        if(obj.item) {
+            delete obj.item
+        }
+        let search = obj
+        this.type= search.type;
+        this.data = search
+        // console.log(this.type)
+        if(this.type==0 && this.type!=undefined) {
+            this.gateWayLegalInit(search)
+        }else if(this.type==1) {
+            // 以币如今
+            this.createCoinOrder(search)
+        } else {
+            alert('url参数错误，无法向服务器请求数据')
+        }
+    },
     mounted() {
+        
+    },
+    methods: {
+        async gateWayLegalInit(item){
+            let k = await gateWayLegal(this,item)
+            // console.log(k)
+            if(k){
+                // this.gate = {...this.gate,...k}
+                this.data = {...this.data,...k}
+            }
+        },
+        async createCoinOrder(item) {
+            let k = await createGateLegalOrder(this,item)
+            if(k){
+                // this.order2 = k;
+                this.data = k
+                // console.log(k)
+                // this.time = k.expiredTimestamp
+                // this.timeFun(this.time)
+            }
+        },
         
     }
 }

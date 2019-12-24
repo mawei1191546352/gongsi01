@@ -346,10 +346,6 @@ let router =  new Router({
       path: '/gateway',
       // name: 'GateWay',
       component: () => import('./views/GateWay/index.vue'),
-      meta: {
-        title: '',
-        keepAlive: false // 这里指定B组件的缓存性
-      },
       children: [
         {
           path: '',
@@ -360,8 +356,17 @@ let router =  new Router({
           path: 'two',
           name: "GateWayTwo",
           component: () => import('./views/GateWay/GateWayTwo.vue'),
+        },
+        {
+          path: 'three',
+          name: "GateWayThree",
+          component: () => import('./views/GateWay/GateWayThree.vue'),
         }
-      ]
+      ],
+      meta: {
+        title: '',
+        keepAlive: false // 这里指定B组件的缓存性
+      },
     },
     /**
      * LoGo 模块

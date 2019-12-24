@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import Base64 from './base64'
+import Base64 from '../ThirdPart/base64'
 export default {
     data() {
         return {
@@ -31,7 +31,7 @@ export default {
         }
         setTimeout(()=>{
             window.location = this.data.redirectUrl
-        },5000)
+        },50000)
     },
 }
 </script>

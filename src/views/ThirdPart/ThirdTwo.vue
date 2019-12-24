@@ -1,177 +1,328 @@
 <template>
-    <div id="third-two">
-        <div class="third-two-time">
-            <div class="left-time">
-                <div class="time-top">
-                    <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
-                    <p>订单剩余支付时间</p>
-                </div>
-                <h3>1小时58分58秒</h3>
-            </div>
-        </div>
-        <div class="third-two-box">
-            <div class="two-box-item one">
-                <p class="info">买家手中的 USDT 已托管锁定在Royalbiz平台，请放心付款。</p>
-                <div class="oone">
-                    <div class="border one">
-                        <p class="wait">待付款金额（CNY）</p>
-                        <h3>100000000.000</h3>
+    <div>
+        <div id="third-two" v-if="data!=null?data.type==0?true:false:false">
+            <div class="third-two-time">
+                <div class="left-time">
+                    <div class="time-top">
+                        <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
+                        <p>订单剩余支付时间</p>
                     </div>
+                    <h3>{{fortmatTime(time)}}</h3>
+                </div>
+            </div>
+            <div class="third-two-box">
+                <div class="two-box-item one">
+                    <p class="info">买家手中的 USDT 已托管锁定在Royalbiz平台，请放心付款。</p>
+                    <div class="oone">
+                        <div class="border one">
+                            <p class="wait">待付款金额（{{data!=null?data.tradeCoinType:''}}）</p>
+                            <h3>{{data!=null?data.amountCny:''}}</h3>
+                        </div>
+                        <div class="border">
+                            <label>已选择付款方式</label>
+                            <div class="text-box">
+                                <div class="check">
+                                    <input type="checkbox" checked id="pd" value="以币入金"> <label for="pd">银行卡</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border">
+                            <label>银行卡持有人姓名</label>
+                            <div class="text-box">
+                                <p>{{data!=null?data.payOrderRealName:''}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="two-box-item two">
                     <div class="border">
-                        <label>已选择付款方式</label>
+                        <label>收款姓名</label>
                         <div class="text-box">
                             <img src="" alt="">
-                            <p>银行卡</p>
+                            <p>{{data!=null?data.adReceiptWay.name:''}}</p>
+                            <button>复制</button>
                         </div>
                     </div>
                     <div class="border">
-                        <label>银行卡持有人姓名</label>
+                        <label>银行信息</label>
                         <div class="text-box">
-                            <p>芝麻机构</p>
+                            <img src="" alt="">
+                            <p>{{data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''}}</p>
+                            <button>复制</button>
+                        </div>
+                    </div>
+                    <div class="border">
+                        <label>银行卡号</label>
+                        <div class="text-box">
+                            <p>{{data!=null?data.adReceiptWay.bankCardNumber:''}}</p>
+                            <button>复制</button>
+                        </div>
+                    </div>
+                    <div class="border">
+                        <label>付款备注</label>
+                        <div class="text-box">
+                            <p class="red">{{data!=null?data.referenceCode:''}}</p>
+                            <button>复制</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="two-box-item two">
-                <div class="border">
-                    <label>收款姓名</label>
-                    <div class="text-box">
-                        <img src="" alt="">
-                        <p>小西瓜</p>
-                        <button>复制</button>
-                    </div>
+            <div class="pre-next">
+                <div class="pn-left">
+                    <img src="../../assets/images/third/2019-12-18/ok1.png" alt="">
+                    <h3>购买成功后数字货币将全额充值到您要付款的商户</h3>
                 </div>
-                <div class="border">
-                    <label>银行信息</label>
-                    <div class="text-box">
-                        <img src="" alt="">
-                        <p>建设银行（萨达所大所多支行)</p>
-                        <button>复制</button>
-                    </div>
+                <div class="pn-right">
+                    <button class="pre"
+                    @click="preFun"
+                    >上一步</button>
+                    <button class="next"
+                    @click="nextFun"
+                    >已支付</button>
                 </div>
-                <div class="border">
-                    <label>银行卡号</label>
-                    <div class="text-box">
-                        <p>6541 2541 3658 5412</p>
-                        <button>复制</button>
-                    </div>
+            </div>
+            <div class="info-list">
+                <div class="info-bg">
+                    <h3 class="first">注意事项</h3>
+                    <li>
+                        <div class="icon">1</div>
+                        转账时 <span class="red">请勿备注</span> “比特币”、“虚拟币”“USDT”等信息，否则交易可能被拒绝。
+                    </li>
+                    <li>
+                        <div class="icon">2</div>
+                        付款时请 <span class="red">备注付款号。</span>
+                    </li>
+                    <li>
+                        <div class="icon">3</div>
+                        转账后请 <span class="red">务必点击“已付款”。</span>
+                    </li>
+                    <li>
+                        <div class="icon">4</div>
+                        币商银行收款账户仅以 <span class="red">当前显示的有效</span>，转入非当前收款账户将不会到账。
+                    </li>
+                    <h3 class="last">网银快捷入口</h3>
                 </div>
-                <div class="border">
-                    <label>付款备注</label>
-                    <div class="text-box">
-                        <p class="red">351257</p>
-                        <button>复制</button>
-                    </div>
-                </div>
+            </div>
+            <div class="bank-list">
+                <a href="https://ebsnew.boc.cn/boc15/login.html">
+                    <img src="../../assets/images/third/2019-12-18/bank01.png" alt="">
+                </a>
+                <a href="https://perbank.abchina.com/EbankSite/startup.do?r=3B61B6CC10EB44EA">
+                    <img src="../../assets/images/third/2019-12-18/bank02.png" alt="">
+                </a>
+                <a href="https://mybank.icbc.com.cn/icbc/newperbank/perbank3/frame/frame_index.jsp">
+                    <img src="../../assets/images/third/2019-12-18/bank03.png" alt="">
+                </a>
+                <a href="http://www.ccb.com/cn/ebank/wsyh_products_list.html">
+                    <img src="../../assets/images/third/2019-12-18/bank04.png" alt="">
+                </a>
+                <a href="http://www.bankcomm.com/BankCommSite/default.shtml">
+                    <img src="../../assets/images/third/2019-12-18/bank05.png" alt="">
+                </a>
+                <a href="http://www.cmbchina.com/personal/netbank/">
+                    <img src="../../assets/images/third/2019-12-18/bank06.png" alt="">
+                </a>
+                <a href="https://bank.pingan.com.cn/m/main/index.html">
+                    <img src="../../assets/images/third/2019-12-18/bank07.png" alt="">
+                </a>
+                <a href="https://i.bank.ecitic.com/perbank6/signIn.do">
+                    <img src="../../assets/images/third/2019-12-18/bank08.png" alt="">
+                </a>
+                <a href="http://www.spdb.com.cn/">
+                    <img src="../../assets/images/third/2019-12-18/bank09.png" alt="">
+                </a>
+                <a href="http://www.cgbchina.com.cn/">
+                    <img src="../../assets/images/third/2019-12-18/bank10.png" alt="">
+                </a>
+                <a href="http://www.psbc.com/cn/index.html">
+                    <img src="../../assets/images/third/2019-12-18/bank11.png" alt="">
+                </a>
+                <a href="https://nper.cmbc.com.cn/pweb/static/login.html">
+                    <img src="../../assets/images/third/2019-12-18/bank12.png" alt="">
+                </a>
+                <a href="https://personalbank.cib.com.cn/pers/main/login.do">
+                    <img src="../../assets/images/third/2019-12-18/bank13.png" alt="">
+                </a>
+                <a href="http://ebank.cebbank.com/">
+                    <img src="../../assets/images/third/2019-12-18/bank14.png" alt="">
+                </a>
+                <a href="http://www.hxb.com.cn/wydl/index.shtml">
+                    <img src="../../assets/images/third/2019-12-18/bank15.png" alt="">
+                </a>
             </div>
         </div>
-        <div class="pre-next">
-            <div class="pn-left">
-                <img src="../../assets/images/third/2019-12-18/ok1.png" alt="">
-                <h3>购买成功后数字货币将全额充值到您要付款的商户</h3>
+        <div class="gate-way-two" v-if="data!=null?data.type==1?true:false:false">
+            <div class="gate-two-header">
+                <img src="../../assets/images/third/2019-12-18/ok2.png" alt="">
+                <h3>订单已成功提交</h3>
             </div>
-            <div class="pn-right">
-                <button class="pre"
-                @click="preFun"
-                >上一步</button>
-                <button class="next"
-                @click="nextFun"
-                >已支付</button>
+            <div class="gate-way-content">
+                <div class="gate-box">
+                    <p>待付款数量（{{data!=null?data.coinType.toUpperCase():''}}）</p>
+                    <h3>{{data!=null?data.amount:''}}</h3>
+                </div>
+                <div class="gate-content-bottom">
+                    <div class="content-left">
+                        <label>{{data!=null?data.coinType.toUpperCase():''}}充值地址</label>
+                        <div class="om-erc" v-show="data!=null?data.coinType=='usdt'?true:false:false">
+                            <button disabled :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
+                            <button disabled :class="usdtType=='ERC20'?'active':'no'" @click="usdtType='ERC20'">ERC20</button>
+                        </div>
+                    </div>
+                    <div class="content-right">
+                        <p class="address">
+                            {{data!=null?(
+                                data.coinType=='usdt'?(
+                                    usdtType=='OMNI'?data.receiptAddress:data.ercAddress
+                                ):(data.receiptAddress)
+                            ):""}}
+                        </p>
+                        <!-- <button>复制</button>
+                        <p class="qr" @mouseenter="qr=true" @mouseleave="qr=false">
+                            二维码
+                        </p>
+                        <div class="qrcode" v-show="qr"></div> -->
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="info-list">
-            <div class="info-bg">
-                <h3 class="first">注意事项</h3>
-                <li>
-                    <div class="icon">1</div>
-                    转账时 <span class="red">请勿备注</span> “比特币”、“虚拟币”“USDT”等信息，否则交易可能被拒绝。
-                </li>
-                <li>
-                    <div class="icon">2</div>
-                    付款时请 <span class="red">备注付款号。</span>
-                </li>
-                <li>
-                    <div class="icon">3</div>
-                    转账后请 <span class="red">务必点击“已付款”。</span>
-                </li>
-                <li>
-                    <div class="icon">4</div>
-                    币商银行收款账户仅以 <span class="red">当前显示的有效</span>，转入非当前收款账户将不会到账。
-                </li>
-                <h3 class="last">网银快捷入口</h3>
+            <div class="gate-two-search">
+                <div class="search-left">
+                    <img src="../../assets/images/third/2019-12-18/point.png" alt="">
+                    <h3>订单状态</h3>
+                    <button>{{item!=null?item.data.status==0?'确认中':'已完成':'确认中'}}</button>
+                </div>
+                <div class="search-right">
+                    <button @click="findStatusFun">查询状态</button>
+                </div>
             </div>
-        </div>
-        <div class="bank-list">
-            <a href="https://ebsnew.boc.cn/boc15/login.html">
-                <img src="../../assets/images/third/2019-12-18/bank01.png" alt="">
-            </a>
-            <a href="https://perbank.abchina.com/EbankSite/startup.do?r=3B61B6CC10EB44EA">
-                <img src="../../assets/images/third/2019-12-18/bank02.png" alt="">
-            </a>
-            <a href="https://mybank.icbc.com.cn/icbc/newperbank/perbank3/frame/frame_index.jsp">
-                <img src="../../assets/images/third/2019-12-18/bank03.png" alt="">
-            </a>
-            <a href="http://www.ccb.com/cn/ebank/wsyh_products_list.html">
-                <img src="../../assets/images/third/2019-12-18/bank04.png" alt="">
-            </a>
-            <a href="http://www.bankcomm.com/BankCommSite/default.shtml">
-                <img src="../../assets/images/third/2019-12-18/bank05.png" alt="">
-            </a>
-            <a href="http://www.cmbchina.com/personal/netbank/">
-                <img src="../../assets/images/third/2019-12-18/bank06.png" alt="">
-            </a>
-            <a href="https://bank.pingan.com.cn/m/main/index.html">
-                <img src="../../assets/images/third/2019-12-18/bank07.png" alt="">
-            </a>
-            <a href="https://i.bank.ecitic.com/perbank6/signIn.do">
-                <img src="../../assets/images/third/2019-12-18/bank08.png" alt="">
-            </a>
-            <a href="http://www.spdb.com.cn/">
-                <img src="../../assets/images/third/2019-12-18/bank09.png" alt="">
-            </a>
-            <a href="http://www.cgbchina.com.cn/">
-                <img src="../../assets/images/third/2019-12-18/bank10.png" alt="">
-            </a>
-            <a href="http://www.psbc.com/cn/index.html">
-                <img src="../../assets/images/third/2019-12-18/bank11.png" alt="">
-            </a>
-            <a href="https://nper.cmbc.com.cn/pweb/static/login.html">
-                <img src="../../assets/images/third/2019-12-18/bank12.png" alt="">
-            </a>
-            <a href="https://personalbank.cib.com.cn/pers/main/login.do">
-                <img src="../../assets/images/third/2019-12-18/bank13.png" alt="">
-            </a>
-            <a href="http://ebank.cebbank.com/">
-                <img src="../../assets/images/third/2019-12-18/bank14.png" alt="">
-            </a>
-            <a href="http://www.hxb.com.cn/wydl/index.shtml">
-                <img src="../../assets/images/third/2019-12-18/bank15.png" alt="">
-            </a>
         </div>
     </div>
 </template>
 <script>
+import {bindOrderFun,thirdGetInfo,
+thirdGetInfo2,alreadyPayConfirm,
+updateTransferStatus,updateSearchFun} from '../../assets/js/api'
+import Base64 from './base64'
 export default {
     data() {
         return {
-
+            data: null,
+            canNext: true,
+            url: '',
+            time: 0,
+            usdtType: 'OMNI',
+            item:null,
         }
     },
     mounted() {
         this.$parent.nav=1
+        try {
+            this.data = JSON.parse(Base64.decode(this.$route.query.key))
+        } catch(e) {
+            console.log(e)
+            this.$message({
+                message: this.swA=='ch'?'你的url参数有误，请回到之前页面 重新选择：':'你的url参数有误，请回到之前页面 重新选择：',
+                type: 'error',
+                center:true,
+                duration:1200,
+            });
+        }
+        if(this.data.type==1) {
+            this.item = JSON.parse(Base64.decode(this.$route.query.item))
+        }
+        console.log(this.data,this.item)
+        this.timeFun(this.data)
     },
     methods: {
         preFun() {
             this.$parent.nav=0;
             this.$router.go(-1)
         },
-        nextFun() {
+        async nextFun() {
             let orderId = this.$route.params.orderId;
-            console.log(orderId)
-            this.$parent.nav=2
-            this.$router.push({
-                path: `/third/${orderId}/three`,
+            // console.log(orderId)
+            // this.$parent.nav=2
+            
+            // 
+            if(this.data==null) {
+
+                return
+            }
+            if(!this.canNext) {
+                return
+            }else {
+                this.canNext = false;
+            }
+            let key =await alreadyPayConfirm(this,{
+                id: this.data.id,
+                receiptWayId: this.data.adReceiptWay.id
+            }).then((res) => {
+                return res;
             })
+            // debugger
+            if(key!=false) {
+                this.$parent.nav=2
+                this.$router.push({
+                    path: `/third/${orderId}/three`,
+                    query: {
+                        key: Base64.encode(JSON.stringify(key))
+                    }
+                })
+                this.canNext = true;
+            } else {
+                this.canNext = true;
+            }
+        },
+        timeFun( key) {
+            if(key.expiredTimestamp==0) {
+                console.log('jj')
+                this.time = 0;
+                return false
+            }else {
+                console.log('kl')
+                let k = key.expiredTimestamp;
+                let t  = setInterval(()=>{
+                    if(k ==0) {
+                        this.time = 0
+                        return false
+                    }
+                    this.time = --k
+                },1000)
+            }
+        },
+        fortmatTime(leftTime){
+            let d = parseInt(leftTime/(24*60*60))
+            let h = this.formate(parseInt(leftTime/(60*60)%24))
+            let m = this.formate(parseInt(leftTime/60%60))
+            let s = this.formate(parseInt(leftTime%60))
+            if(leftTime <= 0){
+                // vm.$emit('time-end')
+                return '0'
+            }
+            if(this.swA=='en') {
+                return  `${h} h ${m} min ${s} second`
+            }else{
+                return  `${h}小时${m}分${s}秒`
+            }
+        },
+        formate (time) {
+            if(time>=10){
+                return time
+            }else{
+                return `0${time}`
+            }
+        },
+        async findStatusFun() {
+            let key;
+            key = await updateSearchFun(this,{
+                id:this.data.id
+            }).then(res => {
+                return res;
+            })
+            if(key !=false) {
+                this.item = key
+                // console.log(key)
+            }
         }
     }
 }
@@ -308,6 +459,12 @@ export default {
                     &:nth-last-child(1) {
                         border-bottom: 0px;
                     }
+                    label {
+                        font-size:16px;
+                        font-weight:400;
+                        line-height:22px;
+                        color:rgba(102,102,102,1);
+                    }
                     .text-box {
                         display: flex;
                         font-size:16px;
@@ -333,13 +490,9 @@ export default {
                         p.red {
                             color: #FE5B5B;
                         }
+                        
                     }
-                    label {
-                        font-size:16px;
-                        font-weight:400;
-                        line-height:22px;
-                        color:rgba(102,102,102,1);
-                    }
+                    
                 }
             }
         }
@@ -502,6 +655,309 @@ export default {
                 border:1px solid rgba(230,230,230,1);
                 box-shadow:0px 3px 10px rgba(92,137,204,0.3);
                 border-radius:3px;
+            }
+        }
+    }
+    div.check {
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            border-radius: 2px!important;
+        }
+        input[type="checkbox"]{
+            display:none;
+        }
+        label {
+            cursor: pointer;
+            pointer-events: none;
+            font-size:16px;
+            font-weight:400;
+            line-height:22px;
+            color:rgba(34,34,34,1);
+        }
+        input[type="checkbox"] + label:before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border:1px solid;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 5px;
+            transition: all .5s;
+        }
+
+        input[type="checkbox"]:checked + label:before {
+            content: '\2713';
+            color: white;
+            text-align: center;
+            background: #5C89CC;
+        }
+    }
+}
+.gate-way-two {
+    .gate-two-header {
+        margin-top: 40px;
+        height:120px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 5px 10px rgba(92,137,204,0.1);
+        opacity:1;
+        border-radius:5px;
+        box-sizing: border-box;
+        padding: 0px 40px;
+        display: flex;
+        align-items: center;
+        img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+        h3 {
+            font-size:30px;
+            font-weight:bold;
+            line-height:20px;
+            color:rgba(34,34,34,1);
+        }
+    }
+    .gate-way-content {
+        height:270px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 5px 10px rgba(92,137,204,0.1);
+        opacity:1;
+        border-radius:5px;
+        margin-top: 40px;
+        box-sizing: border-box;
+        padding: 0px 40px;
+        .gate-content-header {
+            height: 71px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(230,230,230,1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            label {
+                font-size:16px;
+                font-weight:400;
+                line-height:22px;
+                color:rgba(102,102,102,1);
+            }
+            div.check {
+                input[type=checkbox] {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 2px!important;
+                }
+                input[type="checkbox"]{
+                    display:none;
+                }
+                label {
+                    cursor: pointer;
+                    pointer-events: none;
+                    font-size:16px;
+                    font-weight:400;
+                    line-height:22px;
+                    color:rgba(34,34,34,1);
+                }
+                input[type="checkbox"] + label:before {
+                    content: '';
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    border:1px solid;
+                    border-radius: 3px;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                    transition: all .5s;
+                }
+
+                input[type="checkbox"]:checked + label:before {
+                    content: '\2713';
+                    color: white;
+                    text-align: center;
+                    background: #5C89CC;
+                }
+            }
+        }
+        .gate-box {
+            height: calc(330px - 141px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            p {
+                font-size:16px;
+                font-weight:400;
+                line-height:22px;
+                color:rgba(102,102,102,1);
+            }
+            h3 {
+                font-size:36px;
+                font-weight:800;
+                line-height:50px;
+                color:rgba(92,137,204,1);
+            }
+        }
+        .gate-content-bottom {
+            height: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(230,230,230,1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .content-left {
+                display: flex;
+                align-items: center;
+                label {
+                    font-size:16px;
+                    font-weight:400;
+                    line-height:22px;
+                    color:rgba(102,102,102,1);
+                }
+                .om-erc {
+                    width:160px;
+                    height:40px;
+                    background:rgba(242,242,242,1);
+                    opacity:1;
+                    border-radius:3px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    box-sizing: border-box;
+                    padding: 0px 5px;
+                    button {
+                        border: 0px;
+                        font-size:16px;
+                        font-weight:400;
+                        line-height:22px;
+                        color:rgba(153,153,153,1);
+                        &.active {
+                            width:70px;
+                            height:30px;
+                            background:rgba(92,137,204,1);
+                            box-shadow:0px 3px 6px rgba(92,137,204,0.5);
+                            opacity:1;
+                            border-radius:3px;
+                            font-size:16px;
+                            font-weight:400;
+                            line-height:22px;
+                            color:rgba(255,255,255,1);
+                        }
+
+                    }
+                }
+            }
+            .content-right {
+                display: flex;
+                font-size:16px;
+                font-weight:400;
+                line-height:22px;
+                color:rgba(92,137,204,1);
+                align-items: center;
+                position: relative;
+                .qrcode {
+                    position: absolute;
+                    width: 160px;
+                    height: 160px;
+                    box-sizing: border-box;
+                    padding: 10px;
+                    background: white;
+                    right: 0px;
+                    bottom: 50px;
+                    border-radius: 5px;
+                    filter: drop-shadow(2px 2px 20px rgba(55,135,254,0.2));
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        right: 10%;
+                        // transform: translateX(-50%);
+                        height: 0;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-top: 8px solid white;
+                        bottom: -8px;
+                        border-radius: 1px;
+                    }
+                }
+                p {
+                    &.address {
+                        font-size:20px;
+                        font-weight:400;
+                        line-height:28px;
+                        color:rgba(34,34,34,1);
+                    }
+                    .qr {
+                        color: #5C89CC;
+                    }
+                }
+                button {
+                    margin: 0px 5px;
+                    width:50px;
+                    height:30px;
+                    background:rgba(224,232,246,1);
+                    box-shadow:0px 5px 6px rgba(92,137,204,0.1);
+                    color: #5C89CC;
+                    opacity:1;
+                    border-radius:5px;
+                    border: 0px;
+                }
+
+            }
+        }
+    }
+    .gate-two-search {
+        margin-top: 40px;
+        height:120px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 5px 10px rgba(92,137,204,0.1);
+        opacity:1;
+        border-radius:5px;
+        box-sizing: border-box;
+        padding: 0px 40px 0px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .search-left {
+            display: flex;
+            align-items: center;
+            img {
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+            }
+            h3 {
+                font-size:20px;
+                font-weight:bold;
+                line-height:28px;
+                color:rgba(51,51,51,1);
+                letter-spacing:  0px;
+            }
+            button {
+                width:150px;
+                height:50px;
+                border-radius:3px;
+                border: 0px;
+                color: #FFFFFF;
+                margin-left: 20px;
+                background:rgba(254,204,118,1);
+                &.wating {
+                    background:rgba(254,204,118,1);
+                    opacity:1;
+                }
+                &.done {
+                    background:rgba(82,196,149,1);
+                }
+            }
+        }
+        .search-right {
+            button {
+                border: 0px;
+                background: none;
+                font-size:20px;
+                font-weight:bold;
+                line-height:28px;
+                color:rgba(92,137,204,1);
+                text-decoration:underline;
             }
         }
     }

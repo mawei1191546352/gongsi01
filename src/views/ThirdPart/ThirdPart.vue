@@ -4,13 +4,13 @@
             <div class="third-box">
                 <img src="../../assets/images/nav-bar/2nav-logo@2x.png" alt="">
                 <!-- 只有 以币入金才有中英文 -->
-                <div class="sw" v-show="init_pay_file.payVersion==2 && init_pay_file.type==1">
+                <div class="sw" >
                     <span :class="swA=='ch'?'ac':'no'" @click="swA='ch'">中文</span>
                     <span :class="swA=='en'?'ac':'no'" @click="swA='en'">English</span>
                 </div>
             </div>
         </div>
-        <div class="third-nav">
+        <div class="third-nav" v-if="data!=null?data.type==0?true:false:false">
             <div class="third-box">
                 <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
                     <p>01</p>
@@ -29,10 +29,31 @@
                 </div>
             </div>
         </div>
+        <div class="third-nav" v-if="data!=null?data.type==1?true:false:false">
+            <div class="third-box">
+                <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
+                    <p>01</p>
+                    <p>充值入金</p>
+                    <div class="border"></div>
+                </div>
+                <div :class="nav==1 || nav==2?'third-nav-item active':'third-nav-item'">
+                    <p>02</p>
+                    <p>状态查询</p>
+                    <div class="border"></div>
+                </div>
+            </div>
+        </div>
         <div class="third-content">
+            <div v-if="data==null">
+                {{requeset?'请求数据中...':'请求错误请重试'}}
+            </div>
             <router-view :data="data"></router-view>
         </div>
-        <div class="third-bottom" v-show="nav!=2">
+        <div class="third-bottom" v-show="data!=null?(
+            data.type==0?(
+                nav!=2?true:false
+            ):(nav!=1?true:false)
+        ):false">
             <div class="third-bottom-box">
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/pei.png" alt="">
@@ -67,52 +88,48 @@ export default {
             init_pay_file :{
                 payVersion: 2,
                 type: 0,
-            }
+            },
+            requeset: true,
         }
     },
+    
     computed: {
-        // init_pay_file(){
-        //     return this.$store.getters.init_pay_file;
-        // },
         login(){
             return this.$store.getters.login
         },
     },
     async mounted() {
-        this.orderId =await this.$route.params.orderId;
+        let orderId = this.$route.params.orderId;
+        // console.log(this.$route)
         let key =await thirdGetInfo(this,{
-            id:this.orderId
+            id: orderId
         }).then((res) => {
             return res;
         })
-        console.log(key)
         if(key!=false) {
             this.data = key;
-            this.data.type= 0
-            // this.$store.dispatch('_async_set_init_pay_file',key)
             this.init_pay_file = key
-            this.init_pay_file.type=0
-            if(key.type==0) {
-                // this.$router.push('/gate')
+            if(key.type==0) {//type==0
+                // this.$router.push({
+                //     path: `/third/${orderId}/third0`,
+                //     query: {
+                //         key: Base64.encode(JSON.stringify(key))
+                //     }
+                // })
+            }else { //type==1
+                // this.$router.push({
+                //     path: `/third/${orderId}/third1/one`,
+                //     query: {
+                //         key: Base64.encode(JSON.stringify(key))
+                //     }
+                // })
             }
 
+        }else {
+            // alert('hh')
+            this.requeset = false;
         }
-        if(this.init_pay_file.payVersion=='1'){
-            if(this.login){
-                this.bindOrder()
-            }else{
-                this.$store.dispatch('_async_set_third_pay',{
-                    orderId:this.orderId
-                })
-            }
-        }else if(this.init_pay_file.payVersion=='2'){
-            if(this.init_pay_file.type!=0){
-                if(this.init_pay_file.transferStatus==1){
-                    this.nac=2;
-                    this.updateSearch()
-                }
-            }
-        }
+        
     },
     methods: {
         
