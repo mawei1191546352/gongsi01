@@ -60,11 +60,13 @@
                     <h3>10倍赔付</h3>
                     <p>客户充值过程中若产生损失平台10倍赔付</p>
                 </div>
+                <div class="third-bottom-border"></div>
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/money.png" alt="">
                     <h3>保证金</h3>
                     <p>卖家已向Royalbiz平台缴纳足额保证金</p>
                 </div>
+                <div class="third-bottom-border"></div>
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/suo.png" alt="">
                     <h3>托管锁定</h3>
@@ -84,6 +86,7 @@ export default {
             type: 0, //
             swA: 'ch',
             nav: 0,//
+            usdtType: 'OMNI',//在第一步设置的时候。把这个也设置，第二部会用到
             data: null,
             init_pay_file :{
                 payVersion: 2,
@@ -165,6 +168,16 @@ export default {
                     color:rgba(34,34,34,1);
                     cursor: pointer;
                     margin-left: 10px;
+                    box-sizing: border-box;
+                        padding: 0px 10px;
+                        height:40px;
+                    &:hover {
+                        background: #D4DDEB;
+                        box-sizing: border-box;
+                        padding: 0px 10px;
+                        height:40px;
+                        border-radius: 5px;
+                    }
                     &.ac {
                         // width:65px;
                         box-sizing: border-box;
@@ -178,6 +191,9 @@ export default {
                         font-weight:400;
                         line-height:22px;
                         color:rgba(250,250,250,1);
+                        &:hover {
+                            background:rgba(92,137,204,.8);
+                        }
                     }
                 }
             }
@@ -202,7 +218,7 @@ export default {
                 flex-direction: column;
                 justify-content: center;
                 font-size:22px;
-                font-weight:bold;
+                font-weight:400;
                 line-height:30px;
                 color:rgba(102,102,102,1);
                 position: relative;
@@ -274,11 +290,13 @@ export default {
     .third-bottom {
         height:150px;
         background:rgba(250,250,250,1);
+        border-top: 1px solid rgba(230,230,230,1);
         .third-bottom-box {
             display: flex;
             width: 1100px;
             margin: 0 auto;
             height: inherit;
+            align-items: center;
             .third-bottom-item {
                 flex: 1;
                 display: flex;
@@ -302,6 +320,11 @@ export default {
                     line-height:21px;
                     color:rgba(102,102,102,1);
                 }
+            }
+            .third-bottom-border {
+                width: 1px;
+                height:50px;
+                background:rgba(230,230,230,1);
             }
         }
     }

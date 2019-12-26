@@ -208,8 +208,9 @@ export default {
                             transition: all .6s ease-in-out;
                         }
                         p.active{
-                            border:3px solid rgba(92,137,204,1);
-                            background: rgba(92,137,204,1);
+                            border:3px solid #3787FE;
+                            // background: rgba(92,137,204,1);
+                            background: #3787FE;
                             position: relative;
                             
                         }
@@ -218,7 +219,7 @@ export default {
                             position: absolute;
                             right: -14px;
                             border-top: 14px solid transparent;
-                            border-left: 14px solid rgba(92,137,204,1);
+                            border-left: 14px solid #3787FE;
                             border-bottom: 14px solid transparent;
                         }
                     }
@@ -244,7 +245,7 @@ export default {
                 justify-content: space-between;
                 .merchant-left{
                     width:12.5rem /* 250/20 */;
-                    background:rgba(0,0,0,.3);
+                    background:rgba(0,0,0,.2);
                     box-sizing: border-box;
                     padding-left: 1.75rem /* 35/20 */;
                     display: flex;
@@ -265,7 +266,7 @@ export default {
                 .merchant-right{
                     border-radius:0px 3px 3px 0px;
                     flex: 1;
-                    background:rgba(0,0,0,.6);
+                    background:rgba(0,0,0,.3);
                     box-sizing: border-box;
                     padding-right: 1.75rem /* 35/20 */;
                     padding-left: 1.75rem /* 35/20 */;
@@ -319,8 +320,7 @@ export default {
         p.borderp{
             width:3rem /* 60/20 */;
             height:.25rem /* 5/20 */;
-            background:rgba(76,96,133,1);
-            opacity:1;
+            background:#3787FE;
             margin-top: 1.5rem;
             margin-bottom: 2rem;
         }

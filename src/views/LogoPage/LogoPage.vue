@@ -1,13 +1,14 @@
 <template>
     <div id="logo-page">
+        <top-nav data="width"></top-nav>
         <div class="logo-top">
-            <h3>即时购买USDT与BTC</h3>
-            <p>Royalbiz 是连接买家与卖家的 P2P 数字货币场外交易市场。您可以选择您希望使用的支付方式进行数字货币购买&出售。</p>
+            <h3>{{$t('logo.title')}}</h3>
+            <p>{{$t('logo.all_p')}}</p>
             <div class="input-box">
                 <div class="box-one">
-                    <label for="">你想要多少</label>
+                    <label for="">{{$t('logo.want')}}</label>
                     <div class="sel">
-                        <input type="text" placeholder="请输入您想要的购买的金额" 
+                        <input type="text" :placeholder="$t('logo.want')" 
                         v-model="legal_num" 
                         @focus="getInputFocus('legal')"
                         >
@@ -25,9 +26,9 @@
                     </div>
                 </div>
                 <div class="box-one">
-                    <label for="">您将获得多少数额虚拟货币</label>
+                    <label for="">{{$t('logo.get')}}</label>
                     <div class="sel">
-                        <input type="text" placeholder="请输入您想要获得多少数额虚拟货币"
+                        <input type="text" :placeholder="$t('logo.get')"
                         v-model="qtc_num" 
                         @focus="getInputFocus('qtc')"
                         >
@@ -50,7 +51,7 @@
                 @click="goMarket"
                 >
                     <img :src="img_transfer" alt="">
-                    登陆账号，立即购买/出售
+                    {{$t('logo.button')}}
                 </button>
             </div>
         </div>
@@ -58,56 +59,56 @@
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_bank" alt="">
-                    <h3>银行卡</h3>
+                    <h3>{{$t('logo.pay_h1')}}</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>{{$t('logo.pay_p1')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_ali" alt="">
-                    <h3>支付宝</h3>
+                    <h3>{{$t('logo.pay_h2')}}</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>{{$t('logo.pay_p2')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_wechat" alt="">
-                    <h3>微信</h3>
+                    <h3>{{$t('logo.pay_h9')}}</h3>
                 </div>
-                <p>即时交易-价格最优</p>
+                <p>{{$t('logo.pay_p9')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_amazon" alt="">
-                    <h3>Amazon礼品卡</h3>
+                    <h3>{{$t('logo.pay_h3')}}</h3>
                 </div>
-                <p>即时交易-私密转账</p>
+                <p>{{$t('logo.pay_p3')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_itunes" alt="">
-                    <h3>iTunes Gift Card</h3>
+                    <h3>{{$t('logo.pay_h4')}}</h3>
                 </div>
-                <p>即时交易-私密转账</p>
+                <p>{{$t('logo.pay_p4')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_jd" alt="">
-                    <h3>京东礼品卡</h3>
+                    <h3>{{$t('logo.pay_h5')}}</h3>
                 </div>
-                <p>即时交易-私密转账</p>
+                <p>{{$t('logo.pay_p5')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_sh" alt="">
-                    <h3>中石化油卡</h3>
+                    <h3>{{$t('logo.pay_h6')}}</h3>
                 </div>
-                <p>即时交易-私密转账</p>
+                <p>{{$t('logo.pay_p6')}}</p>
             </div>
             <div class="card-item">
                 <div class="card-img">
                     <img :src="img_all" alt="">
-                    <h3>全部付款方式</h3>
+                    <h3>{{$t('logo.pay_h10')}}</h3>
                 </div>
                 <!-- <p>即时交易-价格最优</p> -->
             </div>
@@ -116,25 +117,25 @@
             <div class="line-header">
                 <div class="he">
                     <img :src="img_way" alt="">
-                    <h3>支持多种付款方式</h3>
+                    <h3>{{$t('logo.mult_way')}}</h3>
                 </div>
-                <p>Royabiz支持多种付款方式，包含支付宝、微信、银行卡、PayPal等，包括各种礼品卡（例如亚马逊礼品卡）。更可以快速筛选出支持各个国家银行卡的广告，快速交易，安全便捷。</p>
+                <p>{{$t('logo.item2_p1')}}{{$t('logo.item2_p2')}}</p>
             </div>
             <div class="item-all">
                 <div class="item-way">
                     <img :src="img_b_bank" alt="">
-                    <h3>银行卡</h3>
-                    <p>即时交易-需要身份证件</p>
+                    <h3>{{$t('logo.arr[2].h3')}}</h3>
+                    <p>{{$t('logo.arr[2].p')}}</p>
                 </div>
                 <div class="item-way">
                      <img :src="img_b_net" alt="">
-                    <h3>网上转账</h3>
-                    <p>即时交易-可能需要身份证件</p>
+                    <h3>{{$t('logo.arr[1].h3')}}</h3>
+                    <p>{{$t('logo.arr[1].p')}}</p>
                 </div>
                 <div class="item-way">
                      <img :src="img_b_gift" alt="">
-                    <h3>礼品卡</h3>
-                    <p>即时交易-私密转账</p>
+                    <h3>{{$t('logo.arr[0].h3')}}</h3>
+                    <p>{{$t('logo.arr[0].p')}}</p>
                 </div>
             </div>
         </div>
@@ -148,83 +149,93 @@
                 <div :class="nav==0?'select-item active':'select-item'"
                 @mouseenter="nav=0"
                 >
-                    <h3>强有力的承兑网络</h3>
-                    <p>Royalbiz合作了全球主流数字货币兑换地区及承兑商，拥有一个强有力的承兑网络。各个国家的人们都可以用本国货币进行交易兑换，获得所需要数字货币。</p>
+                    <h3>{{$t('logo.item3_it1_h')}}</h3>
+                    <p>{{$t('logo.item3_it1_p')}}</p>
                 </div>
                 <div :class="nav==1?'select-item active':'select-item'"
                 @mouseenter="nav=1"
                 >
-                    <h3>支持在线聊天</h3>
-                    <p>Royalbiz支持在线聊天功能，实时通讯。买方与卖方在线面对面快速交流，减少沟通成本，促使买方与卖方达成共识，完成交易。</p>
+                    <h3>{{$t('logo.item3_it2_h')}}</h3>
+                    <p>{{$t('logo.item3_it2_p')}}</p>
                 </div>
                 <div :class="nav==2?'select-item active':'select-item'"
                 @mouseenter="nav=2"
                 >
-                    <h3>快捷兑换，立即到账</h3>
-                    <p>帮助机构客户实现数字资产的大额，实时，安全，合规交易，致力于解决数字资产与传统货币之间的结算问题。业务范围包括电商，食品，旅游，娱乐等。</p>
-                    <button @click="$router.push('/payment-detail')">查看详情</button>
+                    <h3>{{$t('logo.item3_it3_h')}}</h3>
+                    <p>{{$t('logo.item3_it3_p')}}</p>
+                    <button @click="$router.push('/payment-detail')">{{$t('logo.item3_it3_de')}}</button>
                 </div>
             </div>
         </div>
         <div class="safe">
             <div class="safe-h">
                 <img :src="img_way" alt="">
-                <h3>平台资金安全</h3>
+                <h3>{{$t('logo.item4_title')}}</h3>
             </div>
-            <div class="safe-list">
+            <div class="safe-list" :class="lang">
                 <div class="safe-item">
                     <img :src="list01" alt="">
-                    <h3>担保交易</h3>
-                    <p>交易过程全程进行担保。</p>
+                    <h3>{{$t('logo.item4_it1_h')}}</h3>
+                    <p>{{$t('logo.item4_it1_p')}}</p>
                 </div>
                 <div class="safe-item">
                     <img :src="list02" alt="">
-                    <h3>赔付机制</h3>
-                    <p>客户充值过程中若产生损失，平台10倍赔付。</p>
+                    <h3>{{$t('logo.item4_it2_h')}}</h3>
+                    <p>{{$t('logo.item4_it2_p')}}</p>
                 </div>
                 <div class="safe-item">
                     <img :src="list03" alt="">
-                    <h3>2FA认证体系</h3>
-                    <p>通过两步认证体系和成熟的设备识别算法，确保账户不被非法入侵。</p>
+                    <h3>{{$t('logo.item4_it4_h')}}</h3>
+                    <p>{{$t('logo.item4_it4_p')}}</p>
                 </div>
                 <div class="safe-item">
                     <img :src="list04" alt="">
-                    <h3>私密钱包体系</h3>
-                    <p>私立研发数字货币钱包，保护用户资金安全。</p>
+                    <h3>{{$t('logo.item4_it3_h')}}</h3>
+                    <p>{{$t('logo.item4_it3_p')}}</p>
                 </div>
                 <div class="safe-item">
                     <img :src="list05" alt="">
-                    <h3>托管锁定</h3>
-                    <p>买家卖家数字货币均托管锁定在Royalbiz平台。</p>
+                    <h3>{{$t('logo.item4_it5_h')}}</h3>
+                    <p>{{$t('logo.item4_it5_p')}}</p>
                 </div>
             </div>
         </div>
         <div class="logo-bottom">
-            <div class="safe-box">
+            <div class="safe-box" ref="hh">
                 <div class="safe-item">
-                    <img :src="safe01" alt="">
-                    <p>冷、温、热钱包尖端存储</p>
+                    <div class="img">
+                        <img :src="safe01" alt="">
+                    </div>
+                    <p>{{$t('logo.item5_it4')}}</p>
                 </div>
                 <div class="safe-item">
-                    <img :src="safe02" alt="">
-                    <p>资金水位动态配置</p>
+                    <div class="img">
+                        <img :src="safe02" alt="">
+                    </div>
+                    <p>{{$t('logo.item5_it6')}}</p>
                 </div>
                 <div class="safe-item">
-                    <img :src="safe03" alt="">
-                    <p>自动报单</p>
+                    <div class="img">
+                        <img :src="safe03" alt="">
+                    </div>
+                    <p>{{$t('logo.item5_it3')}}</p>
                 </div>
                 <div class="safe-item">
-                    <img :src="safe04" alt="">
-                    <p>API接口</p>
+                    <div class="img">
+                        <img :src="safe04" alt="">
+                    </div>
+                    <p>{{$t('logo.item5_it1')}}</p>
                 </div>
                 <div class="safe-item">
-                    <img :src="safe05" alt="">
-                    <p>冷储存、SSL多重加密</p>
+                    <div class="img">
+                        <img :src="safe05" alt="">
+                    </div>
+                    <p>{{$t('logo.item5_it5')}}</p>
                 </div>
             </div>
             <div class="time">
-                <p>当前服务器时间：{{time}} </p>
-                <p>Royalbiz.co版权所有 © {{moment().year()}}</p>
+                <p>{{$t('info_item.server_time')}}：{{time}} </p>
+                <p>{{$t('info_item.copyright')}} © {{moment().year()}}</p>
             </div>
         </div>
     </div>
@@ -237,7 +248,11 @@ import {
     priceCalcFunIndex,
     clientLeaveMessage,
 } from '../../assets/js/api.js'
+import TopNav from '../../components/TopNav.vue'
 export default {
+    components:{
+        'top-nav': TopNav,
+    },
     data() {
         return {
             img_top: require('../../assets/images/logopage/2019-12-17/top-bg.png'),
@@ -257,8 +272,8 @@ export default {
             img_b_gift: require('../../assets/images/logopage/2019-12-17/b-gift.png'),
 
             nav: 0,
-            img_way01: require('../../assets/images/logopage/2019-12-17/way01.png'),
-            img_way02: require('../../assets/images/logopage/2019-12-17/way02.png'),
+            img_way01: require('../../assets/images/logopage/2019-12-17/way02.png'),
+            img_way02: require('../../assets/images/logopage/2019-12-17/way01.png'),
             img_way03: require('../../assets/images/logopage/2019-12-17/way03.png'),
             list01: require('../../assets/images/logopage/2019-12-17/list01.png'),
             list02: require('../../assets/images/logopage/2019-12-17/list02.png'),
@@ -281,6 +296,7 @@ export default {
             legalArr:[],
             legal_show: false,
             qtc_show: false,
+            observer:null,
         }
     },
     computed: {
@@ -372,8 +388,53 @@ export default {
     },
     mounted(){
         window.addEventListener('click',this.hide, false)
+        if ('IntersectionObserver' in window &&
+            'IntersectionObserverEntry' in window &&
+            'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+            // do something
+            this.observer = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio > 0) {
+                    console.log('进入可视区域');
+                    let arr = entries[0].target.querySelectorAll('.safe-item')
+                    this.doSetTimeout(arr,0);
+                    // do something
+                } else {
+                    console.log('移出可视区域');
+                    let arr = entries[0].target.querySelectorAll('.safe-item')
+                   arr.forEach((e) => {
+                        e.style.visibility = 'hidden';
+                        e.classList.remove('botTop')
+                    })
+                    // do something
+                }
+            });
+            this.observer.observe(this.$refs.hh);
+        }else {
+            let arr = this.$refs.hh.querySelectorAll('.safe-item');
+            for(let i = 0;i<arr.length;i++) {
+                arr[i].style.visibility = 'visible';
+                arr[i].classList.add('botTop')
+            }
+        }
+    },
+    beforeDestroy() {
+        if(this.observer!=null) {
+            this.observer.disconnect();
+        }
     },
     methods: {
+        doSetTimeout(arr,len) {
+            arr[len].style.visibility = 'visible';
+            arr[len].classList.add('botTop')
+            len += 1
+            if(len == arr.length) {
+                return
+            }
+            setTimeout(() => {
+                console.log(1)
+                this.doSetTimeout(arr,len)
+             }, 300);
+        },
         async initPrice(item) {
             let tem = item;
             let key = await priceCalcFunIndex(this,item)
@@ -452,6 +513,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #logo-page {
+    overflow: hidden;
     min-width: 1300px;
     .logo-top {
         text-align: center;
@@ -570,6 +632,9 @@ export default {
                                     &.active {
                                         color: #3787FE;
                                     }
+                                    &:hover {
+                                        background: #D7E7FF;
+                                    }
                                 }
                                 &.les {
                                     width:130px;
@@ -615,6 +680,20 @@ export default {
                 font-weight:400;
                 line-height:28px;
                 color:rgba(255,255,255,1);
+                &:hover {
+                    position: relative;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width:340px;
+                        height:80px;
+                        background: rgba(0,0,0,.1);
+                        z-index: 2;
+                        left: 0px;
+                        top: 0px;
+                        border-radius: 3px;
+                    }
+                }
             }
         }
     }
@@ -690,6 +769,8 @@ export default {
                 line-height:32px;
                 color:rgba(153,153,153,1);
                 text-align: center;
+                width: 1300px;
+                margin: 0 auto;
             }
         }
         
@@ -742,14 +823,14 @@ export default {
             &.img-box {
                 transition: all .3s ease-in-out;
                 img {
-                    width: 645px;
-                    height: 590px;
+                    width: 600px;
+                    height: 500px;
                 }
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
                 box-sizing: border-box;
-                padding-right: 135px;
+                padding-right: 217px;
             }
             &.select-way {
                 height: 640px;
@@ -764,8 +845,13 @@ export default {
                         margin-bottom: 0px;
                     }
                     box-sizing: border-box;
-                    padding: 54px 0px 0px 66px;
+                    // padding: 54px 0px 0px 66px;
+                    padding-left: 66px;
                     transition: all .3s ease-in-out;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
                     &.active {
                         border-left: 20px solid rgba(55,135,254,1);
                         background:rgba(55,135,254,.6);
@@ -813,6 +899,7 @@ export default {
             justify-content: center;
             align-items: center;
             margin-bottom: 50px;
+            height: 42px;
             h3 {
                 font-size:30px;
                 font-weight:800;
@@ -829,23 +916,23 @@ export default {
             width: 1300px;
             margin: 0 auto;
             margin-bottom: 100px;
+            height: 268px;
             display: flex;
             justify-content: space-between;
-            // height: 270px;
+            position: relative;
             .safe-item {
-                // background: url('./bg.svg') no-repeat;
+                transition: all .3s ease-in-out;
                 background: #FFFFFF;
                 // box-shadow:0px 0px 20px rgba(55,135,254,0.2);
-                box-shadow: (2px 2px 20px rgba(55,135,254,0.2));
-                filter: drop-shadow(2px 2px 20px rgba(55,135,254,0.2));
+                box-shadow: (2px 2px 10px rgba(55,135,254,0.2));
+                filter: drop-shadow(2px 2px 10px rgba(55,135,254,0.2));
                 width: 240px;
-                // width: 340px;
-                height: 290px;
                 height: 268px;
-                // height: 350px;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                padding-top: 55px;
                 align-items: center;
                 border-radius: 5px;
                 position: relative;
@@ -872,7 +959,8 @@ export default {
                     font-weight:bold;
                     line-height:30px;
                     color:rgba(51,51,51,1);
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
+                    text-align: center;
                 }
                 p {
                     font-size:14px;
@@ -881,6 +969,20 @@ export default {
                     color:rgba(102,102,102,1);
                     width: 182px;
                     text-align: center;
+                    text-align: center;
+                }
+                &:hover {
+                    box-shadow: (2px 2px 20px rgba(55,135,254,0.2));
+                    filter: drop-shadow(2px 2px 20px rgba(55,135,254,0.2));
+                    margin-top: -20px;
+                }
+            }
+            &.en {
+                .safe-item {
+                    padding-top: 35px;
+                    p {
+                        font-size: 12px;
+                    }
                 }
             }
         }
@@ -888,35 +990,100 @@ export default {
     .logo-bottom {
         height:268px;
         background:rgba(25,34,84,1);
+        // overflow: hidden;
         .safe-box {
             width: 1300px;
             margin: 0 auto;
             height: 100px;
             display: flex;
             justify-content: space-between;
+            position: relative;
             .safe-item {
+                visibility: hidden;
+                flex: 1;
                 box-sizing: border-box;
-                position: relative;
                 display: flex;
                 align-items: center;
+                justify-content: center;
+                // position: relative;
+                position: absolute;
+                bottom: -1000px;
+                right: -1000px;
+                -webkit-z-index: 100;
+                -moz-z-index: 100;
+                -ms-z-index: 100;
+                -o-z-index: 100;
+                z-index: 100;
+                transition: all .4s ease-in-out; 
+                
                 p {
                     font-size:14px;
                     font-weight:400;
                     line-height:24px;
                     color:rgba(230,230,230,1);
+                    text-align: center;
                 }
-                img {
+                @keyframes rainbow {
+                    0% { transform:  rotateY(0deg); }
+                    50% { transform:  rotateY(90deg); }
+                    100% { transform:  rotateY(180deg); }
+                }
+                @keyframes rainbow2 {
+                    0% { transform: rotateY(180deg); }
+                    50% { transform: rotateY(90deg); }
+                    100% { transform: rotateY(0deg); }
+                }
+                div.img {
                     width: 60px;
                     height: 69px;
                     position: absolute;
                     top: -40px;
                     left: 50%;
+                    background: url('../../assets/images/logopage/2019-12-17/bg-item.png') no-repeat;
                     transform: translateX(-50%);
+                    z-index: 200;
+                }
+                img {
+                    width: 60px;
+                    height: 69px;
+                    // position: absolute;
+                    // top: -40px;
+                    // left: 50%;
+                    // transform: translateX(-50%) rotateY(0deg);
+                    animation: 1s rainbow2 alternate forwards;
+                    &:hover {
+                        left: 50%;
+                        // transform: translateX(-50%);
+                        animation: 1s rainbow alternate forwards;
+                    }
+                }
+                &.botTop {
+                    visibility: visible;
+                    flex: 1;
+                    box-sizing: border-box;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    right: 0px;
+                    bottom: 0px;
+                    z-index: 100;
+                    div.img {
+                        width: 60px;
+                        height: 69px;
+                        position: absolute;
+                        top: -40px;
+                        left: 50%;
+                        background: url('../../assets/images/logopage/2019-12-17/bg-item.png') no-repeat;
+                        transform: translateX(-50%);
+                        z-index: 200;
+                    }
                 }
             }
         }
         .time {
-            border-top: 1px solid  rgba(112,112,112,1);
+            border-top: 1px solid  rgba(112,112,112,.3);
             height: 168px;
             text-align: center;
             box-sizing: border-box;

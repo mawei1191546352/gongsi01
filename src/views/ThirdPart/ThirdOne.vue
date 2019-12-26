@@ -21,19 +21,19 @@
                 <div class="third-one-item">
                     <label >商家名</label>
                     <div class="text-box">
-                        <p>{{data!=null?data.merchantName:''}}</p>
+                        <p class="merchant">{{data!=null?data.merchantName:''}}</p>
                     </div>
                 </div>
                 <div class="third-one-item">
-                    <label >付款金额（CNY）</label>
+                    <label >付款金额</label>
                     <div class="text-box">
-                        <h3 class="amount">{{data!=null?data.amountCny:''}}</h3>
+                        <h3 class="amount">{{data!=null?data.amountCny:''}} CNY</h3>
                     </div>
                 </div>
                 <div class="third-one-item">
-                    <label >购买数量（{{data!=null?data.coinType.toUpperCase():''}}）</label>
+                    <label >购买数量</label>
                     <div class="text-box">
-                        <p>{{data!=null?data.amount:''}}</p>
+                        <p>{{data!=null?data.amount:''}} {{data!=null?data.coinType.toUpperCase():''}}</p>
                     </div>
                 </div>
                 <div class="third-one-item">
@@ -51,6 +51,7 @@
                     <p>(请输入转账银行卡持有人的真实姓名)</p>
                 </div>
                 <button
+                class="net"
                 @click="nextFun"
                 >下一步</button>
             </div>
@@ -95,7 +96,13 @@
                                 ):(data.receiptAddress)
                             ):""}}
                         </p>
-                        <button>复制</button>
+                        <button class="cp tag-read" @click="copyAddressFun"
+                        :data-clipboard-text="data!=null?(
+                                data.coinType=='usdt'?(
+                                    usdtType=='OMNI'?data.receiptAddress:data.ercAddress
+                                ):(data.receiptAddress)
+                            ):''"
+                        >复制</button>
                         <p class="qr" @mouseenter="qr=true" @mouseleave="qr=false">
                             二维码
                         </p>
@@ -104,12 +111,63 @@
                 </div>
             </div>
             <div class="gate-way-info">
-                <li><img src="../../assets/images/third/2019-12-18/ok1.png" alt=""> 请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</li>
-                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt="">入金成功后数字货币将全额充值到您要付款的商户</li>
+                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt=""> 请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</li>
+                <li><img src="../../assets/images/third/2019-12-18/ok1.png" alt="">入金成功后数字货币将全额充值到您要付款的商户</li>
             </div>
             <div class="btn">
                 <button class="pre">上一步</button>
-                <button class="next" @click="nextFun1">已入金</button>
+                <button class="next" @click="nextFun1">
+                    已入金
+                    <p>充值后请<span>务必点击“已入金”。</span> </p>
+                </button>
+            </div>
+        </div>
+        <div class="modal-next" v-show="modalStaus">
+            <div class="box" v-if="data!=null?data.type==0?true:false:false">
+                <h3>注意事项 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <div class="modal-top">
+                    <li>
+                        <div class="icon">1</div>
+                        <p><span>请勿</span>使用微信和支付宝进行转账，否则将不会到账。</p>
+                    </li>
+                    <li>
+                        <div class="icon">2</div>
+                        <p>请保证<span>付款账户信息与填写的银行卡持有人姓名一致。 </span></p>
+                    </li>
+                    <li>
+                        <div class="icon">3</div>
+                        <p>请保证<span>实际转账金额与输入的金额一致。 </span></p>
+                    </li>
+                </div>
+                <div class="border"></div>
+                <div class="modal-bottom">
+                    <h3>到账时间</h3>
+                    <li class="light">
+                        <p>工作日9：00~17：00，单笔最大支持<span>100万人民币；</span></p>
+                    </li>
+                    <li class="light">
+                        <p>工作日17：00~次日9：00及非工作日时间，单笔最大支持5w人民币，超过将可能<span>延时到账； </span></p>
+                    </li>
+                    <li class="light">
+                        <p>节假日规则以各银行公告为准。</p>
+                    </li>
+                </div>
+                <div class="btn-modal">
+                    <button class="cancle" @click="modalCloseFun">稍后再说</button>
+                    <button class="confirm" @click="modalConfirmFun">下一步</button>
+                </div>
+            </div>
+            <div class="box2" v-if="data!=null?data.type==1?true:false:false">
+                <h3>入金确认 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <div class="modal-top">
+                    <li>
+                        <p>是否确认已全额入金<span>{{data!=null?data.amount:''}} {{data!=null?data.coinType.toUpperCase():''}}</span></p>
+                    </li>
+                </div>
+                <div class="btn-modal">
+                    <button class="cancle" @click="modalCloseFun">取消</button>
+                    <button class="confirm" @click="modalConfirmFun">确认</button>
+                </div>
             </div>
         </div>
     </div>
@@ -126,20 +184,19 @@ export default {
     },
     data() {
         return {
-            obj: {
-                name:"nha"
-            },
             swA:'zh',
             time: 0,
             realName:'',
             next1: true,
-            usdtType: 'OMNI',
+            usdtType: 'ERC20',
             qr: false,
             canNext: true,
+            modalStaus: false,
         }
     },
     mounted() {
         this.$parent.nav = 0;
+        this.usdtType = this.$parent.usdtType;
         console.log(this.data)
         if(this.data!= null) {
             this.timeFun(this.data)
@@ -154,19 +211,47 @@ export default {
             deep: true
         },
         usdtType(n,o) {
-            document.querySelector('#qrcode').innerHTML=''
+            if(document.querySelector('#qrcode')) {
+                document.querySelector('#qrcode').innerHTML=''
+            }
+            this.$parent.usdtType = n;
             this.$nextTick(()=>{
-                this.getCode()
+                if(this.data!= null && this.data.type==1) {
+                    this.getCode()
+                }
             })
         }
     },
     methods: {
+        copyAddressFun(){
+            let that =this;
+            var clipboard = new Clipboard('.tag-read')
+            clipboard.on('success', e => {
+                console.log('复制成功')
+                // 释放内存
+                clipboard.destroy()
+                that.$message({
+                    message: '复制成功',
+                    type: 'success',
+                    center:true,
+                    duration:500,
+                });
+            })
+            clipboard.on('error', e => {
+                // 不支持复制
+                console.log('该浏览器不支持自动复制')
+                // 释放内存
+                clipboard.destroy()
+            })
+        },
         initFun() {
             if(this.data!= null) {
                 this.timeFun(this.data)
                 if(this.data.type==1) {
                     this.$nextTick(()=> {
-                        this.getCode()
+                        if(this.data!= null && this.data.type==1) {
+                            this.getCode()
+                        }
                     })
                 }
             }
@@ -186,7 +271,7 @@ export default {
             // console.log(orderId)
             if(/^[0-9]+\.{0,1}[0-9]{0,2}$/.test(this.realName)){
                 this.$message({
-                    message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                    message: this.$parent.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
                     type: 'error',
                     center:true,
                     duration:1200,
@@ -195,7 +280,7 @@ export default {
             }else{
                 if(/\d+/.test(this.realName)){
                     this.$message({
-                        message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                        message: this.$parent.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
                         type: 'error',
                         center:true,
                         duration:1200,
@@ -207,7 +292,7 @@ export default {
             }
             if(this.realName=='') {
                 this.$message({
-                        message: this.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
+                        message: this.$parent.swA=='ch'?'请填写真实姓名':'Please fill in your real name',
                         type: 'error',
                         center:true,
                         duration:1200,
@@ -219,52 +304,82 @@ export default {
             }else{
                 this.next1= false;
             }
-            let key =await thirdGetInfo2(this,{
-                id:this.data.id,
-                realName:this.realName
-            }).then((res) => {
-                return res;
-            })
-            if(key!=false) {
-                key.type = 0
+            this.modalStaus = true;
+            
+        },
+        modalCloseFun() {
+            this.modalStaus = false;
+            if(this.data.type==0) {
                 this.next1 = true;
-                this.$parent.nav=1
-                this.$router.push({
-                    path: `/third/${orderId}/two`,
-                    query: {
-                        key: Base64.encode(JSON.stringify(key))
-                    }
-                })
             }else {
-                this.next1 = true;
+                this.canNext = true;
+            }
+        },
+        async modalConfirmFun(e) {
+            let orderId = this.$route.params.orderId;
+            // console.log(e.target)
+            if(this.data.type==0) {
+                let dom = e.target
+                dom.innerHTML = '请求中'
+                dom.style.pointerEvents = 'none'
+
+                let key =await thirdGetInfo2(this,{
+                    id:this.data.id,
+                    realName:this.realName
+                }).then((res) => {
+                    return res;
+                })
+                if(key!=false) {
+                    key.type = 0
+                    this.next1 = true;
+                    dom.innerHTML = '下一步'
+                    dom.style.pointerEvents = 'all'
+                    this.modalStaus = false
+                    this.$parent.nav=1
+                    this.$router.push({
+                        path: `/third/${orderId}/two`,
+                        query: {
+                            key: Base64.encode(JSON.stringify(key))
+                        }
+                    })
+                }else {
+                    this.next1 = true;
+                    this.modalStaus = false
+                    dom.innerHTML = '下一步'
+                    dom.style.pointerEvents = 'all'
+                }
+            } else if(this.data.type==1) {
+                let orderId = this.$route.params.orderId;
+                let key;
+                key = await updateSearchFun(this,{
+                    id:this.data.id
+                }).then(res => {
+                    return res;
+                })
+                if(key !=false) {
+                    this.$router.push({
+                        path: `/third/${orderId}/two`,
+                        query: {
+                            key: Base64.encode(JSON.stringify(this.data)),
+                            item: Base64.encode(JSON.stringify(key)),
+                        }
+                    })
+                    this.canNext = true
+                    this.modalStaus = false;
+                } else {
+                    this.canNext = true
+                    this.modalStaus = false;
+                }
             }
         },
         async nextFun1() {
-            let orderId = this.$route.params.orderId;
             // 传返回的把
             if(!this.canNext) {
                 return false
             } else {
                 this.canNext = false
             }
-            let key;
-            key = await updateSearchFun(this,{
-                id:this.data.id
-            }).then(res => {
-                return res;
-            })
-            if(key !=false) {
-                this.$router.push({
-                    path: `/third/${orderId}/two`,
-                    query: {
-                        key: Base64.encode(JSON.stringify(this.data)),
-                        item: Base64.encode(JSON.stringify(key)),
-                    }
-                })
-                this.canNext = true
-            } else {
-                this.canNext = true
-            }
+            this.modalStaus = true;
         },
         timeFun( key) {
             if(key.expiredTimestamp==0) {
@@ -290,10 +405,10 @@ export default {
             let s = this.formate(parseInt(leftTime%60))
             if(leftTime <= 0){
                 // vm.$emit('time-end')
-                return '0'
+                return '00：00：00'
             }
-            if(this.swA=='en') {
-                return  `${h} h ${m} min ${s} second`
+            if(this.$parent.swA=='en') {
+                return  `${h} h ${m} m ${s} s`
             }else{
                 return  `${h}小时${m}分${s}秒`
             }
@@ -314,6 +429,7 @@ export default {
     .third-one-time {
         display: flex;
         height:120px;
+        // height:100px;
         background:rgba(255,255,255,1);
         box-shadow:0px 5px 10px rgba(92,137,204,0.1);
         opacity:1;
@@ -347,6 +463,10 @@ export default {
         .right-tip {
             flex: 1;
             padding: 23px 0px 0px 40px;
+            // padding: 0px 40px 0px 40px;
+            // display: flex;
+            // justify-content: space-between;
+            // align-items: center;
             .tip-top {
                 display: flex;
                 img {
@@ -367,6 +487,9 @@ export default {
                 line-height:40px;
                 color:#333333;
                 margin-top: 10px;
+                img {
+                    margin-right: 10px;
+                }
                 span {
                     display: inline-block;
                     width:125px;
@@ -418,6 +541,11 @@ export default {
                     font-weight:800;
                     line-height:42px;
                     color:rgba(92,137,204,1);
+                }
+                p {
+                    &.merchant {
+                        font-size: 20px;
+                    }
                 }
                 div.check {
                     input[type=checkbox] {
@@ -494,6 +622,20 @@ export default {
             line-height:28px;
             color:rgba(255,255,255,1);
             margin-bottom: 70px;
+            &.net {
+                position: relative;
+                &:hover {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 100%;
+                        height: 60px;
+                        background: rgba(250,250,250,.2);
+                    }
+                }
+            }
         }
     }
 }
@@ -622,7 +764,7 @@ export default {
             flex-direction: column;
             justify-content: center;
             p {
-                font-size:16px;
+                font-size:20px;
                 font-weight:400;
                 line-height:22px;
                 color:rgba(102,102,102,1);
@@ -649,6 +791,7 @@ export default {
                     font-weight:400;
                     line-height:22px;
                     color:rgba(102,102,102,1);
+                    margin-right: 5px;
                 }
                 .om-erc {
                     width:160px;
@@ -667,6 +810,7 @@ export default {
                         font-weight:400;
                         line-height:22px;
                         color:rgba(153,153,153,1);
+                        background: none;
                         &.active {
                             width:70px;
                             height:30px;
@@ -734,7 +878,7 @@ export default {
                     }
                 }
                 button {
-                    margin: 0px 5px;
+                    margin: 0px 10px;
                     width:50px;
                     height:30px;
                     background:rgba(224,232,246,1);
@@ -795,6 +939,242 @@ export default {
                 background:rgba(92,137,204,1);
                 box-shadow:0px 5px 10px rgba(92,137,204,0.5);
                 color:rgba(255,255,255,1);
+                position: relative;
+                transition: all .3s ease-in-out;
+                p {
+                    position: absolute;
+                    bottom: -25px;
+                    right: 30%;
+                    font-size:16px;
+                    color:  #666666;
+                    span {
+                       color: #FE5B5B;
+                    }
+                }
+                &:hover {
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        width: inherit;
+                        height: inherit;
+                        background: rgba(250,250,250,.2);
+                    }
+                }
+            }
+        }
+    }
+}
+.modal-next {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(153,153,153,.5);
+    z-index: 3;
+    div.box {
+        width:720px;
+        height:520px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 3px 20px rgba(0,0,0,0.2);
+        opacity:1;
+        border-radius:5px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        box-sizing: border-box;
+        padding: 30px 30px;
+        h3 {
+            display: flex;
+            justify-content: space-between;
+            font-size:22px;
+            font-weight:bold;
+            line-height:30px;
+            color:rgba(34,34,34,1);
+            img {
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+        }
+        li {
+            display: flex;
+            font-size:18px;
+            font-weight:400;
+            line-height:24px;
+            color:rgba(34,34,34,1);
+            .icon {
+                margin-right: 10px;
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width:15px;
+                    height:10px;
+                    background:rgba(199,217,246,1);
+                    opacity:1;
+                    z-index: -1;
+                    bottom: 5px;
+                    left: 0px;
+                }
+            }
+            span {
+                color: #FE5B5B;
+            }
+            &.light {
+                font-size:16px;
+                font-weight:400;
+                line-height:32px;
+                color:rgba(102,102,102,1);
+            }
+        }
+        .modal-top {
+            li {
+                line-height: 32px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        .modal-bottom {
+            li {
+            height: 40px;
+                display: flex;
+                align-items: center;
+            }
+            margin-bottom: 10px;
+        }
+        .border {
+            height: 1px;
+            background:  rgba(204,204,204,1);
+            margin: 28px 0px;
+        }
+        .btn-modal {
+            display: flex;
+            justify-content: flex-end;
+            button {
+                font-size: 16px;
+                border: 0px;
+                &.cancle {
+                    width:180px;
+                    height:50px;
+                    background:rgba(242,242,242,1);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #666666;
+                    margin-right: 20px;
+                }
+                &.confirm {
+                    width:180px;
+                    height:50px;
+                    background:rgba(92,137,204,1);
+                    box-shadow:0px 5px 10px rgba(92,137,204,0.5);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #FFFFFF;
+                    position: relative;
+                    &:hover {
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: 0px;
+                            top: 0px;
+                            width: 100%;
+                            height: inherit;
+                            background: rgba(242,242,242,.3);
+                        }
+                    }
+                }
+                &.no {
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+    div.box2 {
+        border-bottom: 10px solid rgba(92,137,204,1);
+        width:545px;
+        height:280px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 3px 20px rgba(0,0,0,0.2);
+        opacity:1;
+        border-radius:5px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        box-sizing: border-box;
+        padding: 30px 30px;
+         h3 {
+            display: flex;
+            justify-content: space-between;
+            font-size:22px;
+            font-weight:bold;
+            line-height:30px;
+            color:rgba(34,34,34,1);
+            img {
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+        }
+        .modal-top {
+            height: 130px;
+            margin-top: 10px;
+            li {
+                line-height: 32px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                font-size:16px;
+                color: #666666;
+                span {
+                    color: #5C89CC;
+                }
+            }
+        }
+        .btn-modal {
+            display: flex;
+            justify-content: flex-end;
+            button {
+                font-size: 16px;
+                border: 0px;
+                &.cancle {
+                    width:180px;
+                    height:50px;
+                    background:rgba(242,242,242,1);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #666666;
+                    margin-right: 20px;
+                }
+                &.confirm {
+                    width:180px;
+                    height:50px;
+                    background:rgba(92,137,204,1);
+                    box-shadow:0px 5px 10px rgba(92,137,204,0.5);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #FFFFFF;
+                    position: relative;
+                    &:hover {
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: 0px;
+                            top: 0px;
+                            width: 100%;
+                            height: inherit;
+                            background: rgba(242,242,242,.3);
+                        }
+                    }
+                }
+                &.no {
+                    pointer-events: none;
+                }
             }
         }
     }

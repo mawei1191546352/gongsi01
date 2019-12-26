@@ -838,6 +838,9 @@
         "pay_p5":"Instantly and Private",
         "pay_h6":"SINOPEC Gift Card",
         "pay_p6":"Instantly and Private",
+        "pay_h9":"WeChat",
+        "pay_p9":"Instantly and price friendly",
+        "pay_h10":"All payment methods",
         "want":"How much you want",
         "get":"You will get in",
         "button":"Login account, buy / sell",
@@ -892,7 +895,8 @@
         "item5_it2":"Platform performance auto-boost",
         "item5_it3":"Auto declaration",
         "item5_it4":"Cold, warm and hot crypto wallet  architecture",
-        "item5_it5":"Cold storage, SSL encryption and  multiple encryption algorithms"
+        "item5_it5":"Cold storage, SSL encryption and  multiple encryption algorithms",
+        "item5_it6":"Dynamic allocation of funding levels"
     },
     "video":{
         "title":"Exchange easily",

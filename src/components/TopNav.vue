@@ -1,6 +1,8 @@
 <template>
     <div class="top-nav" :class="login==true?'top-nav-unline':'top-nav-nologin'">
-        <div class="banxin outer mess-banxin" :class="$route.path.indexOf('/legal-currency-order')>=0?'ban-left':''">
+        <div class="banxin outer mess-banxin" 
+        :style="{'max-width':data?'1300px':'1200px;'}"
+        :class="$route.path.indexOf('/legal-currency-order')>=0?'ban-left':''">
             <div class="top-nav-box">
                 <!-- <el-select v-model="value" placeholder="请选择">
                     <el-option
@@ -93,6 +95,9 @@ import { SignOut ,
 legalOrderFindFun, 
 getLang} from '../assets/js/api.js'
 export default {
+    props:{
+        data: String,
+    },
     data() {
         return {
             options:[],

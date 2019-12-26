@@ -19,17 +19,17 @@
                             <h3>{{data!=null?data.amountCny:''}}</h3>
                         </div>
                         <div class="border">
+                            <label>银行卡持有人姓名</label>
+                            <div class="text-box">
+                                <p>{{data!=null?data.payOrderRealName:''}}</p>
+                            </div>
+                        </div>
+                        <div class="border">
                             <label>已选择付款方式</label>
                             <div class="text-box">
                                 <div class="check">
                                     <input type="checkbox" checked id="pd" value="以币入金"> <label for="pd">银行卡</label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="border">
-                            <label>银行卡持有人姓名</label>
-                            <div class="text-box">
-                                <p>{{data!=null?data.payOrderRealName:''}}</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,9 @@
                         <div class="text-box">
                             <img src="" alt="">
                             <p>{{data!=null?data.adReceiptWay.name:''}}</p>
-                            <button>复制</button>
+                            <button class="cp tag-read" @click="copyAddressFun()" 
+                            :data-clipboard-text="data!=null?data.adReceiptWay.name:''"
+                            >复制</button>
                         </div>
                     </div>
                     <div class="border">
@@ -48,21 +50,27 @@
                         <div class="text-box">
                             <img src="" alt="">
                             <p>{{data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''}}</p>
-                            <button>复制</button>
+                            <button class="cp tag-read" @click="copyAddressFun()" 
+                            :data-clipboard-text="data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''"
+                            >复制</button>
                         </div>
                     </div>
                     <div class="border">
                         <label>银行卡号</label>
                         <div class="text-box">
                             <p>{{data!=null?data.adReceiptWay.bankCardNumber:''}}</p>
-                            <button>复制</button>
+                            <button class="cp tag-read" @click="copyAddressFun()"
+                            :data-clipboard-text="data!=null?data.adReceiptWay.bankCardNumber:''"
+                            >复制</button>
                         </div>
                     </div>
                     <div class="border">
                         <label>付款备注</label>
                         <div class="text-box">
                             <p class="red">{{data!=null?data.referenceCode:''}}</p>
-                            <button>复制</button>
+                            <button class="cp tag-read" @click="copyAddressFun()"
+                            :data-clipboard-text="data!=null?data.referenceCode:''"
+                            >复制</button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +86,7 @@
                     >上一步</button>
                     <button class="next"
                     @click="nextFun"
-                    >已支付</button>
+                    >已付款</button>
                 </div>
             </div>
             <div class="info-list">
@@ -90,7 +98,7 @@
                     </li>
                     <li>
                         <div class="icon">2</div>
-                        付款时请 <span class="red">备注付款号。</span>
+                        付款时除了备注付款号之外 <span class="red">不要备注任何其他信息。</span>
                     </li>
                     <li>
                         <div class="icon">3</div>
@@ -165,15 +173,15 @@
                     <div class="content-left">
                         <label>{{data!=null?data.coinType.toUpperCase():''}}充值地址</label>
                         <div class="om-erc" v-show="data!=null?data.coinType=='usdt'?true:false:false">
-                            <button disabled :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
-                            <button disabled :class="usdtType=='ERC20'?'active':'no'" @click="usdtType='ERC20'">ERC20</button>
+                            <button disabled :class="$parent.usdtType=='OMNI'?'active':'no'" @click="$parent.usdtType='OMNI'" v-show="$parent.usdtType=='OMNI'">OMNI</button>
+                            <button disabled :class="$parent.usdtType=='ERC20'?'active':'no'" @click="$parent.usdtType='ERC20'" v-show="$parent.usdtType=='ERC20'">ERC20</button>
                         </div>
                     </div>
                     <div class="content-right">
                         <p class="address">
                             {{data!=null?(
                                 data.coinType=='usdt'?(
-                                    usdtType=='OMNI'?data.receiptAddress:data.ercAddress
+                                    $parent.usdtType=='OMNI'?data.receiptAddress:data.ercAddress
                                 ):(data.receiptAddress)
                             ):""}}
                         </p>
@@ -196,6 +204,20 @@
                 </div>
             </div>
         </div>
+        <div class="modal-next" v-show="modalStaus">
+            <div class="box2">
+                <h3>确认付款 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <div class="modal-top">
+                    <li>
+                        <p>确认已付款 <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
+                    </li>
+                </div>
+                <div class="btn-modal">
+                    <button class="cancle" @click="modalCloseFun">取消</button>
+                    <button class="confirm" @click="modalConfirmFun">确认</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -203,6 +225,7 @@ import {bindOrderFun,thirdGetInfo,
 thirdGetInfo2,alreadyPayConfirm,
 updateTransferStatus,updateSearchFun} from '../../assets/js/api'
 import Base64 from './base64'
+import Clipboard from 'clipboard';
 export default {
     data() {
         return {
@@ -210,12 +233,19 @@ export default {
             canNext: true,
             url: '',
             time: 0,
-            usdtType: 'OMNI',
+            // usdtType: 'OMNI',
             item:null,
+            modalStaus: false,
         }
     },
     mounted() {
         this.$parent.nav=1
+        window.addEventListener("beforeunload",() => {
+            localStorage.setItem("usdtType",this.$parent.usdtType)
+        })
+        if(localStorage.getItem("usdtType") != '') {
+            this.$parent.usdtType = localStorage.getItem("usdtType")
+        }
         try {
             this.data = JSON.parse(Base64.decode(this.$route.query.key))
         } catch(e) {
@@ -233,26 +263,44 @@ export default {
         console.log(this.data,this.item)
         this.timeFun(this.data)
     },
+    beforeDestroy() {
+        window.removeEventListener('beforeunload',()=>{
+            
+        })
+        localStorage.setItem("usdtType",'')
+    },
     methods: {
+        copyAddressFun(){
+            let that =this;
+            var clipboard = new Clipboard('.tag-read')
+            clipboard.on('success', e => {
+                console.log('复制成功')
+                // 释放内存
+                clipboard.destroy()
+                that.$message({
+                    message: '复制成功',
+                    type: 'success',
+                    center:true,
+                    duration:500,
+                });
+            })
+            clipboard.on('error', e => {
+                // 不支持复制
+                console.log('该浏览器不支持自动复制')
+                // 释放内存
+                clipboard.destroy()
+            })
+        },
         preFun() {
             this.$parent.nav=0;
             this.$router.go(-1)
         },
-        async nextFun() {
+        modalCloseFun() {
+            this.modalStaus = false;
+            this.canNext = true;
+        },
+        async modalConfirmFun(e) {
             let orderId = this.$route.params.orderId;
-            // console.log(orderId)
-            // this.$parent.nav=2
-            
-            // 
-            if(this.data==null) {
-
-                return
-            }
-            if(!this.canNext) {
-                return
-            }else {
-                this.canNext = false;
-            }
             let key =await alreadyPayConfirm(this,{
                 id: this.data.id,
                 receiptWayId: this.data.adReceiptWay.id
@@ -269,9 +317,23 @@ export default {
                     }
                 })
                 this.canNext = true;
+                this.modalStaus = false
             } else {
                 this.canNext = true;
+                this.modalStaus = false
             }
+        },
+        async nextFun() {
+            // 
+            if(this.data==null) {
+                return
+            }
+            if(!this.canNext) {
+                return
+            }else {
+                this.canNext = false;
+            }
+            this.modalStaus = true;
         },
         timeFun( key) {
             if(key.expiredTimestamp==0) {
@@ -297,10 +359,10 @@ export default {
             let s = this.formate(parseInt(leftTime%60))
             if(leftTime <= 0){
                 // vm.$emit('time-end')
-                return '0'
+                return '00：00：00'
             }
-            if(this.swA=='en') {
-                return  `${h} h ${m} min ${s} second`
+            if(this.$parent.swA=='en') {
+                return  `${h} h ${m} m ${s} s`
             }else{
                 return  `${h}小时${m}分${s}秒`
             }
@@ -333,14 +395,19 @@ export default {
     .third-two-time {
         display: flex;
         height:120px;
+        height:100px;
         background:rgba(255,255,255,1);
         box-shadow:0px 5px 10px rgba(92,137,204,0.1);
         opacity:1;
         border-radius:5px;
         .left-time {
             flex: 1;
-            padding: 23px 0px 0px 40px;
+            // padding: 23px 0px 0px 40px;
+            padding: 0px 40px 0px 40px;
             border-right: 1px solid rgba(230,230,230,1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             .time-top {
                 display: flex;
                 img {
@@ -360,7 +427,7 @@ export default {
                 font-weight:bold;
                 line-height:40px;
                 color:rgba(92,137,204,1);
-                margin-top: 10px;
+                // margin-top: 10px;
             }
         }
     }
@@ -402,7 +469,7 @@ export default {
                 }
                 .border {
                     flex: 1;
-                    padding: 0px 20px;
+                    // padding: 0px 20px;
                     border-bottom: 1px solid rgba(230,230,230,1);
                     display: flex;
                     justify-content: space-between;
@@ -503,7 +570,8 @@ export default {
         .pn-left {
             width:520px;
             height:60px;
-            background:rgba(255,255,255,1);
+            // background:rgba(255,255,255,1);
+            background: #F4F6FA;
             opacity:1;
             border-radius:0px 0px 5px 5px;
             box-sizing: border-box;
@@ -551,11 +619,23 @@ export default {
                 font-weight:400;
                 line-height:28px;
                 color:rgba(255,255,255,1);
+                &:hover {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 100%;
+                        height: 60px;
+                        background: rgba(250,250,250,.2);
+                    }
+                }
             }
         }
     }
     .info-list {
         height: 220px;
+        height: 200px;
         margin-bottom: 10px;
         background: #FAFAFA;
         display: flex;
@@ -568,14 +648,17 @@ export default {
             margin: 0 auto;
             width: 1100px;
             height: 220px;
-            height: 220px;
+            height: 200px;
             z-index: 1;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             flex-direction: column;
+            box-sizing: border-box;
+            padding-top: 34px;
             &::before {
                 position: absolute;
                 top: -.5px;
+                top: -10px;
                 width: 90%;
                 left: 10%;
                 content: "";
@@ -585,6 +668,7 @@ export default {
             &::after {
                 position: absolute;
                 bottom: -.5px;
+                bottom: -10px;
                 width: 80%;
                 left: 15%;
                 content: "";
@@ -595,15 +679,18 @@ export default {
                 position: absolute;
                 width: 250px;
                 overflow: hidden;
+                font-weight: bold;
                 &.first {
                     top: -10px;
+                    top: -20px;
                 }
                 &.last {
                     bottom: -6px;
+                    bottom: -18px;
                 }
             }
             li {
-                height: 40px;
+                height: 30px;
                 display: flex;
                 align-items: center;
                 font-size:16px;
@@ -611,7 +698,7 @@ export default {
                 line-height:24px;
                 color:rgba(34,34,34,1);
                 .icon {
-                    background-image: linear-gradient(top, #fff, #C7D9F6);
+                    // background-image: linear-gradient(top, #fff 60%, #C7D9F6);
                     width: 15px;
                     height: 20px;
                     margin-top: 5px;
@@ -619,8 +706,18 @@ export default {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding-bottom: 4px;
+                    // padding-bottom: 4px;
                     box-sizing: border-box;
+                    position: relative;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width:15px;
+                        height:10px;
+                        background:rgba(199,217,246,1);
+                        z-index: -1;
+                        bottom: 1px;
+                    }
                 }
                 span.red {
                     color: #FE5B5B;
@@ -638,6 +735,7 @@ export default {
         }
     }
     .bank-list {
+        margin-top: 30px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -785,7 +883,7 @@ export default {
             flex-direction: column;
             justify-content: center;
             p {
-                font-size:16px;
+                font-size:20px;
                 font-weight:400;
                 line-height:22px;
                 color:rgba(102,102,102,1);
@@ -816,7 +914,7 @@ export default {
                 .om-erc {
                     width:160px;
                     height:40px;
-                    background:rgba(242,242,242,1);
+                    // background:rgba(242,242,242,1);
                     opacity:1;
                     border-radius:3px;
                     display: flex;
@@ -829,20 +927,23 @@ export default {
                         font-size:16px;
                         font-weight:400;
                         line-height:22px;
-                        color:rgba(153,153,153,1);
+                        color:#5C89CC;
+                        background:rgba(255,255,255,1);
                         &.active {
                             width:70px;
                             height:30px;
-                            background:rgba(92,137,204,1);
-                            box-shadow:0px 3px 6px rgba(92,137,204,0.5);
+                            // background:rgba(92,137,204,1);
+                            background:rgba(255,255,255,1);
+                            // box-shadow:0px 3px 6px rgba(92,137,204,0.5);
+                            border:1px solid rgba(92,137,204,1);
+                            box-shadow:0px 5px 10px rgba(92,137,204,0.1);
                             opacity:1;
                             border-radius:3px;
                             font-size:16px;
                             font-weight:400;
                             line-height:22px;
-                            color:rgba(255,255,255,1);
+                            color:#5C89CC;
                         }
-
                     }
                 }
             }
@@ -958,6 +1059,98 @@ export default {
                 line-height:28px;
                 color:rgba(92,137,204,1);
                 text-decoration:underline;
+            }
+        }
+    }
+}
+.modal-next {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(153,153,153,.5);
+    div.box2 {
+        border-bottom: 10px solid rgba(92,137,204,1);
+        width:545px;
+        height:280px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 3px 20px rgba(0,0,0,0.2);
+        opacity:1;
+        border-radius:5px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        box-sizing: border-box;
+        padding: 30px 30px;
+         h3 {
+            display: flex;
+            justify-content: space-between;
+            font-size:22px;
+            font-weight:bold;
+            line-height:30px;
+            color:rgba(34,34,34,1);
+            img {
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+        }
+        .modal-top {
+            height: 130px;
+            margin-top: 10px;
+            li {
+                line-height: 32px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                font-size:16px;
+                color: #666666;
+                span {
+                    color: #5C89CC;
+                }
+            }
+        }
+        .btn-modal {
+            display: flex;
+            justify-content: flex-end;
+            button {
+                font-size: 16px;
+                border: 0px;
+                &.cancle {
+                    width:180px;
+                    height:50px;
+                    background:rgba(242,242,242,1);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #666666;
+                    margin-right: 20px;
+                }
+                &.confirm {
+                    width:180px;
+                    height:50px;
+                    background:rgba(92,137,204,1);
+                    box-shadow:0px 5px 10px rgba(92,137,204,0.5);
+                    opacity:1;
+                    border-radius:5px;
+                    color: #FFFFFF;
+                    position: relative;
+                    &:hover {
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: 0px;
+                            top: 0px;
+                            width: 100%;
+                            height: inherit;
+                            background: rgba(242,242,242,.3);
+                        }
+                    }
+                }
+                &.no {
+                    pointer-events: none;
+                }
             }
         }
     }
