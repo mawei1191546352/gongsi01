@@ -10,10 +10,16 @@
 </template>
 <script>
 import Base64 from '../ThirdPart/base64'
+import {
+    languageType0,
+    languageType1
+} from '../../locales/languages'
 export default {
     data() {
         return {
             data: null,
+            languageType0: languageType0,
+            languageType1: languageType1,
         }
     },
     mounted() {

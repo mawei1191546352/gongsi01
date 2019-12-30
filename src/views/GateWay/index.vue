@@ -14,17 +14,17 @@
             <div class="third-box">
                 <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
                     <p>01</p>
-                    <p>选择付款方式</p>
+                    <p>{{languageType0[swA].nav01}}</p>
                     <div class="border"></div>
                 </div>
                 <div :class="nav==1 || nav==2?(nav==1?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
                     <p>02</p>
-                    <p>付款转账</p>
+                    <p>{{languageType0[swA].nav02}}</p>
                     <div class="border"></div>
                 </div>
                 <div :class="nav==2?'third-nav-item active':'third-nav-item'">
                     <p>03</p>
-                    <p>确认付款信息</p>
+                    <p>{{languageType0[swA].nav03}}</p>
                     <div class="border"></div>
                 </div>
             </div>
@@ -33,12 +33,12 @@
             <div class="third-box">
                 <div :class="nav==0|| nav==1 || nav==2?(nav==0?'third-nav-item active':'third-nav-item line'):'third-nav-item'">
                     <p>01</p>
-                    <p>充值入金</p>
+                    <p>{{languageType1[swA].nav01}}</p>
                     <div class="border"></div>
                 </div>
                 <div :class="nav==1 || nav==2?'third-nav-item active':'third-nav-item'">
                     <p>02</p>
-                    <p>状态查询</p>
+                    <p>{{languageType1[swA].nav02}}</p>
                     <div class="border"></div>
                 </div>
             </div>
@@ -51,23 +51,23 @@
                 nav!=2?true:false
             ):(nav!=1?true:false)
         ):false">
-            <div class="third-bottom-box">
+            <div class="third-bottom-box" :class="swA">
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/pei.png" alt="">
-                    <h3>10倍赔付</h3>
-                    <p>客户充值过程中若产生损失平台10倍赔付</p>
+                    <h3>{{languageType0[swA].bottom0H}}</h3>
+                    <p>{{languageType0[swA].bottom0P}}</p>
                 </div>
                 <div class="third-bottom-border"></div>
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/money.png" alt="">
-                    <h3>保证金</h3>
-                    <p>卖家已向Royalbiz平台缴纳足额保证金</p>
+                    <h3>{{languageType0[swA].bottom1H}}</h3>
+                    <p>{{languageType0[swA].bottom1P}}</p>
                 </div>
                 <div class="third-bottom-border"></div>
                 <div class="third-bottom-item">
                     <img src="../../assets/images/third/2019-12-18/suo.png" alt="">
-                    <h3>托管锁定</h3>
-                    <p>卖家出售的 USDT 已托管锁定在Royalbiz平台</p>
+                    <h3>{{languageType0[swA].bottom2H}}</h3>
+                    <p>{{languageType0[swA].bottom2P0}}{{data!=null?data.coinType?data.coinType.toUpperCase():data.coin.toUpperCase():''}}{{languageType0[swA].bottom2P1}}</p>
                 </div>
             </div>
         </div>
@@ -77,16 +77,22 @@
 import {bindOrderFun,thirdGetInfo,
 thirdGetInfo2,alreadyPayConfirm,
 updateTransferStatus,updateSearchFun, gateWayLegal, createGateLegalOrder} from '../../assets/js/api'
+import {
+    languageType0,
+    languageType1
+} from '../../locales/languages'
 
 export default {
     data() {
         return {
             swA: 'ch',
             nav: 0,
-            usdtType: 'OMNI',//在第一步设置的时候。把这个也设置，第二部会用到
+            usdtType: 'ERC20',//在第一步设置的时候。把这个也设置，第二部会用到
             type: null,
             data: null,
             time: 0,
+            languageType0: languageType0,
+            languageType1: languageType1,
         }
     },
     computed: {
@@ -104,9 +110,9 @@ export default {
         }
         let search = obj
         this.type= search.type;
-        this.data = search
         // console.log(this.type)
         if(this.type==0 && this.type!=undefined) {
+            this.data = search
             this.gateWayLegalInit(search)
         }else if(this.type==1) {
             // 以币如今
@@ -290,7 +296,8 @@ export default {
         margin: 0 auto;
     }
     .third-bottom {
-        height:150px;
+        // height:150px;
+        // height:200px;
         background:rgba(250,250,250,1);
         border-top: 1px solid rgba(230,230,230,1);
         .third-bottom-box {
@@ -299,6 +306,12 @@ export default {
             margin: 0 auto;
             height: inherit;
             align-items: center;
+            height:150px;
+            &.en {
+                // height:200px;
+                align-items: flex-start;
+                padding-top: 30px;
+            }
             .third-bottom-item {
                 flex: 1;
                 display: flex;
@@ -321,6 +334,8 @@ export default {
                     font-weight:400;
                     line-height:21px;
                     color:rgba(102,102,102,1);
+                    text-align: center;
+                    width: 320px;
                 }
             }
             .third-bottom-border {

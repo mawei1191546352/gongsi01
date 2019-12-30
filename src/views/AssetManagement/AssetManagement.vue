@@ -346,7 +346,8 @@ import TopNav from '../../components/TopNav.vue'
 import NavBar from '../../components/NavBar.vue'
 import PopAuthen from '../../components/PopupsAuthen.vue'
 import {transferFeeFun,transferFun,
-GetOtherInformation,getExtractAndDepositLimitFun } from '../../assets/js/api'
+GetOtherInformation,getExtractAndDepositLimitFun,
+assetsExtractAddress,getAssetsConvertUsdtAmount } from '../../assets/js/api'
 export default {
     components:{
         'top-nav': TopNav,
@@ -587,19 +588,26 @@ export default {
         /**
          * 初始化表格
          */
-        initAsset(){
+        async initAsset(){
             this.axios.post('/assets/getAssets')
             .then((res) => {
                 let data = res.data;
                 if(data.code ==200) {
                     this.tableData = data.data.infos;
-                    this.totalUsd = data.data.totalUsd
+                    // this.totalUsd = data.data.totalUsd
                 }else{
 
                 }
             }).catch((error) => {
                 
             })
+           let k =  await getAssetsConvertUsdtAmount(this).then((res) => {
+               return res
+            })
+            if(k) {
+                // console.log(k)
+                this.totalUsd = k.totalUsdt
+            }
         },
         /**
          * 斑马纹
@@ -656,11 +664,25 @@ export default {
         async handleEditTb(n,row) {
             this.saveRow = row;
             let that = this;
+            let key0 = await assetsExtractAddress(this,{coinTypeId:row.coinTypeId}).then((res) => {
+                return res;
+            })
+            if(key0!=false) {
+                this.saveRow.extractAddresses = key0
+                // console.log(key)
+            }else {
+                this.saveRow.extractAddresses = []
+            }
             function isOne(el,index,arr) {
                 return el.type== (that.chain2=="OMNI"?0:1)
             }
-            let ar = this.saveRow.extractAddresses.filter(isOne)
-            
+            let ar = []
+            if(row.coinType=='usdt') {
+                ar = this.saveRow.extractAddresses.filter(isOne)
+
+            }else {
+                ar = this.saveRow.extractAddresses
+            }
             this.saveRow.newAddress = ar;
             this.oldAddress = row.extractAddresses;
             this.childP = 'liangxiang';

@@ -173,8 +173,8 @@
                     <div class="content-left">
                         <label>{{data!=null?data.coinType.toUpperCase():''}}充值地址</label>
                         <div class="om-erc" v-show="data!=null?data.coinType=='usdt'?true:false:false">
-                            <button disabled :class="$parent.usdtType=='OMNI'?'active':'no'" @click="$parent.usdtType='OMNI'" v-show="$parent.usdtType=='OMNI'">OMNI</button>
                             <button disabled :class="$parent.usdtType=='ERC20'?'active':'no'" @click="$parent.usdtType='ERC20'" v-show="$parent.usdtType=='ERC20'">ERC20</button>
+                            <button disabled :class="$parent.usdtType=='OMNI'?'active':'no'" @click="$parent.usdtType='OMNI'" v-show="$parent.usdtType=='OMNI'">OMNI</button>
                         </div>
                     </div>
                     <div class="content-right">
@@ -226,6 +226,10 @@ thirdGetInfo2,alreadyPayConfirm,
 updateTransferStatus,updateSearchFun} from '../../assets/js/api'
 import Base64 from '../ThirdPart/base64'
 import Clipboard from 'clipboard';
+import {
+    languageType0,
+    languageType1
+} from '../../locales/languages'
 export default {
     data(){
         return {
@@ -236,6 +240,8 @@ export default {
             // usdtType: 'OMNI',
             item:null,
             modalStaus: false,
+            languageType0: languageType0,
+            languageType1: languageType1,
         }
     },
     created() {

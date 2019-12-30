@@ -9,10 +9,10 @@
                     </div>
                     <h3>{{data!=null?data.expiredTimestamp!=undefined ?fortmatTime(time):'':''}}</h3>
                 </div> -->
-                <div class="right-tip">
-                    <h3><img :src="require('../../assets/images/third/2019-12-18/transL.png')" alt="">支持<span>100万CNY</span>以内的超大额转账</h3>
+                <div class="right-tip" :class="$parent.swA">
+                    <h3><img :src="require('../../assets/images/third/2019-12-18/transL.png')" alt="">{{languageType0[$parent.swA].rightTipHLeft}}<span>{{languageType0[$parent.swA].rightTipHCenter}}</span>{{languageType0[$parent.swA].rightTipHRight}}</h3>
                     <div class="tip-top">
-                        <p>(17:00~次日8:00，单笔最大限额5万)</p>
+                        <p>{{languageType0[$parent.swA].rightTipInfo}}</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,9 @@
             </div>
             <div class="name-next">
                 <div class="input">
-                    <input type="text" v-model="realName" placeholder="输入转账银行卡持有人姓名">
+                    <input type="text" v-model="realName" placeholder="输入转账银行卡持有人姓名" 
+                    @keyup="realName = realName.replace(/\s+/g,'')"
+                    >
                     <p>(请输入转账银行卡持有人的真实姓名)</p>
                 </div>
                 <button
@@ -60,31 +62,31 @@
                 <div class="left-time">
                     <div class="time-top">
                         <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
-                        <p>订单剩余支付时间</p>
+                        <p>{{languageType1[$parent.swA].leftTime}}</p>
                     </div>
                     <h3>{{data!=null?data.expiredTimestamp ?fortmatTime(time):'':''}}</h3>
                 </div>
-                <div class="right-tip">
-                    <h3>Royalbiz平台有完备的钱包体系，请放心充值。</h3>
+                <div class="right-tip" :class="$parent.swA">
+                    <h3>{{languageType1[$parent.swA].rightTipAll}}</h3>
                 </div>
             </div>
             <div class="gate-way-content">
                 <div class="gate-content-header">
-                    <label>已选择付款方式</label>
+                    <label>{{languageType1[$parent.swA].paiedType}}</label>
                     <div class="check">
-                        <input type="checkbox" checked id="py" value="以币入金"> <label for="py">以币入金</label>
+                        <input type="checkbox" checked id="py" value="以币入金"> <label for="py">{{languageType1[$parent.swA].biRu}}</label>
                     </div>
                 </div>
                 <div class="gate-box">
-                    <p>待付款数量（{{data!=null?data.coinType?data.coinType.toUpperCase():'':''}}）</p>
+                    <p>{{languageType1[$parent.swA].depositAmount}}（{{data!=null?data.coinType?data.coinType.toUpperCase():'':''}}）</p>
                     <h3>{{data!=null?data.amount:''}}</h3>
                 </div>
                 <div class="gate-content-bottom">
                     <div class="content-left">
-                        <label>{{data!=null?data.coinType?data.coinType.toUpperCase():'':''}}充值地址</label>
+                        <label>{{data!=null?data.coinType?data.coinType.toUpperCase():'':''}}{{languageType1[$parent.swA].depositAddress}}</label>
                         <div class="om-erc" v-show="data!=null?data.coinType?data.coinType=='usdt'?true:false:false:false">
-                            <button :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
                             <button :class="usdtType=='ERC20'?'active':'no'" @click="usdtType='ERC20'">ERC20</button>
+                            <button :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
                         </div>
                     </div>
                     <div class="content-right">
@@ -101,9 +103,9 @@
                                     usdtType=='OMNI'?data.receiptAddress:data.ercAddress
                                 ):(data.receiptAddress)
                             ):''"
-                        >复制</button>
+                        >{{languageType1[$parent.swA].cp}}</button>
                         <p class="qr" @mouseenter="qr=true" @mouseleave="qr=false">
-                            二维码
+                            {{languageType1[$parent.swA].qrcode}}
                         </p>
                         <div id="qrcode" :class="qr?'qrcode vi':'qrcode hi'"></div>
                     </div>
@@ -119,7 +121,7 @@
             </div>
         </div>
         <div class="modal-next" v-show="modalStaus">
-            <div class="box">
+            <div class="box" v-if="data!=null?data.type==0?true:false:false">
                 <h3>注意事项 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
                 <div class="modal-top">
                     <li>
@@ -175,6 +177,10 @@ updateTransferStatus,updateSearchFun, gateWayLegal, createGateLegalOrder} from '
 import Clipboard from 'clipboard';
 import QRCode from 'qrcodejs2'
 import Base64 from '../ThirdPart/base64'
+import {
+    languageType0,
+    languageType1
+} from '../../locales/languages'
 export default {
     props:{
         data: Object,
@@ -189,11 +195,18 @@ export default {
             qr: false,
             canNext: true,
             modalStaus: false,
+            languageType0: languageType0,
+            languageType1: languageType1,
         }
     },
     watch:  {
         data: {
             handler(n, o) {
+                this.$nextTick(()=>{
+                    if(this.data!= null && this.data.type==1) {
+                        this.getCode()
+                    }
+                })
                 this.timeFun(this.data)
             },
             deep: true
@@ -337,6 +350,14 @@ export default {
                 })
                 if(key !=false) {
                     key.type=1;
+                    if(key.message!=null && key.message!='') {
+                        this.$message({
+                            message: key.message,
+                            type: 'waring',
+                            center:true,
+                            duration:1200,
+                        });
+                    }
                     this.$router.push({
                         path: `/gateway/two${search}`,
                         query: {
@@ -493,6 +514,18 @@ export default {
                     text-align: center;
                     color: #5C89CC;
                     margin: 0px 10px;
+                }
+            }
+            &.en {
+                h3 {
+                    span {
+                        width: 165px;
+                    }
+                }
+                .tip-top {
+                    p {
+                        width: 300px;
+                    }
                 }
             }
         }
@@ -686,6 +719,11 @@ export default {
                     text-align: center;
                     color: #5C89CC;
                     margin: 0px 10px;
+                }
+            }
+            &.en {
+                h3 {
+                    line-height: 23px;
                 }
             }
         }

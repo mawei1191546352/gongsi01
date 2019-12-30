@@ -47,7 +47,9 @@
             </div>
             <div class="name-next">
                 <div class="input">
-                    <input type="text" v-model="realName" placeholder="输入转账银行卡持有人姓名">
+                    <input type="text" v-model="realName" placeholder="输入转账银行卡持有人姓名" 
+                    @keyup="realName = realName.replace(/\s+/g,'')"
+                    >
                     <p>(请输入转账银行卡持有人的真实姓名)</p>
                 </div>
                 <button
@@ -61,31 +63,31 @@
                 <div class="left-time">
                     <div class="time-top">
                         <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
-                        <p>订单剩余支付时间</p>
+                        <p>{{languageType1[$parent.swA].leftTime}}</p>
                     </div>
                     <h3>{{fortmatTime(time)}}</h3>
                 </div>
-                <div class="right-tip">
-                    <h3>Royalbiz平台有完备的钱包体系，请放心充值。</h3>
+                <div class="right-tip" :class="$parent.swA">
+                    <h3>{{languageType1[$parent.swA].rightTipAll}}</h3>
                 </div>
             </div>
             <div class="gate-way-content">
                 <div class="gate-content-header">
-                    <label>已选择付款方式</label>
+                    <label>{{languageType1[$parent.swA].paiedType}}</label>
                     <div class="check">
-                        <input type="checkbox" checked id="py" value="以币入金"> <label for="py">以币入金</label>
+                        <input type="checkbox" checked id="py" value="以币入金"> <label for="py">{{languageType1[$parent.swA].biRu}}</label>
                     </div>
                 </div>
                 <div class="gate-box">
-                    <p>待付款数量（{{data!=null?data.coinType.toUpperCase():''}}）</p>
+                    <p>{{languageType1[$parent.swA].depositAmount}}（{{data!=null?data.coinType.toUpperCase():''}}）</p>
                     <h3>{{data!=null?data.amount:''}}</h3>
                 </div>
                 <div class="gate-content-bottom">
                     <div class="content-left">
-                        <label>{{data!=null?data.coinType.toUpperCase():''}}充值地址</label>
+                        <label>{{data!=null?data.coinType.toUpperCase():''}}{{languageType1[$parent.swA].depositAddress}}</label>
                         <div class="om-erc" v-show="data!=null?data.coinType=='usdt'?true:false:false">
-                            <button :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
                             <button :class="usdtType=='ERC20'?'active':'no'" @click="usdtType='ERC20'">ERC20</button>
+                            <button :class="usdtType=='OMNI'?'active':'no'" @click="usdtType='OMNI'">OMNI</button>
                         </div>
                     </div>
                     <div class="content-right">
@@ -102,16 +104,16 @@
                                     usdtType=='OMNI'?data.receiptAddress:data.ercAddress
                                 ):(data.receiptAddress)
                             ):''"
-                        >复制</button>
+                        >{{languageType1[$parent.swA].cp}}</button>
                         <p class="qr" @mouseenter="qr=true" @mouseleave="qr=false">
-                            二维码
+                            {{languageType1[$parent.swA].qrcode}}
                         </p>
                         <div id="qrcode" :class="qr?'qrcode vi':'qrcode hi'"></div>
                     </div>
                 </div>
             </div>
             <div class="gate-way-info">
-                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt=""> 请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</li>
+                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt=""> 请勿向上述地址充值任何非{{data!=null?data.coinType.toUpperCase():''}}资产，否则资产将不可找回。</li>
                 <li><img src="../../assets/images/third/2019-12-18/ok1.png" alt="">入金成功后数字货币将全额充值到您要付款的商户</li>
             </div>
             <div class="btn">
@@ -178,6 +180,10 @@ thirdGetInfo2,alreadyPayConfirm,
 updateTransferStatus,updateSearchFun} from '../../assets/js/api'
 import Base64 from './base64'
 import QRCode from 'qrcodejs2'
+import {
+    languageType0,
+    languageType1
+} from '../../locales/languages'
 export default {
     props:{
         data: Object,
@@ -192,6 +198,8 @@ export default {
             qr: false,
             canNext: true,
             modalStaus: false,
+            languageType0: languageType0,
+            languageType1: languageType1,
         }
     },
     mounted() {
@@ -351,12 +359,20 @@ export default {
             } else if(this.data.type==1) {
                 let orderId = this.$route.params.orderId;
                 let key;
-                key = await updateSearchFun(this,{
+                key = await updateTransferStatus(this,{
                     id:this.data.id
                 }).then(res => {
                     return res;
                 })
                 if(key !=false) {
+                    if(key.message!=null && key.message!='') {
+                        this.$message({
+                            message: key.message,
+                            type: 'waring',
+                            center:true,
+                            duration:1200,
+                        });
+                    }
                     this.$router.push({
                         path: `/third/${orderId}/two`,
                         query: {
@@ -694,6 +710,11 @@ export default {
                     text-align: center;
                     color: #5C89CC;
                     margin: 0px 10px;
+                }
+            }
+            &.en {
+                h3 {
+                    line-height: 23px;
                 }
             }
         }

@@ -2492,6 +2492,72 @@ async function getExtractAndDepositLimitFun(vm,item) {
 }
 
 /**
+ * 获取提币地址数组
+ * @param {*} vm 
+ * @param {*} item 
+ */
+async function assetsExtractAddress(vm,item) {
+    let key;
+    await vm.axios.post('/assetsExtractAddress/queryExtractAddress',qs.stringify(item))
+    .then((res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key =  data.data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key = false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false
+    })
+    return key;
+}
+
+/**
+ * 获取资产管理总额
+ * @param {*} vm 
+ * @param {*} item 
+ */
+async function getAssetsConvertUsdtAmount(vm,item) {
+    let key;
+    await vm.axios.post('/assets/getAssetsConvertUsdtAmount',qs.stringify(item))
+    .then((res) => {
+        let data = res.data;
+        if(res.data.code ==200){
+            key =  data.data;
+        }else{
+            vm.$message({
+                type:'error',
+                message:data.message,
+                duration:1200,
+            })
+            key = false;
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        vm.$message({
+            type:'error',
+            message:vm.$t('info_item.server_error'),
+            duration:1200,
+        })
+        key = false
+    })
+    return key;
+}
+
+/**
  * 获取socket地址
  */
 async function getSocketUrl(vm,item) {
@@ -2946,6 +3012,7 @@ export  {
     exportExcelTransferFun,
     PayInNumFun,
     getExtractAndDepositLimitFun,
+    assetsExtractAddress,
     bindingPhoneEmailGoogle,
     getSocketUrl,
     loginSocketUrl,//
@@ -2973,4 +3040,5 @@ export  {
     gateWayLegal,
     createGateLegalOrder,
     clientLeaveMessage,
+    getAssetsConvertUsdtAmount,
 }

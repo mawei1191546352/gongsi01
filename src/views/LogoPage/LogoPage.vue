@@ -141,9 +141,15 @@
         </div>
         <div class="column-way">
             <div class="img-box">
-                <img :src="nav==0?img_way01:(
-                    nav==1?img_way02:img_way03
-                )" alt="">
+                <img :src="img_way01" alt=""
+                :class="nav==0?'active':'no'"
+                >
+                <img :src="img_way02" alt=""
+                :class="nav==1?'active':'no'"
+                >
+                <img :src="img_way03" alt=""
+                :class="nav==2?'active':'no'"
+                >
             </div>
             <div class="select-way">
                 <div :class="nav==0?'select-item active':'select-item'"
@@ -168,11 +174,11 @@
             </div>
         </div>
         <div class="safe">
-            <div class="safe-h">
+            <div class="safe-h" ref="hs">
                 <img :src="img_way" alt="">
                 <h3>{{$t('logo.item4_title')}}</h3>
             </div>
-            <div class="safe-list" :class="lang">
+            <div class="safe-list" :class="lang" ref="hss">
                 <div class="safe-item">
                     <img :src="list01" alt="">
                     <h3>{{$t('logo.item4_it1_h')}}</h3>
@@ -408,7 +414,8 @@ export default {
                     // do something
                 }
             });
-            this.observer.observe(this.$refs.hh);
+            this.observer.observe(this.$refs.hss);
+            // this.observer.observe(this.$refs.hh);
         }else {
             let arr = this.$refs.hh.querySelectorAll('.safe-item');
             for(let i = 0;i<arr.length;i++) {
@@ -820,8 +827,9 @@ export default {
         color: #FFFFFF;
         div  {
             flex: 1;
+            overflow: hidden;
             &.img-box {
-                transition: all .3s ease-in-out;
+                transition: all .3s cubic-bezier(0.175, -0.200, 0.775, 1.385);
                 img {
                     width: 600px;
                     height: 500px;
@@ -829,8 +837,32 @@ export default {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                justify-content: center;
                 box-sizing: border-box;
+                flex-direction: column;
                 padding-right: 217px;
+                .active {
+                    
+                    animation: show .7s;
+                }
+                .no {
+                    animation: hide .3s;
+                    width: 0px;
+                    height: 0px;
+                    
+                }
+                @keyframes show {
+                    from { opacity: 0;width: 0px;height: 0px;}
+                    89% { opacity: 1;width: 600px;height: 500px;}
+                    90% { opacity: 1;transform: scale(1.05);}
+                    100% { opacity: 1;transform: scale(1);}
+                }
+                @keyframes hide {
+                    from { opacity: 1; width: 600px;height: 500px;}
+                    50% { opacity: 0; width: 300px;height: 250px; }
+                    52% { opacity: 0; width: 0px;height: 0px; }
+                    to { opacity: 0;width: 0px;height: 0px; }
+                }
             }
             &.select-way {
                 height: 640px;
@@ -883,6 +915,10 @@ export default {
                         color: #293C87;
                         border: 0px;
                         font-size: 14px;
+                        transition: all .3s cubic-bezier(0.225, -0.385, 0.780, 1.265);
+                        &:hover {
+                            box-shadow:0px 0px 20px rgba(27,44,112,1);
+                        }
                     }
                 }
             }
@@ -976,6 +1012,13 @@ export default {
                     filter: drop-shadow(2px 2px 20px rgba(55,135,254,0.2));
                     margin-top: -20px;
                 }
+                &.botTop {
+                    animation: move1 1s;
+                }
+                @keyframes move1{
+                    from{ opacity:0; margin-top: 40px}
+                    to{ opacity:1; margin-top: 0px;}
+                }
             }
             &.en {
                 .safe-item {
@@ -999,20 +1042,20 @@ export default {
             justify-content: space-between;
             position: relative;
             .safe-item {
-                visibility: hidden;
+                visibility: visible;
                 flex: 1;
                 box-sizing: border-box;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                // position: relative;
-                position: absolute;
-                bottom: -1000px;
-                right: -1000px;
-                -webkit-z-index: 100;
-                -moz-z-index: 100;
-                -ms-z-index: 100;
-                -o-z-index: 100;
+                position: relative;
+                // position: absolute;
+                // bottom: -1000px;
+                // right: -1000px;
+                // -webkit-z-index: 100;
+                // -moz-z-index: 100;
+                // -ms-z-index: 100;
+                // -o-z-index: 100;
                 z-index: 100;
                 transition: all .4s ease-in-out; 
                 
@@ -1066,9 +1109,10 @@ export default {
                     align-items: center;
                     justify-content: center;
                     position: relative;
-                    right: 0px;
-                    bottom: 0px;
-                    z-index: 100;
+                    // right: 0px;
+                    // bottom: 0px;
+                    // z-index: 100;
+                    animation:move 1s;
                     div.img {
                         width: 60px;
                         height: 69px;
@@ -1079,6 +1123,10 @@ export default {
                         transform: translateX(-50%);
                         z-index: 200;
                     }
+                }
+                @keyframes move{
+                    from{ opacity:0; margin-left:500px;}
+                    to{ opacity:1; margin-left:0;}
                 }
             }
         }
