@@ -44,6 +44,9 @@
             </div>
         </div>
         <div class="third-content">
+            <div v-if="data==null">
+                {{requeset?'请求数据中...':'请求错误请重试'}}
+            </div>
             <router-view :data="data"></router-view>
         </div>
         <div class="third-bottom" v-show="data!=null?(
