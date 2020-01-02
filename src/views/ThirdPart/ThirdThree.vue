@@ -1,11 +1,11 @@
 <template>
     <div id="third-three">
         <img src="../../assets/images/third/2019-12-18/ok2.png" alt="">
-        <h3>提交成功</h3>
-        <h4>购买成功后，数字货币将全额充值到您要付款的商户，完成付款</h4>
-        <h4>订单已开始处理，预计到账时间：<span>15分钟</span></h4>
-        <p><span>5s</span> 后将自动跳转至商户平台，如果没有跳转，请手动点击返回商户平台按钮 </p>
-        <button>返回商户平台</button>
+        <h3>{{languageType0[$parent.swA].page3h}}</h3>
+        <h4>{{languageType0[$parent.swA].page3h2}}</h4>
+        <h4>{{languageType0[$parent.swA].page3h3}}<span>{{languageType0[$parent.swA].page3h32}}</span></h4>
+        <p><span>5s</span> {{languageType0[$parent.swA].page3p1}} </p>
+        <button>{{languageType0[$parent.swA].page3back}}</button>
     </div>
 </template>
 <script>
@@ -29,7 +29,7 @@ export default {
         } catch(e) {
             console.log(e)
             this.$message({
-                message: this.swA=='ch'?'你的url参数有误，请回到之前页面 重新选择：':'你的url参数有误，请回到之前页面 重新选择：',
+                message: this.$parent.swA=='ch'?'你的url参数有误，请回到之前页面 重新选择：':'你的url参数有误，请回到之前页面 重新选择：',
                 type: 'error',
                 center:true,
                 duration:1200,

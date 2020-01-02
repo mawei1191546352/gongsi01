@@ -865,7 +865,7 @@ export default {
             height: 18.5rem /* 370/20 */;
             height: 23rem /* 460/20 */;
             background: url('../../assets/images/personal/personal@2x.png') no-repeat center center;
-            // background: url(https://s3-ap-southeast-1.amazonaws.com/royalbiz/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83/personal%402x.png) no-repeat center center;
+            // background: url(https://s3-ap-southeast-1.amazonaws.com/Ritzbiz/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83/personal%402x.png) no-repeat center center;
             background-size: cover;
             position: relative;
             box-sizing:border-box;

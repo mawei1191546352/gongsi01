@@ -554,12 +554,12 @@ export default {
                     item1_h:"10 times compensation",
                     item1_p:"10-Time compensation in process of deposit if platform failure",
                     item2_h:"Deposit",
-                    item2_p:"Sellers crypto-currency are hold at Royalbiz escrow during trade",
+                    item2_p:"Sellers crypto-currency are hold at Ritzbiz escrow during trade",
                     item3_h:"Escrow trust hold",
-                    item3_p:"Both buyers and sellers cryptocurrency are hold at Royalbiz escrow during transaction",
+                    item3_p:"Both buyers and sellers cryptocurrency are hold at Ritzbiz escrow during transaction",
                     
                     info_1:'',
-                    info_2:"is hold at Royalbiz escrow, please transfer with",
+                    info_2:"is hold at Ritzbiz escrow, please transfer with",
                     done_pw:"Deposit method selected",
                     bank_user:"Bank card owner's name",
                     info2:"Crypto currency will deposit directly to merchant after successful",
@@ -646,7 +646,7 @@ export default {
                         account:'Deposit amount',
                         pay_way:'Deposit method selected',
                         pay_way_one:'Cryptocurrency Deposit',
-                        info:'Royalbiz platform has an entire safety cryptocurrency wallet system,please deposit assurely.'
+                        info:'Ritzbiz platform has an entire safety cryptocurrency wallet system,please deposit assurely.'
 
                     },
                     dia:{
@@ -673,11 +673,11 @@ export default {
                     },
                     new_bottom_2:{
                         h3:'Cyrpto Wallet System',
-                        p:'Royalbiz platform has an entire safety cryptocurrency wallet system'
+                        p:'Ritzbiz platform has an entire safety cryptocurrency wallet system'
                     },
                     new_bottom_3:{
                         h3:'Deposit Hold',
-                        p:'Digital currency will be hold at Royalbiz platform during deposit process'
+                        p:'Digital currency will be hold at Ritzbiz platform during deposit process'
                     },
                     new_body2:{
                         num:'Deposit Amount',

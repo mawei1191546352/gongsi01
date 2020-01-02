@@ -5,30 +5,30 @@
                 <div class="left-time">
                     <div class="time-top">
                         <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
-                        <p>订单剩余支付时间</p>
+                        <p>{{languageType0[$parent.swA].leftTime}}</p>
                     </div>
                     <h3>{{fortmatTime(time)}}</h3>
                 </div>
             </div>
             <div class="third-two-box">
                 <div class="two-box-item one">
-                    <p class="info">买家手中的 USDT 已托管锁定在Royalbiz平台，请放心付款。</p>
+                    <p class="info">{{languageType0[$parent.swA].page2p10}} {{data!=null?data.coinType.toUpperCase():''}} {{languageType0[$parent.swA].page2p12}}</p>
                     <div class="oone">
                         <div class="border one">
-                            <p class="wait">待付款金额（{{data!=null?data.tradeCoinType:''}}）</p>
+                            <p class="wait">{{languageType0[$parent.swA].page2title}}（{{data!=null?data.tradeCoinType:''}}）</p>
                             <h3>{{data!=null?data.amountCny:''}}</h3>
                         </div>
                         <div class="border">
-                            <label>银行卡持有人姓名</label>
+                            <label>{{languageType0[$parent.swA].page2bankuser}}</label>
                             <div class="text-box">
                                 <p>{{data!=null?data.payOrderRealName:''}}</p>
                             </div>
                         </div>
                         <div class="border">
-                            <label>已选择付款方式</label>
+                            <label>{{languageType0[$parent.swA].page2pw}}</label>
                             <div class="text-box">
                                 <div class="check">
-                                    <input type="checkbox" checked id="pd" value="以币入金"> <label for="pd">银行卡</label>
+                                    <input type="checkbox" checked id="pd" value="以币入金"> <label for="pd">{{languageType0[$parent.swA].oneBoxBank}}</label>
                                 </div>
                             </div>
                         </div>
@@ -36,79 +36,79 @@
                 </div>
                 <div class="two-box-item two">
                     <div class="border">
-                        <label>收款姓名</label>
+                        <label>{{languageType0[$parent.swA].page2shouName}}</label>
                         <div class="text-box">
                             <img src="" alt="">
                             <p>{{data!=null?data.adReceiptWay.name:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()" 
                             :data-clipboard-text="data!=null?data.adReceiptWay.name:''"
-                            >复制</button>
+                            >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
                     <div class="border">
-                        <label>银行信息</label>
+                        <label>{{languageType0[$parent.swA].page2bankInfo}}</label>
                         <div class="text-box">
                             <img src="" alt="">
                             <p>{{data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()" 
                             :data-clipboard-text="data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''"
-                            >复制</button>
+                            >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
                     <div class="border">
-                        <label>银行卡号</label>
+                        <label>{{languageType0[$parent.swA].page2bankNum}}</label>
                         <div class="text-box">
                             <p>{{data!=null?data.adReceiptWay.bankCardNumber:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()"
                             :data-clipboard-text="data!=null?data.adReceiptWay.bankCardNumber:''"
-                            >复制</button>
+                            >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
                     <div class="border">
-                        <label>付款备注</label>
+                        <label>{{languageType0[$parent.swA].page2code}}</label>
                         <div class="text-box">
                             <p class="red">{{data!=null?data.referenceCode:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()"
                             :data-clipboard-text="data!=null?data.referenceCode:''"
-                            >复制</button>
+                            >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pre-next">
-                <div class="pn-left">
+                <div class="pn-left" :class="$parent.swA">
                     <img src="../../assets/images/third/2019-12-18/ok1.png" alt="">
-                    <h3>购买成功后数字货币将全额充值到您要付款的商户</h3>
+                    <h3>{{languageType0[$parent.swA].page2OkInfo}}</h3>
                 </div>
                 <div class="pn-right">
                     <button class="pre"
                     @click="preFun"
-                    >上一步</button>
+                    >{{languageType0[$parent.swA].btnPre}}</button>
                     <button class="next"
                     @click="nextFun"
-                    >已付款</button>
+                    >{{languageType0[$parent.swA].btnDone}}</button>
                 </div>
             </div>
             <div class="info-list">
                 <div class="info-bg">
-                    <h3 class="first">注意事项</h3>
+                    <h3 class="first">{{languageType0[$parent.swA].modal00h1}}</h3>
                     <li>
                         <div class="icon">1</div>
-                        转账时 <span class="red">请勿备注</span> “比特币”、“虚拟币”“USDT”等信息，否则交易可能被拒绝。
+                       {{languageType0[$parent.swA].page2Info10}} <span class="red">{{languageType0[$parent.swA].page2Info11}}</span> {{languageType0[$parent.swA].page2Info12}}
                     </li>
                     <li>
                         <div class="icon">2</div>
-                        付款时除了备注付款号之外 <span class="red">不要备注任何其他信息。</span>
+                        {{languageType0[$parent.swA].page2Info20}} <span class="red">{{languageType0[$parent.swA].page2Info21}}</span>
                     </li>
                     <li>
                         <div class="icon">3</div>
-                        转账后请 <span class="red">务必点击“已付款”。</span>
+                        {{languageType0[$parent.swA].page2Info30}} <span class="red">{{languageType0[$parent.swA].page2Info31}}</span>
                     </li>
                     <li>
                         <div class="icon">4</div>
-                        币商银行收款账户仅以 <span class="red">当前显示的有效</span>，转入非当前收款账户将不会到账。
+                       {{languageType0[$parent.swA].page2Info40}} <span class="red">{{languageType0[$parent.swA].page2Info41}}</span>{{languageType0[$parent.swA].page2Info41}}
                     </li>
-                    <h3 class="last">网银快捷入口</h3>
+                    <h3 class="last">{{languageType0[$parent.swA].page2EBank}}</h3>
                 </div>
             </div>
             <div class="bank-list">
@@ -162,16 +162,16 @@
         <div class="gate-way-two" v-if="data!=null?data.type==1?true:false:false">
             <div class="gate-two-header">
                 <img src="../../assets/images/third/2019-12-18/ok2.png" alt="">
-                <h3>订单已成功提交</h3>
+                <h3>{{languageType1[$parent.swA].page2OrderConfirm}}</h3>
             </div>
             <div class="gate-way-content">
                 <div class="gate-box">
-                    <p>待付款数量（{{data!=null?data.coinType.toUpperCase():''}}）</p>
+                    <p>{{languageType1[$parent.swA].depositAmount}}（{{data!=null?data.coinType.toUpperCase():''}}）</p>
                     <h3>{{data!=null?data.amount:''}}</h3>
                 </div>
                 <div class="gate-content-bottom">
                     <div class="content-left">
-                        <label>{{data!=null?data.coinType.toUpperCase():''}}充值地址</label>
+                        <label>{{data!=null?data.coinType.toUpperCase():''}}{{languageType1[$parent.swA].depositAddress}}</label>
                         <div class="om-erc" v-show="data!=null?data.coinType=='usdt'?true:false:false">
                             <button disabled :class="$parent.usdtType=='ERC20'?'active':'no'" @click="$parent.usdtType='ERC20'" v-show="$parent.usdtType=='ERC20'">ERC20</button>
                             <button disabled :class="$parent.usdtType=='OMNI'?'active':'no'" @click="$parent.usdtType='OMNI'" v-show="$parent.usdtType=='OMNI'">OMNI</button>
@@ -196,25 +196,26 @@
             <div class="gate-two-search">
                 <div class="search-left">
                     <img src="../../assets/images/third/2019-12-18/point.png" alt="">
-                    <h3>订单状态</h3>
-                    <button>{{item!=null?item.data.status==0?'确认中':'已完成':'确认中'}}</button>
+                    <h3>{{languageType1[$parent.swA].page2OrderStatus}}</h3>
+                    <!-- <button>{{item!=null?item.data.status==0?'确认中':'已完成':'确认中'}}</button> -->
+                    <button>{{item!=null?item.data.status==0?languageType1[$parent.swA].page2OrderStatusUn:languageType1[$parent.swA].page2OrderStatusCon:languageType1[$parent.swA].page2OrderStatusUn}}</button>
                 </div>
                 <div class="search-right">
-                    <button @click="findStatusFun">查询状态</button>
+                    <button @click="findStatusFun">{{languageType1[$parent.swA].page2OrderStatusQuery}}</button>
                 </div>
             </div>
         </div>
         <div class="modal-next" v-show="modalStaus">
             <div class="box2">
-                <h3>确认付款 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <h3>{{languageType0[$parent.swA].modal2h}} <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
                 <div class="modal-top">
                     <li>
-                        <p>确认已付款 <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
+                        <p>{{languageType0[$parent.swA].modal2p}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
                     </li>
                 </div>
                 <div class="btn-modal">
-                    <button class="cancle" @click="modalCloseFun">取消</button>
-                    <button class="confirm" @click="modalConfirmFun">确认</button>
+                    <button class="cancle" @click="modalCloseFun">{{languageType0[$parent.swA].modal2btnCancel}}</button>
+                    <button class="confirm" @click="modalConfirmFun">{{languageType0[$parent.swA].modal2btnConfirm}}</button>
                 </div>
             </div>
         </div>
@@ -260,7 +261,7 @@ export default {
         } catch(e) {
             console.log(e)
             this.$message({
-                message: this.swA=='ch'?'你的url参数有误，请回到之前页面 重新选择：':'你的url参数有误，请回到之前页面 重新选择：',
+                message: this.$parent.swA=='ch'?'你的url参数有误，请回到之前页面 重新选择：':'你的url参数有误，请回到之前页面 重新选择：',
                 type: 'error',
                 center:true,
                 duration:1200,
@@ -290,7 +291,7 @@ export default {
                 // 释放内存
                 clipboard.destroy()
                 that.$message({
-                    message: '复制成功',
+                    message: that.$parent.swA=='ch'?'复制成功':'Copy successful',
                     type: 'success',
                     center:true,
                     duration:500,
@@ -472,6 +473,13 @@ export default {
                         color:rgba(255,255,255,1);
                     }
                     padding-left: 20px;
+                }
+                &.en {
+                    p {
+                        &.info {
+                            font-size: 13px;
+                        }
+                    }
                 }
                 .oone {
                     height: 240px;

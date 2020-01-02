@@ -24,7 +24,7 @@
                         <li>10.承诺书</li>
                         <li>11.授权委托书</li>
                     </ul>
-                    <p style="margin-top:2rem;">请将机构账户申请表填写完成后与认证机构所需材料发送至邮箱：support@royalbiz.co。请勿重复发送，感谢理解与配合！</p>
+                    <p style="margin-top:2rem;">请将机构账户申请表填写完成后与认证机构所需材料发送至邮箱：support@Ritzbiz.co。请勿重复发送，感谢理解与配合！</p>
                     <p style="margin-top:2rem;">我们收到您的申请邮件后会尽快进行处理，请不要把您的资料泄露给除本平台以外的任何地方，泄露后所导致的问
     题我们将不负任何责任。所有条款Royalbiz平台享有最终解释权。</p>
 

@@ -18,43 +18,43 @@
             </div>
             <div class="third-one-box">
                 <div class="third-one-item">
-                    <label >商家名</label>
+                    <label >{{languageType0[$parent.swA].oneBoxMerchant}}</label>
                     <div class="text-box">
                         <p class="merchant">{{data!=null?data.merchantName:''}}</p>
                     </div>
                 </div>
                 <div class="third-one-item">
-                    <label >付款金额</label>
+                    <label >{{languageType0[$parent.swA].oneBoxWaitPay}}</label>
                     <div class="text-box">
                         <h3 class="amount">{{data!=null?data.amountCny:''}} CNY</h3>
                     </div>
                 </div>
                 <div class="third-one-item">
-                    <label >购买数量</label>
+                    <label >{{languageType0[$parent.swA].oneBoxAmount}}</label>
                     <div class="text-box">
                         <p>{{data!=null?data.amount:''}} {{data!=null?data.coin.toUpperCase():''}}</p>
                     </div>
                 </div>
                 <div class="third-one-item">
-                    <label >付款方式</label>
+                    <label >{{languageType0[$parent.swA].oneBoxPayType}}</label>
                     <div class="text-box">
                         <div class="check">
-                            <input type="checkbox" checked id="py" value="以币入金"> <label for="py">银行卡</label>
+                            <input type="checkbox" checked id="py" value="以币入金"> <label for="py">{{languageType0[$parent.swA].oneBoxBank}}</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="name-next">
                 <div class="input">
-                    <input type="text" v-model="realName" placeholder="输入转账银行卡持有人姓名" 
+                    <input type="text" v-model="realName" :placeholder="languageType0[$parent.swA].inputRealNameInfo" 
                     @keyup="realName = realName.replace(/\s+/g,'')"
                     >
-                    <p>(请输入转账银行卡持有人的真实姓名)</p>
+                    <p>({{languageType0[$parent.swA].inputRealName}})</p>
                 </div>
                 <button
                 class="net"
                 @click="nextFun"
-                >下一步</button>
+                >{{languageType0[$parent.swA].nextBtn}}</button>
             </div>
         </div>
         <div class="gate-way-one" v-if="data!=null?data.type==1?true:false:false">
@@ -64,7 +64,8 @@
                         <img :src="require('../../assets/images/third/2019-12-18/time.png')" alt="">
                         <p>{{languageType1[$parent.swA].leftTime}}</p>
                     </div>
-                    <h3>{{data!=null?data.expiredTimestamp ?fortmatTime(time):'':''}}</h3>
+                    <h3>{{fortmatTime(time)}}</h3>
+                    <!-- <h3>{{data!=null?data.expiredTimestamp ?fortmatTime(time):'':''}}</h3> -->
                 </div>
                 <div class="right-tip" :class="$parent.swA">
                     <h3>{{languageType1[$parent.swA].rightTipAll}}</h3>
@@ -112,59 +113,59 @@
                 </div>
             </div>
             <div class="gate-way-info">
-                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt=""> 请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</li>
-                <li><img src="../../assets/images/third/2019-12-18/ok1.png" alt="">入金成功后数字货币将全额充值到您要付款的商户</li>
+                <li><img src="../../assets/images/third/2019-12-18/tan.png" alt=""> {{languageType1[$parent.swA].info011}}{{data!=null?data.coinType.toUpperCase():''}} {{languageType1[$parent.swA].info012}}</li>
+                <li><img src="../../assets/images/third/2019-12-18/ok1.png" alt="">{{languageType1[$parent.swA].info02}}</li>
             </div>
             <div class="btn">
-                <button class="pre">上一步</button>
-                <button class="next" @click="nextFun1">已入金<p>充值后请<span>务必点击“已入金”。</span> </p></button>
+                <button class="pre">{{languageType1[$parent.swA].btnPre}}</button>
+                <button class="next" @click="nextFun1">{{languageType1[$parent.swA].btnDeposit}}<p>{{languageType1[$parent.swA].btnInfo01}}<span>{{languageType1[$parent.swA].btnInfo02}}</span> </p></button>
             </div>
         </div>
         <div class="modal-next" v-show="modalStaus">
             <div class="box" v-if="data!=null?data.type==0?true:false:false">
-                <h3>注意事项 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
-                <div class="modal-top">
+                <h3>{{languageType0[$parent.swA].modal00h1}} <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <div class="modal-top" :class="$parent.swA">
                     <li>
                         <div class="icon">1</div>
-                        <p><span>请勿</span>使用微信和支付宝进行转账，否则将不会到账。</p>
+                        <p><span>{{languageType0[$parent.swA].modal00p10}}</span>{{languageType0[$parent.swA].modal00p11}}</p>
                     </li>
                     <li>
                         <div class="icon">2</div>
-                        <p>请保证<span>付款账户信息与填写的银行卡持有人姓名一致。 </span></p>
+                        <p>{{languageType0[$parent.swA].modal00p20}}<span>{{languageType0[$parent.swA].modal00p21}} </span></p>
                     </li>
                     <li>
                         <div class="icon">3</div>
-                        <p>请保证<span>实际转账金额与输入的金额一致。 </span></p>
+                        <p>{{languageType0[$parent.swA].modal00p30}}<span>{{languageType0[$parent.swA].modal00p31}} </span></p>
                     </li>
                 </div>
                 <div class="border"></div>
                 <div class="modal-bottom">
-                    <h3>到账时间</h3>
+                    <h3>{{languageType0[$parent.swA].modal00h2}}</h3>
                     <li class="light">
-                        <p>工作日9：00~17：00，单笔最大支持<span>100万人民币；</span></p>
+                        <p>{{languageType0[$parent.swA].modal00p40}}<span>{{languageType0[$parent.swA].modal00p41}}</span>{{languageType0[$parent.swA].modal00p42}}</p>
                     </li>
                     <li class="light">
-                        <p>工作日17：00~次日9：00及非工作日时间，单笔最大支持5w人民币，超过将可能<span>延时到账； </span></p>
+                        <p>{{languageType0[$parent.swA].modal00p50}}<span>{{languageType0[$parent.swA].modal00p51}} </span></p>
                     </li>
                     <li class="light">
-                        <p>节假日规则以各银行公告为准。</p>
+                        <p>{{languageType0[$parent.swA].modal00p60}}</p>
                     </li>
                 </div>
                 <div class="btn-modal">
-                    <button class="cancle" @click="modalCloseFun">稍后再说</button>
-                    <button class="confirm" @click="modalConfirmFun">下一步</button>
+                    <button class="cancle" @click="modalCloseFun">{{languageType0[$parent.swA].shaohouBtn}}</button>
+                    <button class="confirm" @click="modalConfirmFun">{{languageType0[$parent.swA].nextBtn}}</button>
                 </div>
             </div>
             <div class="box2" v-if="data!=null?data.type==1?true:false:false">
-                <h3>入金确认 <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
+                <h3>{{languageType1[$parent.swA].modal01H}} <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
                 <div class="modal-top">
                     <li>
-                        <p>是否确认已全额入金<span>{{data!=null?data.amount:''}} {{data!=null?data.coinType.toUpperCase():''}}</span></p>
+                        <p>{{languageType1[$parent.swA].modal01p01}}<span>{{data!=null?data.amount:''}} {{data!=null?data.coinType.toUpperCase():''}}</span></p>
                     </li>
                 </div>
                 <div class="btn-modal">
-                    <button class="cancle" @click="modalCloseFun">取消</button>
-                    <button class="confirm" @click="modalConfirmFun">确认</button>
+                    <button class="cancle" @click="modalCloseFun">{{languageType1[$parent.swA].modal01btnCancle}}</button>
+                    <button class="confirm" @click="modalConfirmFun">{{languageType1[$parent.swA].modal01btnConfirm}}</button>
                 </div>
             </div>
         </div>
@@ -241,7 +242,7 @@ export default {
                 // 释放内存
                 clipboard.destroy()
                 that.$message({
-                    message: '复制成功',
+                    message: that.$parent.swA=='ch'?'复制成功':'Copy successful',
                     type: 'success',
                     center:true,
                     duration:500,
@@ -975,6 +976,8 @@ export default {
                     position: absolute;
                     bottom: -25px;
                     right: 30%;
+                    right: 3%;
+                    width: 100%;
                     font-size:16px;
                     color:  #666666;
                     span {
@@ -1068,6 +1071,12 @@ export default {
                 height: 45px;
                 display: flex;
                 align-items: center;
+            }
+            &.en {
+                li {
+                    line-height: 20px;
+                    font-size: 16px;
+                }
             }
         }
         .modal-bottom {
