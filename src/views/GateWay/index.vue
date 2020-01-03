@@ -94,6 +94,7 @@ export default {
             type: null,
             data: null,
             time: 0,
+            requeset: true,
             languageType0: languageType0,
             languageType1: languageType1,
         }
@@ -135,6 +136,7 @@ export default {
                 // this.gate = {...this.gate,...k}
                 this.data = {...this.data,...k}
             }
+            this.requeset = false;
         },
         async createCoinOrder(item) {
             let k = await createGateLegalOrder(this,item)
@@ -145,6 +147,7 @@ export default {
                 // this.time = k.expiredTimestamp
                 // this.timeFun(this.time)
             }
+            this.requeset = false;
         },
         
     }
