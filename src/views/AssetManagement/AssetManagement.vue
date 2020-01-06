@@ -928,7 +928,14 @@ export default {
             if(this.widthdraw_amount>this.extractMax) {
                 this.$message({
                     type:'error',
-                    message:this.$t('info_item.un_available')
+                    message:this.$t('info_item.un_available1')
+                })
+                return false;
+            }
+            if(this.widthdraw_amount<this.extractMin) {
+                this.$message({
+                    type:'error',
+                    message:this.$t('info_item.un_available2')
                 })
                 return false;
             }

@@ -1019,6 +1019,8 @@
         "copy":"Copy",
         "qrcode":"QR Code",
         "un_available":"Available is not enough",
+        "un_available1":"Cannot exceed the maximum limit",
+        "un_available2":"Cannot be less than the minimum limit",
         "format_error":" format error",
         "copy_succeed":"Copy succeed",
         "succeed":"succeed",

@@ -1013,6 +1013,8 @@
         "copy":"复制",
         "qrcode":"二维码",
         "un_available":"余额不足！",
+        "un_available1":"不能超过最大限额",
+        "un_available2":"不能小于最小限额",
         "format_error":"格式错误！",
         "copy_succeed":"复制成功！",
         "succeed":"成功",
