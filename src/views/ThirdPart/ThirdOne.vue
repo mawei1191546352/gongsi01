@@ -179,6 +179,7 @@ import {bindOrderFun,thirdGetInfo,
 thirdGetInfo2,alreadyPayConfirm,
 updateTransferStatus,updateSearchFun} from '../../assets/js/api'
 import Base64 from './base64'
+import Clipboard from 'clipboard';
 import QRCode from 'qrcodejs2'
 import {
     languageType0,
