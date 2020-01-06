@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-15 11:11:10
- -->
 <template>
     <div class="pop-ups" v-show="box_info">
         <div class="box_info_center box_info_open" ref="box_info" v-show="box_info" :class="box_info_height">

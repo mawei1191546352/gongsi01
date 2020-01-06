@@ -1,11 +1,3 @@
-/*
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:13:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-16 17:24:06
- */
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
 const productionGzipExtensions = ['js', 'css']
 

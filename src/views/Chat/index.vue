@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 17:20:18
- -->
 <template>
     <div class="chat-new">
         <div class="chat-head">

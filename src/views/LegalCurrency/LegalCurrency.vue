@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-17 11:26:01
- -->
 <template>
     <div class="legal-currency">
         <top-nav></top-nav>

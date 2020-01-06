@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-15 11:24:56
- -->
 <template>
 <!-- 广告 -->
     <div class="market-top">

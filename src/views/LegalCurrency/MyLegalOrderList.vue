@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2018-11-27 11:11:09
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-12 10:14:49
- -->
 <template>
     <div class="my-legal-order-list">
         <top-nav></top-nav>

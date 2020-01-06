@@ -1,11 +1,3 @@
-/*
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-16 17:37:05
- */
 import qs from 'qs'
 import axios from 'axios'
 import axios2 from 'axios'

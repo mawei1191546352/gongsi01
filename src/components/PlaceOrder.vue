@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-06-26 14:03:53
- -->
 <template>
     <div>
         <div class="shadow" :class="place_order.status=='0'?'':'place_order_active_shadow'" @click.prevent=""></div>

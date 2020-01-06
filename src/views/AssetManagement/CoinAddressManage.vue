@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-06-26 16:10:21
- -->
 <template>
     <div class="currency-address-manage">
         <top-nav></top-nav>

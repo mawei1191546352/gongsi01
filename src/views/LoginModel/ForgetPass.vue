@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-15 15:50:51
- -->
 <template>
     <div class="forget-pass">
         <top-nav></top-nav>

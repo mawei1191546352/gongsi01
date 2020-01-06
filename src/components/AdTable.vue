@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-15 11:25:33
- -->
 <template>
     <div class="market-table">
         <div class="legal-currency-body-bottom">

@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-12 09:48:58
- -->
 <template>
     <div class="binding-email">
         <top-nav></top-nav>

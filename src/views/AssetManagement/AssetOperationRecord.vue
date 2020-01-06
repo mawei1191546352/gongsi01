@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-06-25 15:07:46
- -->
 <template>
     <div class="asset-operation-record">
         <top-nav></top-nav>

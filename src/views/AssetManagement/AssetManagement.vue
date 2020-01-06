@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @LastEditors: mawei
- * @Since: 2019-04-14 13:30:14
- * @LastEditTime: 2019-06-26 16:40:52
- -->
 <template>
     <div class="asste-management">
         <top-nav></top-nav>

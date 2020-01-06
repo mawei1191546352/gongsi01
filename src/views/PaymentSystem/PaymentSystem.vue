@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-16 18:17:52
- -->
 <template>
     <div class="payment-system">
         <top-nav></top-nav>

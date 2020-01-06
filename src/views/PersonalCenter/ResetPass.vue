@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-16 16:08:02
- -->
 <template>
     <div class="reset-pass">
         <top-nav></top-nav>

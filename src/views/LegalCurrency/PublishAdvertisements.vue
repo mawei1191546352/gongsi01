@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-06-05 10:29:13
- * @LastEditors: mawei
- * @LastEditTime: 2019-08-15 10:57:44
- -->
 <template>
     <div class="publish-advertisements">
         <top-nav></top-nav>

@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:03:46
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 18:03:22
- -->
 <template>
   <div id="app" class="">
     <div id="voice2" style="height:0px"></div>

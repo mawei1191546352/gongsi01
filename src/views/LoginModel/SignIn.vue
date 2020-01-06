@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2019-07-04 16:09:47
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-04 17:44:42
- -->
 <template>
     <div class="sign-in">
         <top-nav></top-nav>

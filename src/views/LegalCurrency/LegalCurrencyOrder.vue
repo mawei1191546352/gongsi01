@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: mawei
- * @Github: 
- * @Since: 2018-11-23 10:19:28
- * @LastEditors: mawei
- * @LastEditTime: 2019-07-18 18:00:04
- -->
 <template>
     <div class="legal-currency-order">
         <top-nav></top-nav>
