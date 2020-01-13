@@ -259,7 +259,7 @@ export default {
     .sign-body{
         height: 36.5rem /* 730/20 */;
         background: url('../../assets/images/sign/sign@2x.png') no-repeat center center;
-        // background: url(https://s3-ap-southeast-1.amazonaws.com/Ritzbiz/%E7%99%BB%E9%99%86/sign%402x.png) no-repeat center center;
+        // background: url(https://s3-ap-southeast-1.amazonaws.com/Royalbiz/%E7%99%BB%E9%99%86/sign%402x.png) no-repeat center center;
         background-size: cover;
         box-sizing: border-box;
         padding-top: 7rem;

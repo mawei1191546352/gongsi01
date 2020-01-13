@@ -30,7 +30,7 @@
         "info_two":""
     },
     "legal_currency":{
-        "h3":"Ritzbiz pays OTC to serve every detail",
+        "h3":"Royalbiz pays OTC to serve every detail",
         "p":"Safe, convenient and simple over-the-counter trading platform",
         "sele":{
             "country":"Country",
@@ -132,7 +132,7 @@
         "pass_placeholder":"Please enter the fund password"
     },
     "sign_in":{
-        "h3": "Log in with Ritzbiz account",
+        "h3": "Log in with Royalbiz account",
         "email_phone_placeholder": "Please enter your email / phone",
         "pass_placeholder": "Please enter your login password",
         "rem_account": "Remember the account",
@@ -183,7 +183,7 @@
         "pass_new_t":"Please enter the new password again",
         "go_login":"Return to login",
         "register":"Sign up",
-        "info":"If you encounter any problems during the process of recovering your password, please call Ritzbiz customer service, Monday to Friday, 9:00-18:00",
+        "info":"If you encounter any problems during the process of recovering your password, please call Royalbiz customer service, Monday to Friday, 9:00-18:00",
         "phone_regular":"The phone number format is incorrect.",
         "email_regular":"'The email format is incorrect.",
         "submit":"Submit"
@@ -347,7 +347,7 @@
 
         "faq":"FAQ",
         "faq1":"Reminders for transfer",
-        "faq11":"To prevent your transfer from being intercepted and your bank card frozen, please don't fill in information such as BTC, USDT and Ritzbiz as notes during transfer. In case of delays caused by this, the seller can reject the transaction",
+        "faq11":"To prevent your transfer from being intercepted and your bank card frozen, please don't fill in information such as BTC, USDT and Royalbiz as notes during transfer. In case of delays caused by this, the seller can reject the transaction",
         "faq12":"Cancellation of more than three orders will prohibit one-day transactions ",
         "faq13":"For unpaid orders, please do not click Payment, more than three times will prohibit one day trading",
         "faq14":"Please note the payment code",
@@ -844,9 +844,9 @@
         "want":"How much you want",
         "get":"You will get in",
         "button":"Login account, buy / sell",
-        "all_p":"Ritzbiz is a Peer to Peer cryptocurrency marketplace connecting buyers with sellers. Simply select your preferred payment method and type in how many cryptocurrency you need.",
+        "all_p":"Royalbiz is a Peer to Peer cryptocurrency marketplace connecting buyers with sellers. Simply select your preferred payment method and type in how many cryptocurrency you need.",
         "item2_p1":"Royabiz supports a variety of payment methods, including Alipay, WeChat, Bank Transfers, PayPal, etc. ",
-        "item2_p2":"Ritzbiz support multiple Gift Card payments, like Amazon Gift Card, JD Gift Card, SINOPEC Gift Card. Ritzbiz support domestic and international banks. Securely and Conveniently.",
+        "item2_p2":"Royalbiz support multiple Gift Card payments, like Amazon Gift Card, JD Gift Card, SINOPEC Gift Card. Royalbiz support domestic and international banks. Securely and Conveniently.",
         "message":"Message",
         "message_me":"Leave us a <span>message</span>",
         "message_back":"Please enter your message here and our staff will get back to you as soon as possible.",
@@ -874,11 +874,11 @@
         "item3_it1_h":"Powerful vendor network",
         "item3_it1_p":"Vendors are from cryptocurrency exchange marketplace worldwide. Having a powerful vendor network enables buyers and sellers trade cryptocurrency easily. ",
         "item3_it2_h":"Instant Live Chat",
-        "item3_it2_p":"Ritzbiz supports live chat to free your time, make you understand your seller. Once you start a trade an experienced seller will guide you through the process in a one on one live chat. Start by firing an offer you like!",
+        "item3_it2_p":"Royalbiz supports live chat to free your time, make you understand your seller. Once you start a trade an experienced seller will guide you through the process in a one on one live chat. Start by firing an offer you like!",
         "item3_it3_h":"Exchange easily Instant payments",
         "item3_it3_dd":"See details",
         "item3_it3_de":"Details",
-        "item3_it3_p":"Manage institution client manage crypto currency large scale trade privately and audible. Ritzbiz dedicated to link crypto currency and traditional currency.",
+        "item3_it3_p":"Manage institution client manage crypto currency large scale trade privately and audible. Royalbiz dedicated to link crypto currency and traditional currency.",
         "item4_title":"Platform fund security",
         "item4_it1_h":"Entrusted transaction",
         "item4_it1_p":"Vouch during transaction.",
@@ -889,7 +889,7 @@
         "item4_it4_h":"2FA Authentication Architecture",
         "item4_it4_p":"We protect all of our buyers and seller safety. Pay with confidence, 2-factor, escrow, highest level encryption and professionally audited security.",
         "item4_it5_h":"Escrow trust hold",
-        "item4_it5_p":"Both buyers and sellers cryptocurrency are hold at Ritzbiz escrow during transaction.",
+        "item4_it5_p":"Both buyers and sellers cryptocurrency are hold at Royalbiz escrow during transaction.",
         "item5_title":"Technical",
         "item5_it1":"API interface",
         "item5_it2":"Platform performance auto-boost",
@@ -900,19 +900,19 @@
     },
     "video":{
         "title":"Exchange easily",
-        "all_p":"Ritzbiz instant exchange helps institution client manage crypto currency large scale trade privately and audible. Ritzbiz dedicated to link crypto currency and traditional currency.",
+        "all_p":"Royalbiz instant exchange helps institution client manage crypto currency large scale trade privately and audible. Royalbiz dedicated to link crypto currency and traditional currency.",
         "cny":"CNY Deposits",
         "usdt":"USDT Withdraw",
         "merchant":"Verified merchant",
-        "m_p":"Manage fund deposit and withdraw on Ritzbiz using ‘internal transfer’ tool.",
+        "m_p":"Manage fund deposit and withdraw on Royalbiz using ‘internal transfer’ tool.",
         "go":"Access guide",
         "item2_title":"Three-Layer protection",
         "item2_it1_h":"10-Time compensation",
         "item2_it1_p":"10-Time compensation in process of deposit if platform failure",
         "item2_it2_h":"Private crypto wallet system",
-        "item2_it2_p":"Robust crypto currency mechanism for Ritzbiz",
+        "item2_it2_p":"Robust crypto currency mechanism for Royalbiz",
         "item2_it3_h":"Escrow trust hold",
-        "item2_it3_p":"Buyers and sellers are both hold at Ritzbiz escrow during transaction."
+        "item2_it3_p":"Buyers and sellers are both hold at Royalbiz escrow during transaction."
     },
     "id_auth":{
         "nav_account":"My Account",
@@ -1064,7 +1064,7 @@
         "pass_info":"Please enter a combination of 6-16 letters and numbers",
         "pass_no_com":"Inconsistent input password twice",
         "submit":"Submit",
-        "copyright":"Ritzbiz.co Copyright",
+        "copyright":"Royalbiz.co Copyright",
         "server_time":"Current server time",
         "input_content":"Please input content",
         "server_error":"Server Error",

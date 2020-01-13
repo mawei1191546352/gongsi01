@@ -801,7 +801,7 @@ export default {
             height: 18.5rem /* 370/20 */;
             height: 23rem /* 460/20 */;
             background: url('../../assets/images/payment/payment@2x.jpg') no-repeat center center;
-            // background: url(https://s3-ap-southeast-1.amazonaws.com/Ritzbiz/%E6%94%AF%E4%BB%98%E8%AE%A2%E5%8D%95/payment%402x.jpg) no-repeat center center;
+            // background: url(https://s3-ap-southeast-1.amazonaws.com/Royalbiz/%E6%94%AF%E4%BB%98%E8%AE%A2%E5%8D%95/payment%402x.jpg) no-repeat center center;
             background-size: cover;
             position: relative;
             box-sizing:border-box;

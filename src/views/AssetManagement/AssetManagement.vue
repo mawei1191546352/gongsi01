@@ -1170,7 +1170,7 @@ export default {
             height: 18.5rem /* 370/20 */;
             height: 23rem /* 460/20 */;
             background: url('../../assets/images/asset/asset@2x.jpg') no-repeat center center;
-            // background: url(https://s3-ap-southeast-1.amazonaws.com/Ritzbiz/%E8%B5%84%E4%BA%A7/asset%402x.jpg) no-repeat center center;
+            // background: url(https://s3-ap-southeast-1.amazonaws.com/Royalbiz/%E8%B5%84%E4%BA%A7/asset%402x.jpg) no-repeat center center;
             background-size: cover;
             position: relative;
             box-sizing:border-box;

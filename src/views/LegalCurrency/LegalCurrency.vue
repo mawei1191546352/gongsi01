@@ -16,7 +16,7 @@
                         <span>公告</span>
                     </div>
                     <div class="right-content">
-                        <span>RITZBIZ OTC 现已开通</span>
+                        <span>Royalbiz OTC 现已开通</span>
                         <div class="border1">
                             <span class="color">$</span>
                             <span>美元</span>
@@ -425,7 +425,7 @@ export default {
             height: 18.5rem /* 370/20 */;
             height: 23rem /* 460/20 */;
             background: url('../../assets/images/litter-bg@2x.png') no-repeat center center;
-            // background: url(https://s3-ap-southeast-1.amazonaws.com/Ritzbiz/%E6%B3%95%E5%B8%81/litter-bg%402x.png) no-repeat center center;
+            // background: url(https://s3-ap-southeast-1.amazonaws.com/Royalbiz/%E6%B3%95%E5%B8%81/litter-bg%402x.png) no-repeat center center;
             background-size: cover;
             position: relative;
             box-sizing:border-box;
