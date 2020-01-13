@@ -49,9 +49,18 @@
                         <label>{{languageType0[$parent.swA].page2bankInfo}}</label>
                         <div class="text-box">
                             <img src="" alt="">
-                            <p>{{data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''}}</p>
+                            <p>{{data!=null?data.adReceiptWay.bankAccount:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()" 
-                            :data-clipboard-text="data!=null?data.adReceiptWay.bankAccount+data.adReceiptWay.branchAccount:''"
+                            :data-clipboard-text="data!=null?data.adReceiptWay.bankAccount:''"
+                            >{{languageType0[$parent.swA].cp}}</button>
+                        </div>
+                    </div>
+                    <div class="border">
+                        <label>{{languageType0[$parent.swA].page2code}}</label>
+                        <div class="text-box">
+                            <p class="red">{{data!=null?data.adReceiptWay.branchAccount:''}}</p>
+                            <button class="cp tag-read" @click="copyAddressFun()"
+                            :data-clipboard-text="data!=null?data.adReceiptWay.branchAccount:''"
                             >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
@@ -64,7 +73,7 @@
                             >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
-                    <div class="border">
+                    <!-- <div class="border">
                         <label>{{languageType0[$parent.swA].page2code}}</label>
                         <div class="text-box">
                             <p class="red">{{data!=null?data.referenceCode:''}}</p>
@@ -72,7 +81,7 @@
                             :data-clipboard-text="data!=null?data.referenceCode:''"
                             >{{languageType0[$parent.swA].cp}}</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="pre-next">
@@ -96,17 +105,17 @@
                         <div class="icon">1</div>
                        {{languageType0[$parent.swA].page2Info10}} <span class="red">{{languageType0[$parent.swA].page2Info11}}</span> {{languageType0[$parent.swA].page2Info12}}
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="icon">2</div>
                         {{languageType0[$parent.swA].page2Info20}} <span class="red">{{languageType0[$parent.swA].page2Info21}}</span>
-                    </li>
+                    </li> -->
                     <li>
-                        <div class="icon">3</div>
+                        <div class="icon">2</div>
                         {{languageType0[$parent.swA].page2Info30}} <span class="red">{{languageType0[$parent.swA].page2Info31}}</span>
                     </li>
                     <li>
-                        <div class="icon">4</div>
-                       {{languageType0[$parent.swA].page2Info40}} <span class="red">{{languageType0[$parent.swA].page2Info41}}</span>{{languageType0[$parent.swA].page2Info41}}
+                        <div class="icon">3</div>
+                       {{languageType0[$parent.swA].page2Info40}} <span class="red">{{languageType0[$parent.swA].page2Info41}}</span>{{languageType0[$parent.swA].page2Info42}}
                     </li>
                     <h3 class="last">{{languageType0[$parent.swA].page2EBank}}</h3>
                 </div>
@@ -210,7 +219,8 @@
                 <h3>{{languageType0[$parent.swA].modal2h}} <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
                 <div class="modal-top">
                     <li>
-                        <p>{{languageType0[$parent.swA].modal2p}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
+                        <p v-show="$parent.swA=='ch'">{{languageType0[$parent.swA].modal2p}} {{data!=null?data.adReceiptWay.name:''}} {{languageType0[$parent.swA].modal2p2}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
+                        <p v-show="$parent.swA=='en'">{{languageType0[$parent.swA].modal2p}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span> {{languageType0[$parent.swA].modal2p2}} {{data!=null?data.adReceiptWay.name:''}} </p>
                     </li>
                 </div>
                 <div class="btn-modal">
