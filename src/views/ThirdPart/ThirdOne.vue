@@ -223,8 +223,8 @@ export default {
             if(document.querySelector('#qrcode')) {
                 document.querySelector('#qrcode').innerHTML=''
             }
-            this.$parent.usdtType = n;
             this.$nextTick(()=>{
+                this.$parent.usdtType = n;
                 if(this.data!= null && this.data.type==1) {
                     this.getCode()
                 }
