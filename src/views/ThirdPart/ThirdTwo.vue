@@ -46,6 +46,15 @@
                         </div>
                     </div>
                     <div class="border">
+                        <label>{{languageType0[$parent.swA].page2bankNum}}</label>
+                        <div class="text-box">
+                            <p>{{data!=null?data.adReceiptWay.bankCardNumber:''}}</p>
+                            <button class="cp tag-read" @click="copyAddressFun()"
+                            :data-clipboard-text="data!=null?data.adReceiptWay.bankCardNumber:''"
+                            >{{languageType0[$parent.swA].cp}}</button>
+                        </div>
+                    </div>
+                    <div class="border">
                         <label>{{languageType0[$parent.swA].page2bankInfo}}</label>
                         <div class="text-box">
                             <img src="" alt="">
@@ -58,21 +67,13 @@
                     <div class="border">
                         <label>{{languageType0[$parent.swA].page2code}}</label>
                         <div class="text-box">
-                            <p class="red">{{data!=null?data.adReceiptWay.branchAccount:''}}</p>
+                            <p class="">{{data!=null?data.adReceiptWay.branchAccount:''}}</p>
                             <button class="cp tag-read" @click="copyAddressFun()"
                             :data-clipboard-text="data!=null?data.adReceiptWay.branchAccount:''"
                             >{{languageType0[$parent.swA].cp}}</button>
                         </div>
                     </div>
-                    <div class="border">
-                        <label>{{languageType0[$parent.swA].page2bankNum}}</label>
-                        <div class="text-box">
-                            <p>{{data!=null?data.adReceiptWay.bankCardNumber:''}}</p>
-                            <button class="cp tag-read" @click="copyAddressFun()"
-                            :data-clipboard-text="data!=null?data.adReceiptWay.bankCardNumber:''"
-                            >{{languageType0[$parent.swA].cp}}</button>
-                        </div>
-                    </div>
+                    
                     <!-- <div class="border">
                         <label>{{languageType0[$parent.swA].page2code}}</label>
                         <div class="text-box">
@@ -723,6 +724,7 @@ export default {
                 display: flex;
                 align-items: center;
                 font-size:16px;
+                font-size:17px;
                 font-weight:400;
                 line-height:24px;
                 color:rgba(34,34,34,1);
@@ -730,7 +732,7 @@ export default {
                     // background-image: linear-gradient(top, #fff 60%, #C7D9F6);
                     width: 15px;
                     height: 20px;
-                    margin-top: 5px;
+                    // margin-top: 5px;
                     margin-right: 10px;
                     display: flex;
                     justify-content: center;
