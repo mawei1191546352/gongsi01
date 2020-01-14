@@ -220,8 +220,8 @@
                 <h3>{{languageType0[$parent.swA].modal2h}} <img @click="modalCloseFun" src="../../assets/images/third/2019-12-18/close.png" alt=""></h3>
                 <div class="modal-top">
                     <li>
-                        <p v-show="$parent.swA=='ch'">{{languageType0[$parent.swA].modal2p}} {{data!=null?data.adReceiptWay.name:''}} {{languageType0[$parent.swA].modal2p2}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
-                        <p v-show="$parent.swA=='en'">{{languageType0[$parent.swA].modal2p}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span> {{languageType0[$parent.swA].modal2p2}} {{data!=null?data.adReceiptWay.name:''}} </p>
+                        <p v-show="$parent.swA=='ch'">{{languageType0[$parent.swA].modal2p}} {{data!=null?data.adReceiptWay?data.adReceiptWay.name:'':''}} {{languageType0[$parent.swA].modal2p2}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span></p>
+                        <p v-show="$parent.swA=='en'">{{languageType0[$parent.swA].modal2p}} <span>{{data!=null?data.amountCny:''}} {{data!=null?data.tradeCoinType:''}}</span> {{languageType0[$parent.swA].modal2p2}} {{data!=null?data.adReceiptWay?data.adReceiptWay.name:'':''}} </p>
                     </li>
                 </div>
                 <div class="btn-modal">
