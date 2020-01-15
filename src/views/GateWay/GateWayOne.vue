@@ -311,16 +311,18 @@ export default {
                 dom.innerHTML = '请求中'
                 dom.style.pointerEvents = 'none'
                 let item = this.$route.query
+                let item2 = {...item}
+                console.log(item)
                 if(item.amount && item.amount!='') {
-                    item['inputAmountType'] = 0;
+                    item2['inputAmountType'] = 0;
                 }else{
-                    item['inputAmountType'] = 1;
+                    item2['inputAmountType'] = 1;
                 }
-                item['amount']= this.data.amount;
-                item['amountCny'] = this.data.amountCny;
+                item2['amount']= this.data.amount;
+                item2['amountCny'] = this.data.amountCny;
 
-                item['realName']=this.realName;
-                let key =await createGateLegalOrder(this,item).then((res) => {
+                item2['realName']=this.realName;
+                let key =await createGateLegalOrder(this,item2).then((res) => {
                     return res;
                 })
                 if(key!=false) {
