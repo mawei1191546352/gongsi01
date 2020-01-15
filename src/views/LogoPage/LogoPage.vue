@@ -169,7 +169,7 @@
                 >
                     <h3>{{$t('logo.item3_it3_h')}}</h3>
                     <p>{{$t('logo.item3_it3_p')}}</p>
-                    <button @click="$router.push('/payment-detail')">{{$t('logo.item3_it3_de')}}</button>
+                    <!-- <button @click="$router.push('/payment-detail')">{{$t('logo.item3_it3_de')}}</button> -->
                 </div>
             </div>
         </div>

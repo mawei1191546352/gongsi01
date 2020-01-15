@@ -629,6 +629,7 @@
         "dp5_eth":"请务必确认电脑及浏览器安全，防止信息被篡改或泄露。",
 
         "withdraw_address":"提币地址",
+        "withdraw_address_info":"请仔细核对您的提币地址",
         "withdraw_amount":"数量",
         "receive":"到账数量",
         "withdraw_butt":"提币",

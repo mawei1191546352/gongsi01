@@ -149,7 +149,7 @@
                 </div>
                <div class="outer">
                    <div class="one_p">
-                       <span>{{$t('asset_manage.withdraw_address')}}</span>
+                       <span>{{$t('asset_manage.withdraw_address')}}</span> <span style="color:red;font-weight:800;"> {{ $t('asset_manage.withdraw_address_info')}}</span>
                        <el-select
                          filterable
                          allow-create
