@@ -1390,14 +1390,16 @@ export default {
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-32%);
+        // transform: translateX(-50%) translateY(-32%);
+        margin-left: -22%;
+        margin-top: -10%;
         width:41.5rem /* 830/20 */;
         // height:23rem /* 420/20 */;
         background:rgba(255,255,255,1);
         box-shadow:0px 3px 13px 0px rgba(153,153,153,1);
         border-radius:.25rem /* 5/20 */;
         box-sizing: border-box;
-        padding: 2rem 2rem;
+        padding: 1rem 2rem;
         
         i.hove{
             cursor: pointer;
