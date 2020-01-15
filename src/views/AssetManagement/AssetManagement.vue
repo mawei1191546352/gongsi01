@@ -149,7 +149,12 @@
                 </div>
                <div class="outer">
                    <div class="one_p">
-                       <span>{{$t('asset_manage.withdraw_address')}}</span> <span style="color:red;font-weight:800;"> {{ $t('asset_manage.withdraw_address_info')}}</span>
+                       <span>{{$t('asset_manage.withdraw_address')}}</span>&nbsp;
+                       <span style="color:#F56C6C;font-weight:800;
+                       background:rgba(245,108,108,.1);height:30px;
+                       line-height:30px;box-sizing:border-box;font-size:14px;
+                       padding:0px 10px;margin-top:10px;"><img style="width:20px;height:20px;
+                       vertical-align: text-bottom;" src="../../assets/images/payment/info.png" alt=""> {{ $t('asset_manage.withdraw_address_info')}}</span>
                        <el-select
                          filterable
                          allow-create
